@@ -1,0 +1,103 @@
+{
+  "main.js": {
+    "file": "assets/admin-plugin-Y1lSaS7W.js",
+    "name": "admin-plugin",
+    "src": "main.js",
+    "isEntry": true,
+    "dynamicImports": [
+      "module/sw-cms/blocks/nf-grid/two-column/preview/index.js",
+      "module/sw-cms/blocks/nf-grid/two-column/component/index.js",
+      "module/sw-cms/blocks/nf-grid/three-column/preview/index.js",
+      "module/sw-cms/blocks/nf-grid/three-column/component/index.js",
+      "module/sw-cms/blocks/nf-grid/four-column/preview/index.js",
+      "module/sw-cms/blocks/nf-grid/four-column/component/index.js",
+      "module/sw-cms/blocks/nf-grid/six-column/preview/index.js",
+      "module/sw-cms/blocks/nf-grid/six-column/component/index.js",
+      "module/sw-cms/elements/empty-column/component/index.js"
+    ],
+    "css": [
+      "assets/admin-plugin-BDDQ64G1.css"
+    ]
+  },
+  "module/sw-cms/blocks/nf-grid/four-column/component/index.js": {
+    "file": "assets/index-DwUJ2kcr.js",
+    "name": "index",
+    "src": "module/sw-cms/blocks/nf-grid/four-column/component/index.js",
+    "isDynamicEntry": true,
+    "css": [
+      "assets/index-B3dR-pD_.css"
+    ]
+  },
+  "module/sw-cms/blocks/nf-grid/four-column/preview/index.js": {
+    "file": "assets/index-v4gJ_u1T.js",
+    "name": "index",
+    "src": "module/sw-cms/blocks/nf-grid/four-column/preview/index.js",
+    "isDynamicEntry": true,
+    "css": [
+      "assets/index-DZv-r65-.css"
+    ]
+  },
+  "module/sw-cms/blocks/nf-grid/six-column/component/index.js": {
+    "file": "assets/index-BaOgk-1x.js",
+    "name": "index",
+    "src": "module/sw-cms/blocks/nf-grid/six-column/component/index.js",
+    "isDynamicEntry": true,
+    "css": [
+      "assets/index-BHgSK1in.css"
+    ]
+  },
+  "module/sw-cms/blocks/nf-grid/six-column/preview/index.js": {
+    "file": "assets/index-BGgYB2oV.js",
+    "name": "index",
+    "src": "module/sw-cms/blocks/nf-grid/six-column/preview/index.js",
+    "isDynamicEntry": true,
+    "css": [
+      "assets/index-ru42qRgA.css"
+    ]
+  },
+  "module/sw-cms/blocks/nf-grid/three-column/component/index.js": {
+    "file": "assets/index-PrbIQfF0.js",
+    "name": "index",
+    "src": "module/sw-cms/blocks/nf-grid/three-column/component/index.js",
+    "isDynamicEntry": true,
+    "css": [
+      "assets/index-34IE8ECG.css"
+    ]
+  },
+  "module/sw-cms/blocks/nf-grid/three-column/preview/index.js": {
+    "file": "assets/index-BKLFQhAl.js",
+    "name": "index",
+    "src": "module/sw-cms/blocks/nf-grid/three-column/preview/index.js",
+    "isDynamicEntry": true,
+    "css": [
+      "assets/index-Bu8c4TBQ.css"
+    ]
+  },
+  "module/sw-cms/blocks/nf-grid/two-column/component/index.js": {
+    "file": "assets/index-r7GDJ1en.js",
+    "name": "index",
+    "src": "module/sw-cms/blocks/nf-grid/two-column/component/index.js",
+    "isDynamicEntry": true,
+    "css": [
+      "assets/index-CUr_93vr.css"
+    ]
+  },
+  "module/sw-cms/blocks/nf-grid/two-column/preview/index.js": {
+    "file": "assets/index-CW44u4P-.js",
+    "name": "index",
+    "src": "module/sw-cms/blocks/nf-grid/two-column/preview/index.js",
+    "isDynamicEntry": true,
+    "css": [
+      "assets/index-B7PVT6hF.css"
+    ]
+  },
+  "module/sw-cms/elements/empty-column/component/index.js": {
+    "file": "assets/index-8Pw6qJgo.js",
+    "name": "index",
+    "src": "module/sw-cms/elements/empty-column/component/index.js",
+    "isDynamicEntry": true,
+    "css": [
+      "assets/index-DDxpGlur.css"
+    ]
+  }
+}

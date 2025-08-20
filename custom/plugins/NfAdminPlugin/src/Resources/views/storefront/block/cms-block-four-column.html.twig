@@ -1,0 +1,41 @@
+{% block block_four_column %}
+    {% block block_four_column_left %}
+        {% set element = block.slots.getSlot('left') %}
+
+        <div class="col-12 col-md-6 col-lg-3" data-cms-element-id="{{ element.id }}">
+            {% block block_four_column_left_inner %}
+                {% sw_include "@Storefront/storefront/element/cms-element-" ~ element.type ~ ".html.twig" ignore missing %}
+            {% endblock %}
+        </div>
+    {% endblock %}
+
+    {% block block_four_column_center_left %}
+        {% set element = block.slots.getSlot('center-left') %}
+
+        <div class="col-12 col-md-6 col-lg-3" data-cms-element-id="{{ element.id }}">
+            {% block block_four_column_center_left_inner %}
+                {% sw_include "@Storefront/storefront/element/cms-element-" ~ element.type ~ ".html.twig" ignore missing %}
+            {% endblock %}
+        </div>
+    {% endblock %}
+
+    {% block block_four_column_center_right %}
+        {% set element = block.slots.getSlot('center-right') %}
+
+        <div class="col-12 col-md-6 col-lg-3" data-cms-element-id="{{ element.id }}">
+            {% block block_four_column_center_right_inner %}
+                {% sw_include "@Storefront/storefront/element/cms-element-" ~ element.type ~ ".html.twig" ignore missing %}
+            {% endblock %}
+        </div>
+    {% endblock %}
+
+    {% block block_four_column_right %}
+        {% set element = block.slots.getSlot('right') %}
+
+        <div class="col-12 col-md-6 col-lg-3" data-cms-element-id="{{ element.id }}">
+            {% block block_four_column_right_inner %}
+                {% sw_include "@Storefront/storefront/element/cms-element-" ~ element.type ~ ".html.twig" ignore missing %}
+            {% endblock %}
+        </div>
+    {% endblock %}
+{% endblock %}

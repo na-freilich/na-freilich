@@ -1,0 +1,65 @@
+{
+    "nf-statistics": {
+        "general": {
+            "name": "NF Statistics",
+            "title": "NF Statistics",
+            "description": "NF Statistics"
+        },
+        "product-views": {
+            "name": "Product views",
+            "title": "Product views",
+            "description": "Product views"
+        },
+        "pdp-analysis": {
+            "name": "PDP analysis",
+            "title": "PDP analysis",
+            "description": "PDP analysis"
+        },
+        "visitors": {
+            "title": "Visitors"
+        },
+        "conversion": {
+            "title": "Conversion"
+        },
+        "sidebar": {
+            "refresh": "Refresh",
+            "filter": "Filter"
+        },
+        "common": {
+            "labels": {
+                "exception": "An error occurred!",
+                "name": "Name",
+                "productNumber": "Product number",
+                "emptyList": "Nothing found!",
+                "views": "Views",
+                "layoutName": "Layout name",
+                "orders": "Orders",
+                "date": "Date",
+                "desktop_visits": "Desktop visitors",
+                "mobile_visits": "Mobile visitors",
+                "tablet_visits": "Tablet visitors",
+                "all_visits": "Total visitors",
+                "page_views": "Page views",
+                "order_cnt": "Orders",
+                "order_sum": "Sales volume",
+                "conversion_rate": "Conversion Rate %"
+            },
+            "placeholders": {
+                "search": "Search...",
+                "name": "Name...",
+                "dateFrom": "Date from...",
+                "dateTo": "Date to..."
+            },
+            "actions": {
+                "create": "Create",
+                "edit": "Edit",
+                "save": "Save",
+                "delete": "Delete",
+                "apply": "Apply",
+                "cancel": "Cancel",
+                "search": "Search",
+                "reset": "Reset"
+            }
+        }
+    }
+}

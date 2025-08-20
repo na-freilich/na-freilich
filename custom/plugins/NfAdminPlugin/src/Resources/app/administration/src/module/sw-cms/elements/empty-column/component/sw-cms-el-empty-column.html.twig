@@ -1,0 +1,14 @@
+{% block sw_cms_el_empty_column %}
+    <div class="sw-cms-el-empty-column" @click="onClickSwap">
+        <div class="sw-cms-el-empty-column__inner">
+            <div class="sw-cms-el-empty-column__content">
+                <sw-icon
+                        class="sw-cms-el-empty-column__icon"
+                        name="regular-plus-circle"
+                        size="24"
+                />
+                <p>{{ $tc('sw-cms.elements.emptyColumn.component.label.addElement') }}</p>
+            </div>
+        </div>
+    </div>
+{% endblock %}

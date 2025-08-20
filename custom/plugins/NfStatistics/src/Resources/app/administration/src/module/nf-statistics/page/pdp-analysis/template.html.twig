@@ -1,0 +1,103 @@
+{% block nf_statistics_pdp_analysis %}
+    <sw-page class="nf-statistics-pdp-analysis">
+        <template #smart-bar-header>
+            {% block nf_statistics_pdp_analysis_title %}
+                <h2>{{ $tc('nf-statistics.general.title') }}</h2>
+            {% endblock %}
+        </template>
+
+        {% block nf_statistics_pdp_analysis_language_switch %}
+            <template #language-switch>
+                <sw-language-switch @on-change="onChangeLanguage"></sw-language-switch>
+            </template>
+        {% endblock %}
+
+        <template #smart-bar-actions>
+            {% block nf_statistics_pdp_analysis_actions_search %}
+                <sw-text-field
+                        class="nf-statistics-pdp-analysis-search"
+                        @update:value="onSearch"
+                        v-model:value="searchTerm"
+                        :placeholder="$tc('nf-statistics.common.placeholders.search')">
+                </sw-text-field>
+            {% endblock %}
+
+        </template>
+        <template #side-content>
+            <mt-datepicker
+                    :name="getFromDateFieldId"
+                    v-model="dateFrom"
+                    :placeholderText="$tc('nf-statistics.common.placeholders.dateFrom')"
+                    :format="dateFormat"
+                    date-type="date"
+            />
+            <mt-datepicker
+                    :name="getToDateFieldId"
+                    v-model="dateTo"
+                    :placeholderText="$tc('nf-statistics.common.placeholders.dateTo')"
+                    :format="dateFormat"
+                    date-type="date"
+            />
+            <sw-button
+                    :disabled="false"
+                    variant="primary"
+                    :square="false"
+                    :block="false"
+                    :isLoading="false"
+                    @click="dateClear"
+            >
+                {{ $tc('nf-statistics.common.actions.reset') }}
+            </sw-button>
+            <sw-button
+                    :disabled="false"
+                    variant="primary"
+                    :square="false"
+                    :block="false"
+                    :isLoading="false"
+                    @click="dateIntervalSearch"
+            >
+                {{ $tc('nf-statistics.common.actions.search') }}
+            </sw-button>
+        </template>
+        <template #content>
+            <sw-data-grid
+                    v-if="itemsCollection"
+                    :dataSource="itemsCollection"
+                    :showSelection="false"
+                    :columns="columns"
+                    :allowEdit="false"
+                    :allowDelete="false"
+                    :allowInlineEdit="false"
+                    :showActions="false"
+                    :sortBy="sortBy"
+                    :sortDirection="sortDirection"
+                    @update-records="updateTotal"
+                    @column-sort="onChangeSort"
+                    detailRoute="sw.cms.detail"
+            >
+                <template #column-layoutName="{ item }">
+                    <div>
+                        <router-link :to="{ name: 'sw.cms.detail', params: { id: item.productLayoutId } }">
+                            {{ item.layoutName }}
+                        </router-link>
+                    </div>
+                </template>
+
+                <template #column-views="{ item }">
+                    <div>
+                        {{ item.views }}
+                    </div>
+                </template>
+
+                <template #column-orders="{ item }">
+                    <div>
+                        {{ item.orders }}
+                    </div>
+                </template>
+            </sw-data-grid>
+
+            <sw-empty-state v-if="!isLoading && !total" :title="$tc('nf-statistics.common.labels.emptyList')"></sw-empty-state>
+        </template>
+
+    </sw-page>
+{% endblock %}

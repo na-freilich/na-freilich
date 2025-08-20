@@ -1,0 +1,7 @@
+{
+    "nf-statistics": {
+        "dashboard": {
+            "visitors-online": "visitors currently online: {n}"
+        }
+    }
+}

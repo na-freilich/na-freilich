@@ -1,0 +1,68 @@
+{
+    "nf-statistics": {
+        "general": {
+            "name": "NF Statistics",
+            "title": "NF Statistics",
+            "description": "NF Statistics"
+        },
+        "product-views": {
+            "name": "Produktbewertungen",
+            "title": "Produktbewertungen",
+            "description": "Produktbewertungen"
+        },
+        "pdp-analysis": {
+            "name": "PDP Auswertung",
+            "title": "PDP Auswertung",
+            "description": "PDP Auswertung"
+        },
+        "visitors": {
+            "title": "Besucher"
+        },
+        "conversion": {
+            "title": "Konvertierung"
+        },
+        "sidebar": {
+            "refresh": "Neuladen",
+            "filter": "Filter"
+        },
+        "common": {
+            "labels": {
+                "exception": "Fehler ist aufgetreten!",
+                "name": "Name",
+                "productNumber": "Produktnummer",
+                "emptyList": "Nichts gefunden!",
+                "views": "Views",
+                "layoutName": "Layout Name",
+                "orders": "Bestellungen",
+                "date": "Datum",
+                "desktop_visits": "Desktop Besucher",
+                "mobile_visits": "Mobile Besucher",
+                "tablet_visits": "Tablet Besucher",
+                "all_visits": "Gesamt Besucher",
+                "visitors": "Besucher",
+                "page_views": "Seitenzugriffe",
+                "order_cnt": "Bestellungen",
+                "order_sum": "Umsatz",
+                "order_conversion": "Besucher/Bestellungen",
+                "conversion_rate": "Konvertierungsrate %"
+
+            },
+            "placeholders": {
+                "search": "Suche...",
+                "name": "Name...",
+                "dateFrom": "Datum von...",
+                "dateTo": "Datum bis..."
+            },
+            "actions": {
+                "create": "Erstellen",
+                "edit": "Bearbeiten",
+                "save": "Speichern",
+                "delete": "Löschen",
+                "apply": "Übernehmen",
+                "cancel": "Abbrechen",
+                "search": "Suche",
+                "reset": "Zurücksetzen"
+            }
+        }
+    }
+}

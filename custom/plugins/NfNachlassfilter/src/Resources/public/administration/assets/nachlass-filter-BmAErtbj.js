@@ -1,0 +1,2 @@
+const s=`{% block sw_cms_element_product_listing_config_filter_for_free_shipping %} {% parent %} <sw-switch-field {# {% if VUE3 %}#} v-model:value="filterByNachlass" {# {% else %}#} v-model="filterByNachlass" :label="$tc('sw-cms.productListing.labelFilterForNachlass')" /> {% endblock %}`;Shopware.Component.override("sw-cms-el-config-product-listing",{template:s,methods:{},computed:{filterByNachlass:{get(){return this.isActiveFilter("nachlass-filter")},set(e){this.updateFilters("nachlass-filter",e)}}}});
+//# sourceMappingURL=nachlass-filter-BmAErtbj.js.map

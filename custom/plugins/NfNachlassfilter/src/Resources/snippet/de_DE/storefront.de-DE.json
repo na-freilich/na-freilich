@@ -1,0 +1,15 @@
+{
+    "nf": {
+        "filter": {
+            "range": {
+                "gte15" : "bis zu 15%",
+                "0-15"  : "bis zu 15%",
+                "15-25" : "15% bis 25%",
+                "25-50" : "25% bis 50%",
+                "lte50" : "mehr als 50%"
+            },
+            "title": "Wählen Sie, wie viel Sie sparen möchten",
+            "subtitle": "Lorem Ipsum is simply dummy textLorem Ipsum is "
+        }
+    }
+}

@@ -1,0 +1,95 @@
+{% block nf_statistics_conversion %}
+    <sw-page class="nf-statistics-conversion">
+        <template #smart-bar-header>
+            {% block nf_statistics_pdp_analysis_title %}
+                <h2>{{ $tc('nf-statistics.general.title') }} - {{ $tc('nf-statistics.conversion.title') }}</h2>
+            {% endblock %}
+        </template>
+
+        {% block nf_statistics_pdp_analysis_language_switch %}
+            <template #language-switch>
+                <sw-language-switch @on-change="onChangeLanguage"></sw-language-switch>
+            </template>
+        {% endblock %}
+
+        <template #sidebar>
+            <sw-sidebar>
+                <sw-sidebar-item
+                        icon="regular-undo"
+                        :title="$tc('nf-statistics.sidebar.refresh')"
+                        @click="onRefresh">
+                </sw-sidebar-item>
+
+                <sw-sidebar-item icon="regular-filter"
+                                 :title="$tc('nf-statistics.sidebar.filter')">
+                    <sw-datepicker
+                            :name="getFromDateFieldId"
+                            :placeholderText="$tc('nf-statistics.common.placeholders.dateFrom')"
+                            :config="dateConfig"
+                    />
+                    <sw-datepicker
+                            :name="getToDateFieldId"
+                            :placeholderText="$tc('nf-statistics.common.placeholders.dateTo')"
+                            :config="dateConfig"
+                    />
+
+                    <sw-button
+                            :disabled="false"
+                            variant="primary"
+                            :square="false"
+                            :block="false"
+                            :isLoading="false"
+                            @click="dateIntervalSearch"
+                    >
+                        {{ $tc('nf-statistics.common.actions.search') }}
+                    </sw-button>
+                </sw-sidebar-item>
+            </sw-sidebar>
+        </template>
+
+        <template #content
+                  :isLoading="isLoading">
+            <sw-data-grid
+                    v-if="itemsCollection"
+                    :dataSource="itemsCollection"
+                    :showSelection="false"
+                    :columns="columns"
+                    :allowEdit="false"
+                    :allowDelete="false"
+                    :allowInlineEdit="false"
+                    :showActions="false"
+{#                    :sortBy="sortBy"#}
+{#                    :sortDirection="sortDirection"#}
+{#                    @update-records="updateTotal"#}
+{#                    @column-sort="onChangeSort"#}
+{#                    detailRoute="sw.cms.detail"#}
+            >
+                <template #column-date="{ item }">
+                    <div>
+                        {{ formatDate(item.date) }}
+                    </div>
+                </template>
+                <template #column-order_conversion="{ item }">
+                    <div>
+                        {{ formatNumber(item.order_cnt/item.all_visits) }}
+                    </div>
+                </template>
+                <template #column-conversion_rate="{ item }">
+                    <div>
+                        {{ formatNumber(item.order_cnt/item.all_visits * 100) }} %
+                    </div>
+                </template>
+            </sw-data-grid>
+
+            <sw-empty-state v-if="!isLoading && !total" :title="$tc('nf-statistics.common.labels.emptyList')"></sw-empty-state>
+
+            <sw-pagination
+                    :total="total"
+                    :limit="limit"
+                    :page="page"
+                    @page-change="onPageChange"
+            ></sw-pagination>
+        </template>
+
+    </sw-page>
+{% endblock %}

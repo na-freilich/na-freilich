@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:noNamespaceSchemaLocation="https://raw.githubusercontent.com/shopware/platform/master/src/Core/System/SystemConfig/Schema/config.xsd">
+    <card>
+        <title>Settings</title>
+        <title lang="de-DE">Einstellungen</title>
+
+        <input-field type="bool">
+            <name>recalculateGrossPrices</name>
+            <label>recalculate gross prices</label>
+            <label lang="de-DE">Bruttopreise neu berechnen</label>
+        </input-field>
+
+        <component name="sw-entity-multi-id-select">
+            <name>recipientRoles</name>
+            <entity>acl_role</entity>
+            <label>Roles for Flowbuilder recipients</label>
+            <label lang="de-DE">Rollen für Flowbuilder-Empfänger</label>
+        </component>
+
+        <input-field type="text">
+            <name>gtmId</name>
+            <label>Google Tag Manager ID</label>
+            <placeholder>z. B. GTM-ABCDEFGH</placeholder>
+            <helpText>Geben Sie Ihre Google Tag Manager Container-ID ein.</helpText>
+        </input-field>
+    </card>
+</config>

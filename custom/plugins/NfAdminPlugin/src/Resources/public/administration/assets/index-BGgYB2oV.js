@@ -1,0 +1,2 @@
+const e='{% block sw_cms_block_four_column_preview %} <div class="sw-cms-preview-six-column"> <div v-for="i in 6" class="sw-cms-preview-six-column-placeholder" > <div class="sw-cms-preview-six-column-placeholder__empty"> <sw-icon name="regular-plus-circle" small /> </div> </div> </div> {% endblock %}',s={template:e,computed:{assetFilter(){return Shopware.Filter.getByName("asset")}}};export{s as default};
+//# sourceMappingURL=index-BGgYB2oV.js.map

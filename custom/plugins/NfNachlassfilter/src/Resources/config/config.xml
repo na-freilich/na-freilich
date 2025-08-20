@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:noNamespaceSchemaLocation="https://raw.githubusercontent.com/shopware/platform/master/src/Core/System/SystemConfig/Schema/config.xsd">
+
+    <card>
+        <title>General Settings</title>
+        <title lang="de-DE">Grundeinstellungen</title>
+
+        <input-field>
+            <name>discountRange</name>
+            <label>Range</label>
+            <label lang="de-DE">Range</label>
+            <copyable>true</copyable>
+            <defaultValue>0-15;15-25;25-50;>50</defaultValue>
+            <helpText>If the values differ here, the corresponding snippets must be created, such as "nf.filter.range.25-35". We would be happy to help you with this.</helpText>
+            <helpText lang="de-DE">Bei abweichenden Werten hier müssen die dazu gehörigen Textbausteine noch angelegt werden wie z.B. "nf.filter.range.25-35". Gerne unterstützen wir Dich hierbei. </helpText>
+        </input-field>
+        
+        <input-field>
+            <name>discountColorTitle</name>
+            <label>Color title</label>
+            <label lang="de-DE">Color title</label>
+            <defaultValue>#000000</defaultValue>
+        </input-field>
+
+        <input-field>
+            <name>discountColorSubTitle</name>
+            <label>Color subtitle</label>
+            <label lang="de-DE">Color subtitle</label>
+            <defaultValue>#000000</defaultValue>
+        </input-field>
+
+        <input-field>
+            <name>discountBackground</name>
+            <label>Background</label>
+            <label lang="de-DE">background</label>
+            <defaultValue>#000000</defaultValue>
+        </input-field>
+    </card>
+</config>

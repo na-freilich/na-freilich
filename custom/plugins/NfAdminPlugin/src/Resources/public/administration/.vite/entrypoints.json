@@ -1,0 +1,35 @@
+{
+  "base": "/bundles/adminplugin/administration/",
+  "entryPoints": {
+    "admin-plugin": {
+      "css": [
+        "/bundles/adminplugin/administration/assets/admin-plugin-BDDQ64G1.css"
+      ],
+      "dynamic": [
+        "/bundles/adminplugin/administration/assets/index-CW44u4P-.js",
+        "/bundles/adminplugin/administration/assets/index-r7GDJ1en.js",
+        "/bundles/adminplugin/administration/assets/index-BKLFQhAl.js",
+        "/bundles/adminplugin/administration/assets/index-PrbIQfF0.js",
+        "/bundles/adminplugin/administration/assets/index-v4gJ_u1T.js",
+        "/bundles/adminplugin/administration/assets/index-DwUJ2kcr.js",
+        "/bundles/adminplugin/administration/assets/index-BGgYB2oV.js",
+        "/bundles/adminplugin/administration/assets/index-BaOgk-1x.js",
+        "/bundles/adminplugin/administration/assets/index-8Pw6qJgo.js"
+      ],
+      "js": [
+        "/bundles/adminplugin/administration/assets/admin-plugin-Y1lSaS7W.js"
+      ],
+      "legacy": false,
+      "preload": []
+    }
+  },
+  "legacy": false,
+  "metadatas": {},
+  "version": [
+    "7.1.0",
+    7,
+    1,
+    0
+  ],
+  "viteServer": null
+}

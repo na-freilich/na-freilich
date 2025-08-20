@@ -1,0 +1,46 @@
+{% set filterItemId = 'filter-' ~ name ~ '-' ~ random() %}
+
+{% set discountColorTitle = config('NachlassFilter.config.discountColorTitle') %}
+{% set discountColorSubTitle = config('NachlassFilter.config.discountColorSubTitle') %}
+{% set discountBackground = config('NachlassFilter.config.discountBackground') %}
+
+{% if pluginSelector is not defined %}
+    {% set pluginSelector = 'filter-multi-select' %}
+{% endif %}
+
+{%
+    set elements = listing.aggregations.elements.nachlass.ranges
+%}
+
+{% block component_filter_multi_select %}
+    <div class="filter-multi-select filter-discount filter-multi-select-{{ name }} filter-panel-item{% if sidebar %} d-grid{% else %} dropdown{% endif %}"
+         data-{{ pluginSelector }}="true"
+            {% if discountBackground  %}style="background: {{ discountBackground }};"{% endif %}
+         data-{{ pluginSelector }}-options='{"name":"nachlass"}'>
+        <span class="filter-multi-select-count" style="display:none"></span>
+        <div class="filter-discount-title"{% if discountColorTitle  %} style="color: {{ discountColorTitle }};"{% endif %}>{{ 'nf.filter.title' | trans }}</div>
+        <div class="filter-discount-subtitle"{% if discountColorSubTitle  %} style="color: {{ discountColorSubTitle }};"{% endif %}>{{ 'nf.filter.subtitle' | trans }}</div>
+        {% block component_filter_multi_select_toggle %}
+            <div class="filter-multi-select-dropdown filter-panel-item-dropdown"
+                 id="{{ filterItemId }}">
+                {% block component_filter_multi_select_list %}
+                    <ul class="filter-multi-select-list">
+                        {% for key, elementCount in elements %}
+                            {% block component_filter_multi_select_list_item %}
+                                <li class="filter-multi-select-list-item">
+                                    {% block component_filter_multi_select_list_item_inner %}
+                                        {% sw_include '@Storefront/storefront/component/listing/filter/filter-discount-item.html.twig' %}
+                                    {% endblock %}
+                                </li>
+                            {% endblock %}
+                        {% endfor %}
+                    </ul>
+                {% endblock %}
+            </div>
+        {% endblock %}
+
+        {% block component_filter_multi_select_dropdown %}
+        {% endblock %}
+
+     </div>
+{% endblock %}

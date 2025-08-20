@@ -1,0 +1,16 @@
+{% sw_extends '@Storefront/storefront/component/listing/filter-panel.html.twig' %}
+
+{% block component_filter_panel_items_container %}
+    {{ parent() }}
+
+    {% set nachlass = listing.aggregations.get('nachlass') %}
+
+    {% if nachlass %}
+        <div class="filter-panel-discount-container">
+            {% sw_include '@Storefront/storefront/component/listing/filter/filter-discount.html.twig' with {
+                name: 'discount',
+                displayName: 'Nachlass'
+            } %}
+        </div>
+    {% endif %}
+{% endblock %}

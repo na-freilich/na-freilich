@@ -1,0 +1,30 @@
+{
+    "name": "nf/nachlass-filter",
+    "description": "Nf Nachlassfilter",
+    "version": "v2.0.2",
+    "type": "shopware-platform-plugin",
+    "license": "proprietary",
+    "authors": [
+        {
+            "name": "na freilich GmbH",
+            "homepage": "https://www.na-freilich.de/"
+        }
+    ],
+    "require": {
+        "shopware/core": ">=6.6",
+        "ext-json": "*"
+    },
+    "extra": {
+        "shopware-plugin-class": "Nf\\NachlassFilter\\NachlassFilter",
+        "plugin-icon": "src/Resources/config/plugin.png",
+        "label": {
+            "de-DE": "NF Nachlassfilter",
+            "en-GB": "NF Discount filter"
+        }
+    },
+    "autoload": {
+        "psr-4": {
+            "Nf\\NachlassFilter\\": "src/"
+        }
+    }
+}

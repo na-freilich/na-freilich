@@ -1,0 +1,11 @@
+{
+  "main.js": {
+    "file": "assets/nf-statistics-CiGFasrw.js",
+    "name": "nf-statistics",
+    "src": "main.js",
+    "isEntry": true,
+    "css": [
+      "assets/nf-statistics-DVNXudwH.css"
+    ]
+  }
+}

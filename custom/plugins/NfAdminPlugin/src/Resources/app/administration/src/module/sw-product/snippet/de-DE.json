@@ -1,0 +1,12 @@
+{
+    "sw-product": {
+        "detail": {
+            "productLink": "zum Produkt"
+        }
+    },
+    "nf-admin": {
+        "condition": {
+            "orderCreatedByAdminRoleRule": "Bestellung vom Admin Benutzer erstellt"
+        }
+    }
+}

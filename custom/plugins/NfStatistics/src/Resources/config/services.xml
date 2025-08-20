@@ -1,0 +1,82 @@
+<?xml version="1.0" ?>
+<container xmlns="http://symfony.com/schema/dic/services"
+           xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+           xsi:schemaLocation="http://symfony.com/schema/dic/services http://symfony.com/schema/dic/services/services-1.0.xsd">
+
+    <services>
+        <!-- Controllers -->
+        <service id="Nf\Statistics\Controller\Api\ProductViewsController" public="true">
+            <argument type="service" id="Doctrine\DBAL\Connection"/>
+            <call method="setContainer">
+                <argument type="service" id="service_container"/>
+            </call>
+        </service>
+
+        <service id="Nf\Statistics\Controller\Api\PdpAnalysisController" public="true">
+            <argument type="service" id="Doctrine\DBAL\Connection"/>
+            <call method="setContainer">
+                <argument type="service" id="service_container"/>
+            </call>
+        </service>
+
+        <service id="Nf\Statistics\Controller\Api\VisitorsController" public="true">
+            <argument type="service" id="Nf\Statistics\Service\CurrentUserService"/>
+            <call method="setContainer">
+                <argument type="service" id="service_container"/>
+            </call>
+        </service>
+
+        <service id="Nf\Statistics\Controller\StatisticController" public="true">
+            <argument type="service" id="Nf\Statistics\Service\CurrentUserService"/>
+            <call method="setContainer">
+                <argument type="service" id="service_container"/>
+            </call>
+        </service>
+
+        <service id="Nf\Statistics\Controller\DevController" public="true">
+            <argument type="service" id="Doctrine\DBAL\Connection"/>
+            <argument type="service" id="category.repository"/>
+            <argument type="service" id="product.repository"/>
+            <call method="setContainer">
+                <argument type="service" id="service_container"/>
+            </call>
+        </service>
+        
+        <!-- Entity Definitions -->
+        <service id="Nf\Statistics\Core\Content\ProductViews\ProductViewsDefinition">
+            <tag name="shopware.entity.definition" entity="nf_stat_product_views" />
+        </service>
+
+        <service id="Nf\Statistics\Core\Content\StatCurrentUsers\StatCurrentUsersDefinition">
+            <tag name="shopware.entity.definition" entity="nf_stat_current_users" />
+        </service>
+
+        <service id="Nf\Statistics\Core\Content\Visitors\VisitorsDefinition">
+            <tag name="shopware.entity.definition" entity="nf_stat_visitors" />
+        </service>
+
+        <!-- Subscribers -->
+        <service id="Nf\Statistics\Subscriber\ProductPageSubscriber">
+            <argument type="service" id="Doctrine\DBAL\Connection"/>
+            <argument type="service" id="parameter_bag"/>
+            <argument type="service" id="Shopware\Core\Content\Cms\SalesChannel\SalesChannelCmsPageLoader"/>
+            <argument type="service" id="Shopware\Core\Content\Product\SalesChannel\SalesChannelProductDefinition"/>
+            <argument type="service" id="sales_channel.product.repository"/>
+            <argument type="service" id="Shopware\Core\System\SystemConfig\SystemConfigService"/>
+            <argument type="service" id="Shopware\Core\Content\Product\SalesChannel\ProductCloseoutFilterFactory"/>
+            <argument type="service" id="Shopware\Core\Content\Category\Service\CategoryBreadcrumbBuilder"/>
+            <argument type="service" id="request_stack"/>
+            <argument type="service" id="Shopware\Core\Framework\Adapter\Cache\CacheClearer"/>
+            <tag name="kernel.event_subscriber"/>
+        </service>
+
+        <!-- Services -->
+        <service id="Nf\Statistics\Service\CurrentUserService" public="true">
+            <argument type="service" id="nf_stat_current_users.repository"/>
+            <argument type="service" id="nf_stat_visitors.repository"/>
+            <argument type="service" id="Doctrine\DBAL\Connection"/>
+        </service>
+
+    </services>
+
+</container>

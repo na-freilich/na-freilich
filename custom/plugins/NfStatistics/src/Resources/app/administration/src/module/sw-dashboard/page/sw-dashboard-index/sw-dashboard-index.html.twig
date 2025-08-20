@@ -1,0 +1,13 @@
+<!-- eslint-disable-next-line sw-deprecation-rules/no-twigjs-blocks -->
+{% block sw_dashboard_index_content_info_grid %}
+    {% parent %}
+
+    <div class="sw-card-wrapper nf-visitors-online">
+        <div class="sw-card">
+            <div class="sw-card__content">
+                <p>{{ visitorsOnlineMessage }}</p>
+            </div>
+        </div>
+    </div>
+{% endblock %}
+

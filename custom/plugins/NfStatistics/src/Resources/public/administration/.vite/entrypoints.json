@@ -1,0 +1,25 @@
+{
+  "base": "/bundles/nfstatistics/administration/",
+  "entryPoints": {
+    "nf-statistics": {
+      "css": [
+        "/bundles/nfstatistics/administration/assets/nf-statistics-DVNXudwH.css"
+      ],
+      "dynamic": [],
+      "js": [
+        "/bundles/nfstatistics/administration/assets/nf-statistics-CiGFasrw.js"
+      ],
+      "legacy": false,
+      "preload": []
+    }
+  },
+  "legacy": false,
+  "metadatas": {},
+  "version": [
+    "7.1.0",
+    7,
+    1,
+    0
+  ],
+  "viteServer": null
+}

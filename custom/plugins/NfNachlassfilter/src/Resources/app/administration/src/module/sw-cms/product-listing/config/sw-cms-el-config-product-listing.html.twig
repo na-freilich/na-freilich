@@ -1,0 +1,11 @@
+{% block sw_cms_element_product_listing_config_filter_for_free_shipping %}
+    {% parent %}
+
+    <sw-switch-field
+{#            {% if VUE3 %}#}
+            v-model:value="filterByNachlass"
+{#            {% else %}#}
+            v-model="filterByNachlass"
+            :label="$tc('sw-cms.productListing.labelFilterForNachlass')"
+    />
+{% endblock %}

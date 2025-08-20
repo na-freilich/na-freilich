@@ -1,0 +1,23 @@
+{
+  "base": "/bundles/nachlassfilter/administration/",
+  "entryPoints": {
+    "nachlass-filter": {
+      "css": [],
+      "dynamic": [],
+      "js": [
+        "/bundles/nachlassfilter/administration/assets/nachlass-filter-BmAErtbj.js"
+      ],
+      "legacy": false,
+      "preload": []
+    }
+  },
+  "legacy": false,
+  "metadatas": {},
+  "version": [
+    "7.1.0",
+    7,
+    1,
+    0
+  ],
+  "viteServer": null
+}

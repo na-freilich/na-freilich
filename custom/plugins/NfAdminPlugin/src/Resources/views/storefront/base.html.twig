@@ -1,0 +1,6 @@
+{% sw_extends '@Storefront/storefront/base.html.twig' %}
+
+{% block base_body_skip_to_content %}
+    {% sw_include '@AdminPlugin/storefront/layout/body/gtm_body.html.twig' %}
+    {{ parent() }}
+{% endblock %}

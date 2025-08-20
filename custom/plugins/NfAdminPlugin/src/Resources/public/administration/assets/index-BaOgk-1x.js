@@ -1,0 +1,2 @@
+const o='{% block sw_cms_block_four_column %} <div class="sw-cms-block-six-column"> <slot name="column1"></slot> <slot name="column2"></slot> <slot name="column3"></slot> <slot name="column4"></slot> <slot name="column5"></slot> <slot name="column6"></slot> </div> {% endblock %}',l={template:o,computed:{assetFilter(){return Shopware.Filter.getByName("asset")}}};export{l as default};
+//# sourceMappingURL=index-BaOgk-1x.js.map

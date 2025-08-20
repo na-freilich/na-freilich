@@ -1,0 +1,14 @@
+{% block layout_body_gtm %}
+
+    {% set gtmId = config('AdminPlugin.config.gtmId') %}
+
+    {% if gtmId is not empty %}
+        <!-- Google Tag Manager (noscript) -->
+        <noscript>
+            <iframe src="https://www.googletagmanager.com/ns.html?id={{ gtmId|e }}"
+                    height="0" width="0"
+                    style="display:none;visibility:hidden"></iframe>
+        </noscript>
+        <!-- End Google Tag Manager (noscript) -->
+    {% endif %}
+{% endblock %}

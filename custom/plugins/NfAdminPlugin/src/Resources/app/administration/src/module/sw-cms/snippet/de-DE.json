@@ -1,0 +1,38 @@
+{
+  "sw-cms": {
+    "detail": {
+      "title": {
+        "elementSelectModal": "Element auswählen"
+      },
+      "label": {
+        "blockCategoryNfGrid": "NF Grid"
+      }
+    },
+    "blocks": {
+      "nfGrid": {
+        "twoColumn": {
+          "label": "Zwei Spalten"
+        },
+        "threeColumn": {
+          "label": "Drei Spalten"
+        },
+        "fourColumn": {
+          "label": "Vier Spalten"
+        },
+        "sixColumn": {
+          "label": "Sechs Spalten"
+        }
+      }
+    },
+    "elements": {
+      "emptyColumn": {
+        "label": "Leere Spalte",
+        "component": {
+          "label": {
+            "addElement": "Element hinzufügen"
+          }
+        }
+      }
+    }
+  }
+}
