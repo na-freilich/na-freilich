@@ -25,4 +25,20 @@
             <helpText>Geben Sie Ihre Google Tag Manager Container-ID ein.</helpText>
         </input-field>
     </card>
+
+    <card>
+        <title>Marker.io Integration</title>
+
+        <input-field type="checkbox">
+            <name>markerIoEnabled</name>
+            <label>Integration mit Marker.io aktivieren</label>
+            <default-value>false</default-value>
+        </input-field>
+
+        <input-field type="text">
+            <name>markerIoProject</name>
+            <label>Marker.io Projektcode</label>
+        </input-field>
+
+    </card>
 </config>
