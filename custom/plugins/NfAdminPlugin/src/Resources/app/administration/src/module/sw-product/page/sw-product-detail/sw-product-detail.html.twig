@@ -14,19 +14,5 @@
                 @on-change="onChangeLanguage"
         />
     </template>
-
-    <template slot="language-switch">
-        <button class="sw-button btn-to-product"
-                @click="toProductClick"
-                :disabled="!product.active">
-            {{ $tc('sw-product.detail.productLink', 'zum Produkt') }}
-        </button>
-        <sw-language-switch
-                :save-changes-function="saveOnLanguageChange"
-                :abort-change-function="abortOnLanguageChange"
-                :disabled="!productId"
-                @on-change="onChangeLanguage"
-        />
-    </template>
 {% endblock %}
 
