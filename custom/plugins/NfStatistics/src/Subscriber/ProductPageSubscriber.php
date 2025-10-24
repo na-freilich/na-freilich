@@ -282,103 +282,13 @@ class ProductPageSubscriber implements EventSubscriberInterface
     public function onProductPageLoaded(ProductPageLoadedEvent $pageLoadedEvent): void
     {
         $userSession = $pageLoadedEvent->getRequest()->getSession()->getId();
-        $sql = '
-            select 
-                lower(hex(product_layout_id)) as productLayoutId
-            from nf_stat_product_layout_views
-            where
-                user_session = "'.$userSession.'" and
-                view_date = "'.$this->currentDate.'" 
+        $product = $pageLoadedEvent->getPage()->getProduct();
+        $pageProductCmsPageId = $product->getCmsPageId() ?? $this->getDefaultProductCmsPageId();
 
-        ';
-        $stmt = $this->connection->prepare($sql);
-        $layoutSearchResult = $stmt->executeQuery();
-
-        if ($layoutSearchResult->rowCount() == 0)
-        {
-            $sql = '
-            select 
-                lower(hex(id)) as id
-            from 
-                cms_page
-            where
-                type = "product_detail"
-        ';
-            $stmt = $this->connection->prepare($sql);
-            $productCmsPageIds = $stmt->executeQuery()->fetchAllAssociative();
-            $newProductCmsPageId = $productCmsPageIds[array_rand($productCmsPageIds)]['id'];
-        }
-        else
-        {
-            $newProductCmsPageId = $layoutSearchResult->fetchOne();
-        }
-
-
-        $productId = $pageLoadedEvent->getRequest()->attributes->get('productId');
-        $context = $pageLoadedEvent->getSalesChannelContext();
-        $request = $pageLoadedEvent->getRequest();
-
-        $page = $pageLoadedEvent->getPage();
-        $pageProduct = $page->getProduct();
-        $pageProductCmsPageId = $pageProduct->getCmsPageId()?? $this->getDefaultProductCmsPageId();
-
-        if ($pageProductCmsPageId != $newProductCmsPageId)
-        {
-            //////////////////////////////////////////////////////////////////////////////
-            // Code from vendor/shopware/core/Content/Product/SalesChannel/Detail/ProductDetailRoute.php
-            // function load()
-            $criteria = (new Criteria())
-                ->addAssociation('manufacturer.media')
-                ->addAssociation('options.group')
-                ->addAssociation('properties.group')
-                ->addAssociation('mainCategories.category')
-                ->addAssociation('media');
-
-            $mainVariantId = $this->checkVariantListingConfig($productId, $context);
-            $productId = $mainVariantId ?? $this->findBestVariant($productId, $context);
-
-            $this->addFilters($context, $criteria);
-
-            $criteria->setIds([$productId]);
-            $criteria->setTitle('product-detail-route');
-
-            $product = $this->salesChannelProductRepository
-                ->search($criteria, $context)
-                ->first();
-
-            if (!($product instanceof SalesChannelProductEntity)) {
-                throw new ProductNotFoundException($productId);
-            }
-
-            $product->setSeoCategory(
-                $this->breadcrumbBuilder->getProductSeoCategory($product, $context)
-            );
-
-            $resolverContext = new EntityResolverContext($context, $request, $this->productDefinition, clone $product);
-
-            $product->setCmsPageId($newProductCmsPageId);
-
-            $pages = $this->cmsPageLoader->load(
-                $request,
-                $this->createCriteria($newProductCmsPageId, $request),
-                $context,
-                $product->getTranslation('slotConfig'),
-                $resolverContext
-            );
-            //////////////////////////////////////////////////////////////////////////////
-
-            $newProductCmsPage = $pages->first();
-            $page->setCmsPage($newProductCmsPage);
-            $pageProduct->setCmsPageId($newProductCmsPageId);
-            $pageProduct->setCmsPage($newProductCmsPage);
-            $page->setProduct($pageProduct);
-
-            $pageProductCmsPageId = $newProductCmsPageId;
-        }
-
-        $this->updateViewsNumber($pageLoadedEvent->getRequest()->attributes->get('productId'), $userSession, $pageProductCmsPageId);
-
-        $this->productPageLoaded = true;
+        $this->updateViewsNumber(
+            $product->getId(),
+            $userSession,
+            $pageProductCmsPageId);
     }
 
     private function updateViewsNumber($productId, $userSession, $pageProductCmsPageId)
