@@ -3,7 +3,7 @@
   "entryPoints": {
     "admin-plugin": {
       "css": [
-        "/bundles/adminplugin/administration/assets/admin-plugin-BDDQ64G1.css"
+        "/bundles/adminplugin/administration/assets/admin-plugin--2JaK1S8.css"
       ],
       "dynamic": [
         "/bundles/adminplugin/administration/assets/index-CW44u4P-.js",
@@ -14,10 +14,10 @@
         "/bundles/adminplugin/administration/assets/index-DwUJ2kcr.js",
         "/bundles/adminplugin/administration/assets/index-BGgYB2oV.js",
         "/bundles/adminplugin/administration/assets/index-BaOgk-1x.js",
-        "/bundles/adminplugin/administration/assets/index-8Pw6qJgo.js"
+        "/bundles/adminplugin/administration/assets/index-CblIV6nC.js"
       ],
       "js": [
-        "/bundles/adminplugin/administration/assets/admin-plugin-BnpKh6px.js"
+        "/bundles/adminplugin/administration/assets/admin-plugin-BbzL7aHT.js"
       ],
       "legacy": false,
       "preload": []

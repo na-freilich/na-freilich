@@ -2,6 +2,25 @@
 <config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
         xsi:noNamespaceSchemaLocation="https://raw.githubusercontent.com/shopware/platform/master/src/Core/System/SystemConfig/Schema/config.xsd">
     <card>
+        <title>Appearance settings</title>
+        <title lang="de-DE">Darstellungseinstellungen</title>
+
+        <input-field type="colorpicker">
+            <name>sidebarColor</name>
+            <label>Sidebar color</label>
+            <label lang="de-DE">Sidebarfarbe</label>
+            <default>#222222</default>
+        </input-field>
+
+        <input-field type="colorpicker">
+            <name>sidebarTextColor</name>
+            <label>Sidebar Font Color</label>
+            <label lang="de-DE">Sidebar Schrift Farbe</label>
+            <default>#bcc9dc</default>
+        </input-field>
+    </card>
+
+    <card>
         <title>Settings</title>
         <title lang="de-DE">Einstellungen</title>
 

@@ -1,6 +1,6 @@
 {
   "main.js": {
-    "file": "assets/admin-plugin-BnpKh6px.js",
+    "file": "assets/admin-plugin-BbzL7aHT.js",
     "name": "admin-plugin",
     "src": "main.js",
     "isEntry": true,
@@ -16,7 +16,7 @@
       "module/sw-cms/elements/empty-column/component/index.js"
     ],
     "css": [
-      "assets/admin-plugin-BDDQ64G1.css"
+      "assets/admin-plugin--2JaK1S8.css"
     ]
   },
   "module/sw-cms/blocks/nf-grid/four-column/component/index.js": {
@@ -92,12 +92,12 @@
     ]
   },
   "module/sw-cms/elements/empty-column/component/index.js": {
-    "file": "assets/index-8Pw6qJgo.js",
+    "file": "assets/index-CblIV6nC.js",
     "name": "index",
     "src": "module/sw-cms/elements/empty-column/component/index.js",
     "isDynamicEntry": true,
     "css": [
-      "assets/index-DDxpGlur.css"
+      "assets/index-DadffPMS.css"
     ]
   }
 }

@@ -1,0 +1,23 @@
+@mixin nf-clear-cache-button-styles {
+  padding-left: 5px;
+  padding-right: 5px;
+  border: none;
+  .nf-clear-cache-icon {
+    width: 24px;
+    height: 24px;
+    vertical-align: middle;
+    object-fit: contain;
+  }
+}
+
+.sw-page__top-bar-actions{
+  .nf-clear-cache-button {
+    @include nf-clear-cache-button-styles;
+  }
+}
+
+.sw-meteor-page__head-area-global-actions{
+  .nf-clear-cache-button {
+    @include nf-clear-cache-button-styles;
+  }
+}

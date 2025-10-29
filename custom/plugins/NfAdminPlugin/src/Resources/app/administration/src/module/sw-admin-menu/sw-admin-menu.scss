@@ -1,0 +1,61 @@
+$sw-admin-menu-background: #243758;
+$sw-admin-menu-background-hover: #293f65;
+$sw-admin-menu-background-active-first-level: #172b4f;
+$sw-admin-menu-background-active-hover: #1a315b;
+$sw-admin-menu-background-active-second-level: #0d2145;
+$sw-admin-menu-color-text-primary: #bcc9dc;
+$color-white: #fff;
+$sw-admin-menu-active-text: $color-white;
+
+#app{
+  .sw-admin-menu {
+    background: var(--sw-admin-menu-background-custom, $sw-admin-menu-background);
+    .sw-admin-menu__user-actions-toggle{
+      background: var(--sw-admin-menu-background-custom, $sw-admin-menu-background);
+    }
+    .sw-admin-menu__navigation-list-item:hover{
+      background: var(--sw-admin-menu-background-custom, $sw-admin-menu-background);
+      .collapsible-text {
+        color: var(--sw-admin-menu-text-active-custom, $sw-admin-menu-active-text);
+      }
+    }
+
+    .sw-admin-menu__navigation-link.router-link-active {
+      background: var(--sw-admin-menu-background-custom, $sw-admin-menu-background-active-first-level);
+    }
+
+    .navigation-list-item__level-2:hover,
+    .navigation-list-item__level-2.is--flyout-enabled {
+      & > .sw-admin-menu__navigation-link {
+        background: var(--sw-admin-menu-background-custom, $sw-admin-menu-background-hover);
+      }
+    }
+
+    .sw-admin-menu_flyout-holder{
+      background: var(--sw-admin-menu-background-custom, $sw-admin-menu-background);
+    }
+
+
+    .sw-admin-menu__navigation-list-item.is--flyout-enabled {
+      background: var(--sw-admin-menu-background-custom, $sw-admin-menu-background-hover);
+    }
+
+    .sw-admin-menu__navigation-list-item .collapsible-text {
+      color: var(--sw-admin-menu-text-active-custom, $sw-admin-menu-color-text-primary);
+      .is--flyout-enabled{
+        background: var(--sw-admin-menu-background-custom, $sw-admin-menu-background);
+      }
+    }
+
+    .sw-admin-menu__user-actions-toggle{
+      background: var(--sw-admin-menu-background-custom, $sw-admin-menu-background-active-first-level);
+    }
+
+    .sw-admin-menu__toggle {
+      color: var(--sw-admin-menu-text-active-custom, $sw-admin-menu-color-text-primary);
+      &:hover {
+        color: var(--sw-admin-menu-text-active-custom, $sw-admin-menu-color-text-primary);
+      }
+    }
+  }
+}
