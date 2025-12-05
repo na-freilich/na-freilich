@@ -1,0 +1,59 @@
+<!-- eslint-disable vuejs-accessibility/click-events-have-key-events -->
+{% block nf_product_saleschannel_modal %}
+<sw-modal
+    :title="modalTitle"
+    class="nf-product-sales-channel-modal"
+    @modal-close="onCancel"
+>
+    {% block nf_product_saleschannel_modal_body %}
+    <sw-container
+        v-if="hasSalesChannelDomains"
+        class="nf-product-sales-channel-modal-container"
+        columns="1fr"
+        gap="8px 0px"
+    >
+        {% block nf_product_saleschannel_modal_items %}
+        <sw-context-menu-item
+            v-for="salesChannelDomain of salesChannelDomains"
+            :key="salesChannelDomain.id"
+            target="_blank"
+            @click="onSalesChannelDomainMenuItemClick(salesChannelDomain.salesChannelId, salesChannelDomain.url)"
+        >
+            <div
+                class="nf-product-sales-channel-modal-item-content"
+                columns="1fr 1fr"
+                gap="10px 0px"
+            >
+                <div class="nf-product-sales-channel-modal-item-header">
+                    {{ salesChannelDomain.salesChannel.translated.name }}
+                </div>
+                <div class="nf-product-sales-channel-modal-item-url">
+                    {{ salesChannelDomain.url }}
+                </div>
+                <mt-icon
+                    name="regular-external-link-s"
+                    size="16px"
+                />
+            </div>
+        </sw-context-menu-item>
+        {% endblock %}
+    </sw-container>
+    {% endblock %}
+
+    {% block nf_product_saleschannel_modal_footer %}
+    <template #modal-footer>
+        <div>
+            {% block nf_product_saleschannel_modal_footer_cancel %}
+            <mt-button
+                size="small"
+                variant="secondary"
+                @click="onCancel"
+            >
+                {{ $tc('sw-product.detail.labelCancel') }}
+            </mt-button>
+            {% endblock %}
+        </div>
+    </template>
+    {% endblock %}
+</sw-modal>
+{% endblock %}

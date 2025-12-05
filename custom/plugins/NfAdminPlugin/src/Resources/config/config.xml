@@ -21,6 +21,45 @@
     </card>
 
     <card>
+        <title>Login area</title>
+        <title lang="de-DE">Loginbereich</title>
+
+        <input-field type="text">
+            <name>loginHeadline</name>
+            <label>Überschrift</label>
+            <placeholder>Hallo!</placeholder>
+        </input-field>
+
+        <input-field type="text">
+            <name>loginSubHeadline</name>
+            <label>Unterüberschrift</label>
+            <placeholder>Willkommen zurück.</placeholder>
+        </input-field>
+
+        <component name="sw-media-field">
+            <name>loginBackgroundImg</name>
+            <label>Login background image</label>
+        </component>
+
+        <input-field type="text">
+            <name>loginContentHeadline</name>
+            <label>Anmeldeinhalt Überschrift</label>
+            <placeholder>Melde Dich in Deinem Shopware-Shop an</placeholder>
+        </input-field>
+    </card>
+
+    <card>
+        <title>Newsletter</title>
+
+        <input-field type="checkbox">
+            <name>newsletterShowBirthday</name>
+            <label>show Birthday field</label>
+            <label lang="de-DE">Geburtstagsfeld anzeigen</label>
+            <default-value>false</default-value>
+        </input-field>
+    </card>
+
+    <card>
         <title>Settings</title>
         <title lang="de-DE">Einstellungen</title>
 

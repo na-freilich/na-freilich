@@ -1,7 +1,9 @@
 {
     "sw-product": {
         "detail": {
-            "productLink": "To the product"
+            "productLink": "To the product",
+            "productLinkModalTitle": "In which sales channel would you like to launch the product?",
+            "labelCancel": "Close"
         }
     },
     "nf-admin": {

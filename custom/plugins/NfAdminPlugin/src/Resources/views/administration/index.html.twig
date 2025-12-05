@@ -1,0 +1,20 @@
+{% extends '@Administration/administration/index.html.twig' %}
+
+{% block administration_head_scripts %}
+     {{ parent() }}
+
+    {% set mediaId = config('AdminPlugin.config.loginBackgroundImg') %}
+    {% if mediaId is not empty %}
+        {% set fullMediaUrl = sw_media_url_by_id(mediaId) %}
+    {% endif %}
+
+    <script nonce="{{ cspNonce }}">
+        window.nfAdminPluginConfig = {
+            loginHeadline: "{{ config('AdminPlugin.config.loginHeadline') }}",
+            loginSubHeadline: "{{ config('AdminPlugin.config.loginSubHeadline') }}",
+            loginContentHeadline: "{{ config('AdminPlugin.config.loginContentHeadline') }}",
+            loginBackgroundImg: "{{ fullMediaUrl }}"
+        };
+    </script>
+    <script nonce="{{ cspNonce }}" src="{{ asset('bundles/adminplugin/administration/static/login-custom.js') }}"></script>
+{% endblock %}

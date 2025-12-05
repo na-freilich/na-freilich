@@ -1,7 +1,9 @@
 {
     "sw-product": {
         "detail": {
-            "productLink": "zum Produkt"
+            "productLink": "zum Produkt",
+            "productLinkModalTitle": "In welchem Verkaufskanal möchten Sie das Produkt öffnen?",
+            "labelCancel": "Schließen"
         }
     },
     "nf-admin": {

@@ -1,0 +1,19 @@
+{% sw_extends '@Storefront/storefront/element/cms-element-form/form-types/newsletter-form.html.twig' %}
+
+{% block cms_form_newsletter_input_last_name %}
+     {{ parent() }}
+
+     {% block cms_form_newsletter_input_birthday %}
+         {% if config('AdminPlugin.config.newsletterShowBirthday')  %}
+             {% sw_include '@Storefront/storefront/element/cms-element-form/form-components/cms-element-form-input.html.twig'
+                 with {
+                 type: 'date',
+                 fieldName: 'customFields[nf_newsletter_birthday]',
+                 autocomplete: 'section-personal family-name',
+                 additionalClass: 'col-md-4',
+                 label: 'nfAdmin.newsletter.birthday',
+             }
+             %}
+         {% endif %}
+     {% endblock %}
+ {% endblock %}

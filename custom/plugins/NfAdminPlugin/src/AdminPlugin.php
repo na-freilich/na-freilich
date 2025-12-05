@@ -7,6 +7,7 @@ use Shopware\Core\Framework\DataAbstractionLayer\Search\Filter\EqualsFilter;
 use Shopware\Core\Framework\Plugin;
 use Shopware\Core\Framework\Plugin\Context\InstallContext;
 use Shopware\Core\Framework\Plugin\Context\UninstallContext;
+use Shopware\Core\Framework\Plugin\Context\UpdateContext;
 use Shopware\Core\System\CustomField\CustomFieldTypes;
 use Shopware\Core\Framework\Context;
 use Shopware\Core\Framework\DataAbstractionLayer\Search\IdSearchResult;
@@ -18,14 +19,22 @@ use Shopware\Core\Framework\Plugin\Context\DeactivateContext;
 class AdminPlugin extends Plugin
 {
     public const ADDITIONAL_MANUFACTURER_DATA_CUSTOM_FIELD_SET = 'nf_manufacturer';
-
     public const MANUFACTURER_DATA_CUSTOM_FIELD = 'nf_manufacturer_gpsr';
+    public const ADDITIONAL_NEWSLETTER_DATA_CUSTOM_FIELD_SET = 'nf_newsletter';
+    public const NEWSLETTER_DATA_CUSTOM_FIELD = 'nf_newsletter_birthday';
 
     public function activate(ActivateContext $activateContext): void
     {
         parent::install($activateContext);
 
         $this->createAdditionalDataCustomFieldSet($activateContext->getContext());
+    }
+
+    public function update(UpdateContext $updateContext): void
+    {
+        parent::install($updateContext);
+
+        $this->createAdditionalDataCustomFieldSet($updateContext->getContext());
     }
 
     public function deactivate(DeactivateContext $deactivateContext): void
@@ -76,6 +85,41 @@ class AdminPlugin extends Plugin
                 ]
             ], $context);
         }
+
+        $newsletterCustomFieldSetIds = $this->getCustomFieldSetIds(self::ADDITIONAL_NEWSLETTER_DATA_CUSTOM_FIELD_SET, $context);
+
+        if (!$newsletterCustomFieldSetIds)
+        {
+            $customFieldSetRepository->upsert([
+                [
+                    'name' => self::ADDITIONAL_NEWSLETTER_DATA_CUSTOM_FIELD_SET,
+                    'config' => [
+                        'label' => [
+                            'de-DE' => 'Newsletter zusätzliche Daten',
+                            'en-GB' => 'Newsletter additional data'
+                        ]
+                    ],
+                    'relations' => [[
+                        'entityName' => 'newsletter_recipient'
+                    ]],
+                    'customFields' => [
+                        [
+                            'name' => self::NEWSLETTER_DATA_CUSTOM_FIELD,
+                            'type' => CustomFieldTypes::DATETIME,
+                            'config' => [
+                                'componentName' => 'sw-field',
+                                'customFieldType' => 'date',
+                                'customFieldPosition' => 1,
+                                'label' => [
+                                    'de-DE' => 'Birthday',
+                                    'en-GB' => 'Geburtstag'
+                                ]
+                            ]
+                        ]
+                    ]
+                ]
+            ], $context);
+        }
     }
 
     /**
@@ -108,6 +152,11 @@ class AdminPlugin extends Plugin
 
         if ($customFieldSetIds) {
             $customFieldSetRepository->delete(array_values($customFieldSetIds->getData()), $context);
+        }
+
+        $newsletterCustomFieldSetIds = $this->getCustomFieldSetIds(self::ADDITIONAL_NEWSLETTER_DATA_CUSTOM_FIELD_SET, $context);
+        if ($newsletterCustomFieldSetIds) {
+            $customFieldSetRepository->delete(array_values($newsletterCustomFieldSetIds->getData()), $context);
         }
     }
 }

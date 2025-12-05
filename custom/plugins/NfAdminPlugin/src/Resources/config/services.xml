@@ -30,6 +30,13 @@
             <argument type="service" id="Nf\AdminPlugin\Service\ProductService"/>
         </service>
 
+        <!--Twig -->
+        <service id="Nf\AdminPlugin\Twig\Extension\MediaUrlExtension">
+            <argument type="service" id="media.repository"/>
+
+            <tag name="twig.extension"/>
+        </service>
+
         <!--Rule -->
 <!--        <service id="Nf\AdminPlugin\Core\Content\Flow\Rule\OrderCreatedByAdminRoleRule">-->
 <!--            <tag name="shopware.rule.definition"/>-->

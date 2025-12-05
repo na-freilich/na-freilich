@@ -1,6 +1,6 @@
 {
   "main.js": {
-    "file": "assets/admin-plugin-BbzL7aHT.js",
+    "file": "assets/admin-plugin-CSNJxW4v.js",
     "name": "admin-plugin",
     "src": "main.js",
     "isEntry": true,
@@ -92,12 +92,12 @@
     ]
   },
   "module/sw-cms/elements/empty-column/component/index.js": {
-    "file": "assets/index-CblIV6nC.js",
+    "file": "assets/index-8Pw6qJgo.js",
     "name": "index",
     "src": "module/sw-cms/elements/empty-column/component/index.js",
     "isDynamicEntry": true,
     "css": [
-      "assets/index-DadffPMS.css"
+      "assets/index-DDxpGlur.css"
     ]
   }
 }

@@ -3,12 +3,20 @@ import template from './sw-product-detail.html.twig'
 Shopware.Component.override('sw-product-detail', {
     template,
 
+    data() {
+        return {
+            showToProductSalesChannelModal: false,
+        };
+    },
+
     methods: {
         toProductClick()
         {
-            let domain = Shopware.Context.api.installationPath;
-            let url = domain.concat('/detail/', this.productId);
-            window.open(url, "_blank");
-        }
+            this.showToProductSalesChannelModal = true;
+        },
+
+        onCloseSaleschannelModal() {
+            this.showToProductSalesChannelModal = false;
+        },
     }
 });
