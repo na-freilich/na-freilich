@@ -7,3 +7,6 @@
 - Auswahl der Domain beim Öffnen des Produkts auf dem Frontend
 - Einrichtung der Anmeldeseite
 - Das Feld „Geburtstag“ wurde zum Newsletter hinzugefügt
+
+# 1.1.3
+- Fix admin menu background

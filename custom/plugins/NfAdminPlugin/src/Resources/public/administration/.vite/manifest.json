@@ -1,6 +1,6 @@
 {
   "main.js": {
-    "file": "assets/admin-plugin-CSNJxW4v.js",
+    "file": "assets/admin-plugin-BAOsx_Wv.js",
     "name": "admin-plugin",
     "src": "main.js",
     "isEntry": true,
@@ -16,7 +16,7 @@
       "module/sw-cms/elements/empty-column/component/index.js"
     ],
     "css": [
-      "assets/admin-plugin--2JaK1S8.css"
+      "assets/admin-plugin-BPG4C73u.css"
     ]
   },
   "module/sw-cms/blocks/nf-grid/four-column/component/index.js": {

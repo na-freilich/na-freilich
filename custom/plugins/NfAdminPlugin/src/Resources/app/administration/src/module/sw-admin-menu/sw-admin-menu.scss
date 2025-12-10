@@ -40,10 +40,22 @@ $sw-admin-menu-active-text: $color-white;
       background: var(--sw-admin-menu-background-custom, $sw-admin-menu-background-hover);
     }
 
+    .sw-admin-menu__navigation-list-item.is--entry-expanded {
+      background: var(--sw-admin-menu-background-custom, $sw-admin-menu-background-hover);
+    }
+
     .sw-admin-menu__navigation-list-item .collapsible-text {
       color: var(--sw-admin-menu-text-active-custom, $sw-admin-menu-color-text-primary);
       .is--flyout-enabled{
         background: var(--sw-admin-menu-background-custom, $sw-admin-menu-background);
+      }
+    }
+
+    .sw-admin-menu__navigation-list-item {
+      &.is--entry-expanded {
+        .sw-admin-menu__navigation-list-item {
+          background: var(--sw-admin-menu-background-custom, $sw-admin-menu-background);
+        }
       }
     }
 
