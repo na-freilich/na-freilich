@@ -1,0 +1,10 @@
+{% sw_extends '@Storefront/storefront/page/checkout/_page.html.twig' %}
+
+ {% block page_checkout %}
+    <div class="checkout" data-nf-order-day="true">
+        {% block page_checkout_container %}
+            {{ parent() }}
+        {% endblock %}
+    </div>
+
+ {% endblock %}

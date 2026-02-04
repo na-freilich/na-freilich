@@ -1,0 +1,46 @@
+<?xml version="1.0" ?>
+
+<container xmlns="http://symfony.com/schema/dic/services"
+           xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+           xsi:schemaLocation="http://symfony.com/schema/dic/services http://symfony.com/schema/dic/services/services-1.0.xsd">
+
+    <services>
+        <!-- Controllers -->
+        <service id="Nf\OrderDay\Storefront\Controller\CheckoutController" public="true">
+            <argument type="service" id="Shopware\Core\Checkout\Cart\SalesChannel\CartService"/>
+            <argument type="service" id="Shopware\Core\Checkout\Cart\CartPersister"/>
+            <call method="setContainer">
+                <argument type="service" id="service_container"/>
+            </call>
+            <call method="setTwig">
+                <argument type="service" id="twig"/>
+            </call>
+        </service>
+
+        <!-- Subscribers -->
+        <service id="Nf\OrderDay\Subscriber\OrderSubscriber">
+            <argument type="service" id="Nf\OrderDay\Service\OrderDayService"/>
+            <tag name="kernel.event_subscriber"/>
+        </service>
+
+        <!-- Services -->
+        <service id="Nf\OrderDay\Service\OrderDayService" public="true">
+            <argument type="service" id="order_day.repository"/>
+<!--            <argument type="service" id="Shopware\Core\Checkout\Cart\CartPersister"/>-->
+            <argument type="service"
+                      id="Shopware\Core\System\SystemConfig\SystemConfigService" />
+        </service>
+
+        <!-- Entity definition -->
+        <service id="Nf\OrderDay\Core\Content\OrderDay\OrderDayDefinition">
+            <tag name="shopware.entity.definition" entity="order_day" />
+        </service>
+
+        <!--Decorators -->
+        <service id="Nf\OrderDay\Core\Checkout\Cart\Price\AmountCalculatorDecorator" decorates="Shopware\Core\Checkout\Cart\Price\AmountCalculator">
+            <argument type="service" id="Nf\OrderDay\Core\Checkout\Cart\Price\AmountCalculatorDecorator.inner" />
+            <argument type="service" id="Shopware\Core\Checkout\Cart\CartPersister"/>
+        </service>
+
+    </services>
+</container>

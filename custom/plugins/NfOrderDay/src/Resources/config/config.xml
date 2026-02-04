@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:noNamespaceSchemaLocation="https://raw.githubusercontent.com/shopware/shopware/trunk/src/Core/System/SystemConfig/Schema/config.xsd">
+
+    <card>
+        <title>Minimal configuration</title>
+
+        <input-field type="text">
+            <name>workTimeEnd</name>
+            <label>Time of work ending</label>
+            <label lang="de-DE">Zeit des Arbeitsendes</label>
+            <defaultValue>17:00</defaultValue>
+        </input-field>
+
+        <input-field type="text">
+            <name>orderProcessCntDay</name>
+            <label>Number of days required to process the order</label>
+            <label lang="de-DE">Anzahl der Tage, die zur Bearbeitung der Bestellung benötigt werden</label>
+            <defaultValue>2</defaultValue>
+        </input-field>
+    </card>
+
+</config>

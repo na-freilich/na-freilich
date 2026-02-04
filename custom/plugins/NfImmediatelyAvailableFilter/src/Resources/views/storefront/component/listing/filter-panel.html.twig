@@ -1,0 +1,18 @@
+{% sw_extends '@Storefront/storefront/component/listing/filter-panel.html.twig' %}
+
+{% block component_filter_panel_items_container %}
+    {{ parent() }}
+
+    {% set immediatelyAvailable = listing.aggregations.get('immediately-available') %}
+
+    {% if immediatelyAvailable %}
+        <div class="filter-panel-immediately-available-container">
+
+            {% sw_include '@Storefront/storefront/component/listing/filter/filter-boolean.html.twig' with {
+                name: 'immediately-available',
+                displayName: 'nf.listing.immediatelyAvailableTitle'|trans|sw_sanitize
+            } %}
+
+        </div>
+    {% endif %}
+{% endblock %}

@@ -1,0 +1,57 @@
+{% block cosmo_recipe_category_detail %}
+    <sw-page class="nf-order-day-detail">
+        <template #smart-bar-header>
+            {% block cosmo_recipe_category_detail_title %}
+                <h2>{{ $tc('nf-order-day.common.actions.editDay') }}</h2>
+            {% endblock %}
+        </template>
+
+        <template #smart-bar-actions>
+            <sw-button-process
+                        class="nf-order-day-detail__save-action"
+                        :is-loading="isLoading"
+                        :process-success="isSaveSuccessful"
+                        :disabled="isLoading"
+                        variant="primary"
+                        @process-finish="saveFinish"
+                        @click.prevent="onSave"
+                >
+                {{ $tc('nf-order-day.common.actions.save') }}
+            </sw-button-process>
+        </template>
+
+        <template #language-switch>
+            <sw-language-switch
+                    :abort-change-function="abortOnLanguageChange"
+                    :save-changes-function="saveOnLanguageChange"
+                    @on-change="onChangeLanguage"
+            />
+        </template>
+
+        {% block nf_order_day_detail_content %}
+            <template #content>
+                <sw-card-view v-if="!isLoading">
+                    <sw-card v-if="orderDay">
+                        <sw-container>
+
+                            <sw-datepicker
+                                    :name="getToDateFieldId"
+                                    :placeholderText="$tc('nf-statistics.common.placeholders.dateTo')"
+                                    :config="dateConfig"
+                                    v-model:value="orderDay.date"
+                            />
+
+                            <sw-switch-field
+                                    type="switch"
+                                    :label="$tc('nf-order-day.common.labels.active')"
+                                    v-model:value="orderDay.active">
+                            </sw-switch-field>
+
+                        </sw-container>
+                    </sw-card>
+                </sw-card-view>
+                <sw-loader v-else></sw-loader>
+            </template>
+        {% endblock %}
+    </sw-page>
+{% endblock %}

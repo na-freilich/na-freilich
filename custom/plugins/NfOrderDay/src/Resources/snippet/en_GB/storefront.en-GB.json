@@ -1,0 +1,8 @@
+{
+  "nf-order-day": {
+    "checkout": {
+      "title": "Order day",
+      "noAvailableDays ": "Keine Tage verfügbar"
+    }
+  }
+}

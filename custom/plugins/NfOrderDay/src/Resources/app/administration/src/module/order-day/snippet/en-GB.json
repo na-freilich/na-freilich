@@ -1,0 +1,8 @@
+{
+    "nf-order-day": {
+        "general": {
+            "mainMenuItemGeneral": "Order Day",
+            "descriptionTextModule": "Manage Order Day"
+        }
+    }
+}

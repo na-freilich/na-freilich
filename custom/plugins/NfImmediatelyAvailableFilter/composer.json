@@ -1,0 +1,30 @@
+{
+    "name": "nf/immediately-available-filter",
+    "description": "Nf Immediately available filter",
+    "version": "v2.0.0",
+    "type": "shopware-platform-plugin",
+    "license": "proprietary",
+    "authors": [
+        {
+            "name": "na freilich GmbH",
+            "homepage": "https://www.na-freilich.de/"
+        }
+    ],
+    "require": {
+        "shopware/core": ">=6.4.0.0",
+        "ext-json": "*"
+    },
+    "extra": {
+        "shopware-plugin-class": "Nf\\ImmediatelyAvailableFilter\\ImmediatelyAvailableFilter",
+        "plugin-icon": "src/Resources/config/plugin.png",
+        "label": {
+            "de-DE": "NF Sofort lieferbar Filter",
+            "en-GB": "NF Immediately available filter"
+        }
+    },
+    "autoload": {
+        "psr-4": {
+            "Nf\\ImmediatelyAvailableFilter\\": "src/"
+        }
+    }
+}

@@ -1,0 +1,37 @@
+{% sw_extends '@Storefront/storefront/page/checkout/confirm/index.html.twig' %}
+
+{% block page_checkout_confirm_payment_shipping %}
+    {{ parent() }}
+
+    {% set orderDays = page.extensions.orderDay %}
+
+    <div class="form-check">
+        <label class="nf-order-day-group-title" for="nf-select-order-day">
+            <strong>{{ 'nf-order-day.checkout.title'|trans|sw_sanitize }}</strong>
+        </label>
+
+        {% if orderDays.count > 0 %}
+            <select
+                    class="nf-order-day form-control {% if formViolations.getViolations('/nf-order-day') is not empty %} is-invalid{% endif %}"
+                    id="nf-select-order-day"
+                    name="nf-order-day[]"
+                    form="confirmOrderForm"
+                    required="required"
+                    multiple
+            >
+                {% for value in orderDays %}
+                    <option id="nf-select-order-day"
+                            value="{{ value.id }}">
+                        {{ value.date }}
+                    </option>
+                {% endfor %}
+            </select>
+        {% else %}
+            <div class="nf-order-day {% if formViolations.getViolations('/nf-order-day') is not empty %} is-invalid{% endif %}">
+                {{ 'nf-order-day.checkout.noAvailableDays'|trans|sw_sanitize }}
+            </div>
+        {% endif %}
+    </div>
+
+    </br>
+{% endblock %}

@@ -1,0 +1,56 @@
+{% block nf_order_day_list %}
+    <sw-page class="nf-order-day-list">
+        <template #smart-bar-header>
+            {% block order_day_list_title %}
+                <h2>{{ $tc('nf-order-day.list.title') }}</h2>
+            {% endblock %}
+        </template>
+
+        {% block nf_order_day_list_language_switch %}
+            <template #language-switch>
+                <sw-language-switch @on-change="onChangeLanguage"></sw-language-switch>
+            </template>
+        {% endblock %}
+
+        <template #smart-bar-actions>
+
+            {% block nf_order_day_actions_create %}
+                <sw-button :routerLink="{ name: 'order.day.create' }" variant="primary">
+                    {{ $tc('nf-order-day.common.actions.addDay') }}
+                </sw-button>
+            {% endblock %}
+        </template>
+
+        <template #content>
+            <sw-entity-listing
+                    v-if="itemsCollection"
+                    :items="itemsCollection"
+                    :repository="orderDayRepository"
+                    :showSelection="true"
+                    :columns="columns"
+                    @update-records="updateTotal"
+                    detailRoute="order.day.detail"
+            >
+                 <template #column-date="{ item, isInlineEdit }">
+                     <router-link :to="{ name: 'order.day.detail', params: { id: item.id } }">
+                         {{ item.date }}
+                     </router-link>
+                </template>
+
+                <template #column-active="{ item, isInlineEdit }">
+                    <template v-if="isInlineEdit">
+                        <sw-checkbox-field v-model:value="item.active"></sw-checkbox-field>
+                    </template>
+
+                    <template v-else>
+                        <sw-icon v-if="item.active" name="regular-checkmark-xs" small class="is--active"></sw-icon>
+                        <sw-icon v-else name="regular-times-s" small class="is--inactive"></sw-icon>
+                    </template>
+                </template>
+            </sw-entity-listing>
+
+            <sw-empty-state v-if="!isLoading && !total" :title="$tc('nf-order-day.common.labels.emptyList')"></sw-empty-state>
+        </template>
+
+    </sw-page>
+{% endblock %}

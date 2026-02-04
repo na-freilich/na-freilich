@@ -1,0 +1,41 @@
+{% block order_day_add %}
+    <sw-page class="order-day-add">
+        <template #smart-bar-header>
+            <h2 v-if="entity && entity.name">{{ entity.name }}</h2>
+        </template>
+
+        <template #language-switch>
+            <sw-language-switch slot="language-switch" :disabled="true"></sw-language-switch>
+        </template>
+
+        <template #smart-bar-actions>
+            <sw-button :disabled="!entity.date" variant="primary"
+                       v-on:click="onSave">
+                {{ $tc('nf-order-day.common.actions.save') }}
+            </sw-button>
+        </template>
+
+        <template #content>
+            <sw-card-view v-if="!isLoading">
+                <sw-card>
+                    <sw-container >
+                        <sw-datepicker
+                                :name="getToDateFieldId"
+                                :placeholderText="$tc('nf-order-day.common.placeholders.date')"
+                                :config="dateConfig"
+                                v-model:value="entity.date"
+                        />
+
+                        <sw-switch-field
+                                type="switch"
+                                :label="$tc('nf-order-day.common.labels.active')"
+                                v-model:value="entity.active">
+                        </sw-switch-field>
+                    </sw-container>
+
+                </sw-card>
+            </sw-card-view>
+            <sw-loader v-else></sw-loader>
+        </template>
+    </sw-page>
+{% endblock %}
