@@ -1,0 +1,11 @@
+{
+  "main.js": {
+    "file": "assets/order-day-cQwOmOHy.js",
+    "name": "order-day",
+    "src": "main.js",
+    "isEntry": true,
+    "css": [
+      "assets/order-day-h9nRJwfg.css"
+    ]
+  }
+}

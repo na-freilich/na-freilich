@@ -12,7 +12,7 @@ Shopware.Module.register('order-day', {
     title: 'nf-order-day.general.mainMenuItemGeneral',
     description: 'nf-order-day.general.descriptionTextModule',
     color: '#ff3d58',
-    icon: 'default-shopping-paper-bag-product',
+    icon: 'regular-shopping-bag-product',
 
     snippets: {
         'de-DE': deDE,

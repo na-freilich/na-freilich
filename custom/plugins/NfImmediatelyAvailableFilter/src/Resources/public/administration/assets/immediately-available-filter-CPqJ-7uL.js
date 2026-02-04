@@ -1,0 +1,2 @@
+const i=`{% block sw_cms_element_product_listing_config_filter_for_free_shipping %} {% parent %} <sw-switch-field v-model:value="filterByImmediatelyAvailable" :label="$tc('sw-cms.productListing.labelFilterForImmediatelyAvailable')" /> {% endblock %}`;Shopware.Component.override("sw-cms-el-config-product-listing",{template:i,methods:{},computed:{filterByImmediatelyAvailable:{get(){return this.isActiveFilter("immediately-available-filter")},set(e){this.updateFilters("immediately-available-filter",e)}}}});
+//# sourceMappingURL=immediately-available-filter-CPqJ-7uL.js.map

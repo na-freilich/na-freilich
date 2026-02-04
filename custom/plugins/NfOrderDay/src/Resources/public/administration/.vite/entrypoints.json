@@ -1,0 +1,25 @@
+{
+  "base": "/bundles/orderday/administration/",
+  "entryPoints": {
+    "order-day": {
+      "css": [
+        "/bundles/orderday/administration/assets/order-day-h9nRJwfg.css"
+      ],
+      "dynamic": [],
+      "js": [
+        "/bundles/orderday/administration/assets/order-day-cQwOmOHy.js"
+      ],
+      "legacy": false,
+      "preload": []
+    }
+  },
+  "legacy": false,
+  "metadatas": {},
+  "version": [
+    "7.1.0",
+    7,
+    1,
+    0
+  ],
+  "viteServer": null
+}

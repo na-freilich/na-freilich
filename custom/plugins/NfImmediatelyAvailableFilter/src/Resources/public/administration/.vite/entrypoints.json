@@ -1,0 +1,23 @@
+{
+  "base": "/bundles/immediatelyavailablefilter/administration/",
+  "entryPoints": {
+    "immediately-available-filter": {
+      "css": [],
+      "dynamic": [],
+      "js": [
+        "/bundles/immediatelyavailablefilter/administration/assets/immediately-available-filter-CPqJ-7uL.js"
+      ],
+      "legacy": false,
+      "preload": []
+    }
+  },
+  "legacy": false,
+  "metadatas": {},
+  "version": [
+    "7.1.0",
+    7,
+    1,
+    0
+  ],
+  "viteServer": null
+}

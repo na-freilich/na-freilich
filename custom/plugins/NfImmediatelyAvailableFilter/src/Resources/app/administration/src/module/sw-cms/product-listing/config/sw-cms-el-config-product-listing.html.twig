@@ -2,10 +2,7 @@
     {% parent %}
 
     <sw-switch-field
-{#            {% if VUE3 %}#}
-            v-model:value="filterByImmediatelyAvailable"
-{#            {% else %}#}
-            v-model="filterByImmediatelyAvailable"
-            :label="$tc('sw-cms.productListing.labelFilterForImmediatelyAvailable')"
+        v-model:value="filterByImmediatelyAvailable"
+        :label="$tc('sw-cms.productListing.labelFilterForImmediatelyAvailable')"
     />
 {% endblock %}

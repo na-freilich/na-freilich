@@ -29,6 +29,14 @@ Component.register('order-day-detail', {
         };
     },
 
+    watch: {
+        'orderDay.date'(newValue) {
+            if (newValue && newValue.includes('T')) {
+                this.orderDay.date = newValue.split('T')[0];
+            }
+        }
+    },
+
     computed: {
         orderDayRepository() {
             return this.repositoryFactory.create('order_day');

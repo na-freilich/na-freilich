@@ -10,18 +10,19 @@ export default class NfOrderDay extends Plugin {
 
     init() {
         this._httpClient = new HttpClient();
-        this.select = DomAccess.querySelector(this.el, '#nf-select-order-day');
-        this.summary = DomAccess.querySelector(this.el, '.checkout-aside-summary-list-container');
+        this.select = DomAccess.querySelector(this.el, '#nf-select-order-day', false);
+        this.summary = DomAccess.querySelector(this.el, '.checkout-aside-summary-list-container', false);
 
         this.registerEventListener();
     }
 
     registerEventListener() {
-        this.select.addEventListener(
-            'change',
-            this._onDaySelectChanged.bind(this),
-        );
-        // this.el.addEventListener('click', this.onBuyBtnClick.bind(this));
+        if (this.select) {
+            this.select.addEventListener(
+                'change',
+                this._onDaySelectChanged.bind(this),
+            );
+        }
     }
 
     _onDaySelectChanged(event) {
@@ -35,8 +36,6 @@ export default class NfOrderDay extends Plugin {
             this.options.url,
             formData,
             (responseText, request) => {
-                // response
-                console.log("11", responseText);
                 this._renderSummary(responseText);
             });
     }

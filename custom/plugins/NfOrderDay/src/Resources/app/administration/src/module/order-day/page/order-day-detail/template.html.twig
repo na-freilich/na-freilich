@@ -34,11 +34,11 @@
                     <sw-card v-if="orderDay">
                         <sw-container>
 
-                            <sw-datepicker
-                                    :name="getToDateFieldId"
-                                    :placeholderText="$tc('nf-statistics.common.placeholders.dateTo')"
-                                    :config="dateConfig"
-                                    v-model:value="orderDay.date"
+                            <mt-datepicker
+                                    v-model="orderDay.date"
+                                    date-type="date"
+                                    :label="$t('nf-order-day.common.labels.date')"
+                                    :placeholder="$t('nf-order-day.common.placeholders.date')"
                             />
 
                             <sw-switch-field

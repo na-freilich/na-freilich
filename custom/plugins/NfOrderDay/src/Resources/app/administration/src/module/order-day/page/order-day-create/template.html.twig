@@ -19,13 +19,12 @@
             <sw-card-view v-if="!isLoading">
                 <sw-card>
                     <sw-container >
-                        <sw-datepicker
-                                :name="getToDateFieldId"
-                                :placeholderText="$tc('nf-order-day.common.placeholders.date')"
-                                :config="dateConfig"
-                                v-model:value="entity.date"
+                        <mt-datepicker
+                                v-model="entity.date"
+                                date-type="date"
+                                :label="$t('nf-order-day.common.labels.date')"
+                                :placeholder="$t('nf-order-day.common.placeholders.date')"
                         />
-
                         <sw-switch-field
                                 type="switch"
                                 :label="$tc('nf-order-day.common.labels.active')"

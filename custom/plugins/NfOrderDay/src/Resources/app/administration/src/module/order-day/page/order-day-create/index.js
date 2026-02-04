@@ -32,6 +32,11 @@ Component.register('order-day-create', {
     watch: {
         '$route.params.id'() {
             this.createdComponent();
+        },
+        'entity.date'(newValue) {
+            if (newValue && newValue.includes('T')) {
+                this.entity.date = newValue.split('T')[0];
+            }
         }
     },
 
@@ -64,7 +69,7 @@ Component.register('order-day-create', {
 
         onSave() {
             this.loading.categorySaving = true;
-console.log('onSave', this.entity);
+
             this.cosmoCategoryRepository
                 .save(this.entity, Shopware.Context.api)
                 .then((result) => {
