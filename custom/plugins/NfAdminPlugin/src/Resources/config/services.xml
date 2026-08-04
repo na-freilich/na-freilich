@@ -37,6 +37,14 @@
             <tag name="twig.extension"/>
         </service>
 
+        <!--Controllers -->
+        <service id="Nf\AdminPlugin\Controller\Api\CustomerStatsController" public="true">
+            <argument type="service" id="Doctrine\DBAL\Connection"/>
+            <call method="setContainer">
+                <argument type="service" id="service_container"/>
+            </call>
+        </service>
+
         <!--Rule -->
 <!--        <service id="Nf\AdminPlugin\Core\Content\Flow\Rule\OrderCreatedByAdminRoleRule">-->
 <!--            <tag name="shopware.rule.definition"/>-->

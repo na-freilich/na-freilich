@@ -10,5 +10,12 @@
         "condition": {
             "orderCreatedByAdminRoleRule": "Order created by admin user"
         }
+    },
+    "sw-customer":{
+        "baseInfo":{
+            "labelTurnover":"Turnover",
+            "labelTotal":"Total",
+            "labelYear":"Year"
+        }
     }
 }

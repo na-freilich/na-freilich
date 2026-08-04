@@ -1,4 +1,15 @@
 {
+  "apps":{
+    "sw-cms": {
+      "detail": {
+        "label": {
+          "blockCategory": {
+            "nf-grid": "NF Grid"
+          }
+        }
+      }
+    }
+  },
   "sw-cms": {
     "detail": {
       "title": {

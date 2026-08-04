@@ -10,3 +10,9 @@
 
 # 1.1.3
 - Fix admin menu background
+- 
+# 1.1.4
+- Added turnover statistics to the customer detail page
+
+# 1.1.5
+- Added snippet

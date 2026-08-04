@@ -1,0 +1,46 @@
+<!-- eslint-disable-next-line sw-deprecation-rules/no-twigjs-blocks -->
+{% block sw_customer_base_metadata_turnover %}
+    <sw-description-list v-if="!isTurnoverLoading">
+        <dt class="sw-customer-base-info__label">
+            {{ $tc('sw-customer.baseInfo.labelTurnover') }}
+        </dt>
+        <dd class="sw-customer-base__label-turnover">
+            <strong>{{ $t('sw-customer.baseInfo.labelTotal') }}:</strong> {{ currencyFilter(customer.orderTotalAmount, currencyCode) }}
+        </dd>
+
+        <dd v-if="turnoverData && turnoverData.totalYear > 0">
+            <strong>{{ $t('sw-customer.baseInfo.labelYear') }} {{ turnoverData.year }}:</strong>
+            {{ currencyFilter(turnoverData.totalYear, currencyCode) }}
+        </dd>
+
+        <template v-for="monthNum in [12, 11, 10, 9, 8, 7, 6, 5, 4, 3, 2, 1]">
+            <dd v-if="turnoverData.months[monthNum] > 0"
+                :key="monthNum"
+                class="sw-customer-base__label-turnover">
+                <strong>{{ getMonthName(monthNum) }} {{ turnoverData.year }}:</strong>
+                {{ currencyFilter(turnoverData.months[monthNum], currencyCode) }}
+            </dd>
+        </template>
+    </sw-description-list>
+
+{#    <sw-description-list>#}
+{#        <dt class="sw-customer-base-info__label">#}
+{#            Umsatz 2025#}
+{#        </dt>#}
+{#        <dd class="sw-customer-base__label-turnover">#}
+{#            {{ currencyFilter(123, currencyCode) }}#}
+{#        </dd>#}
+{#    </sw-description-list>#}
+    <div class="customer-stats-months">
+        <sw-container columns="1fr 1fr" gap="10px">
+{#            <div v-for="monthNum in [12, 11, 10, 9, 8, 7, 6, 5, 4, 3, 2, 1]"#}
+{#                 :key="monthNum"#}
+{#                 style="display: flex; justify-content: space-between; padding: 8px 0; border-bottom: 1px solid #f1f3f5;">#}
+
+{#                <span style="font-weight: 600;">{{ (monthNum) }} {{ turnoverData.year }}:</span>#}
+
+{#                <span>{{ turnoverData.months[monthNum] | currency(customer.salesChannel.currency.isoCode) }}</span>#}
+{#            </div>#}
+        </sw-container>
+    </div>
+{% endblock %}
