@@ -170,8 +170,19 @@ class ProductPageSubscriber implements EventSubscriberInterface
                 'created_at' => date('Y-m-d H:i:s')
             ];
 
-            if ($productCmsPageId)
-                $data['product_layout_id'] = hex2bin($productCmsPageId);
+            if (!empty($productCmsPageId)) {
+                if (is_string($productCmsPageId) && strlen($productCmsPageId) === 16 && !ctype_print($productCmsPageId)) {
+                    $data['product_layout_id'] = $productCmsPageId;
+                }
+                elseif (is_string($productCmsPageId) && Uuid::isValid($productCmsPageId)) {
+                    $data['product_layout_id'] = Uuid::fromHexToBytes($productCmsPageId);
+                }
+                else {
+                    $data['product_layout_id'] = null;
+                }
+            } else {
+                $data['product_layout_id'] = null;
+            }
 
             $this->connection->insert(
                 'nf_stat_product_layout_views',
