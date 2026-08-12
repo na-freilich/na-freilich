@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:noNamespaceSchemaLocation="https://raw.githubusercontent.com/shopware/platform/master/src/Core/System/SystemConfig/Schema/config.xsd">
+
+    <card>
+        <title>General Settings</title>
+        <title lang="de-DE">Grundeinstellungen</title>
+
+        <input-field type="single-select">
+            <name>cmsPageId</name>
+            <label>Checkout Finish CMS Page</label>
+            <label lang="de-DE">CMS-Seite für DANKE Seite</label>
+            <componentName>sw-entity-single-select</componentName>
+            <entity>cms_page</entity>
+        </input-field>
+
+    </card>
+</config>

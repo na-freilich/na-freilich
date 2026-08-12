@@ -1,0 +1,166 @@
+<sw-page class="nf-booking-season-detail">
+    <template #smart-bar-header>
+        <h2 v-if="season">
+            {{ isNew ? $t('nf-booking.season.detail.titleCreate') : season.name }}
+        </h2>
+    </template>
+
+    <template #smart-bar-actions>
+        <sw-language-switch @on-change="onChangeLanguage"></sw-language-switch>
+        <sw-button @click="onCancel">{{ $t('global.default.cancel') }}</sw-button>
+        <sw-button-process
+                variant="primary"
+                :isLoading="isLoading"
+                :processSuccess="isSaveSuccessful"
+                @click="onSave">
+            {{ $t('global.default.save') }}
+        </sw-button-process>
+    </template>
+
+    <template #content>
+        <sw-card-view v-if="season">
+            <mt-card :title="$t('nf-booking.season.detail.cardTitleGeneral')">
+                <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 30px;">
+                    <sw-text-field
+                            :label="$t('nf-booking.season.detail.columnName')"
+                            v-model="season.name"
+                            required>
+                    </sw-text-field>
+
+                    <mt-switch
+                            :label="$t('nf-booking.season.detail.columnActive')"
+                            v-model="season.active"
+                            :disabled="false">
+                    </mt-switch>
+                </div>
+
+                <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 30px; margin-top: 20px;">
+                    <mt-text-field
+                            :label="$t('nf-booking.season.detail.columnStartDate')"
+                            v-model="season.startDate"
+                            placeholder="0101"
+                            :maxLength="4"
+                            @update:model-value="onDateInput">
+                    </mt-text-field>
+
+                    <mt-text-field
+                            :label="$t('nf-booking.season.detail.columnEndDate')"
+                            v-model="season.endDate"
+                            placeholder="1231"
+                            :maxLength="4"
+                            @update:model-value="onDateInput">
+                    </mt-text-field>
+                </div>
+            </mt-card>
+
+            <mt-card :title="$t('nf-booking.season.detail.cardTitlePrices')" :isLoading="isLoading">
+                <template #headerRight>
+                    <mt-button
+                            variant="secondary"
+                            size="small"
+                            @click="onAddPriceRule">
+                        {{ $t('nf-booking.season.detail.addPriceRule') }}
+                    </mt-button>
+                </template>
+
+                <template #grid>
+                    <sw-data-grid
+                            :dataSource="season.priceRules"
+                            :columns="priceRuleColumns"
+                            :showSelection="false"
+                            :allowInlineEdit="false">
+
+                        <template #column-days="{ item }">
+                            <sw-label v-for="day in item.days" :key="day" size="small">
+                                {{ getDayName(day) }}
+                            </sw-label>
+                        </template>
+
+                        <template #column-startTime="{ item }">
+                            {{ item.startTime ? item.startTime.substring(0, 5) : '' }}
+                        </template>
+
+                        <template #column-endTime="{ item }">
+                            {{ item.endTime ? item.endTime.substring(0, 5) : '' }}
+                        </template>
+
+                        <template #column-price="{ item }">
+                            {{ renderPrice(item.price) }}
+                        </template>
+
+                        <template #column-priceSubsequent="{ item }">
+                            {{ renderPrice(item.priceSubsequent) }}
+                        </template>
+
+                        <template #actions="{ item }">
+                            <sw-context-menu-item @click="onEditPriceRule(item)">
+                                {{ $t('global.default.edit') }}
+                            </sw-context-menu-item>
+                            <sw-context-menu-item variant="danger" @click="onDeletePriceRule(item)">
+                                {{ $t('global.default.delete') }}
+                            </sw-context-menu-item>
+                        </template>
+                    </sw-data-grid>
+                </template>
+            </mt-card>
+        </sw-card-view>
+
+        <sw-loader v-else></sw-loader>
+
+
+    </template>
+</sw-page>
+
+
+<sw-modal v-if="currentPriceRule"
+          :key="currentPriceRule.id || 'new-rule'"
+          :title="$t('nf-booking.season.detail.priceRuleModalTitle')"
+          @modal-close="onCancelPriceRule">
+
+    <div style="display: flex; flex-direction: column; gap: 20px;">
+        <mt-select
+                v-model="currentPriceRule.days"
+                :label="$t('nf-booking.season.detail.labelDays')"
+                :options="dayOptions"
+                enableMultiSelection="true"
+                type="multi">
+        </mt-select>
+
+        <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 20px;">
+            <sw-datepicker
+                    v-model="currentPriceRule.startTime"
+                    dateType="time"
+                    :label="$t('nf-booking.season.detail.labelStartTime')">
+            </sw-datepicker>
+            <sw-datepicker
+                    v-if="showSecondPicker"
+                    v-model="currentPriceRule.endTime"
+                    dateType="time"
+                    :label="$t('nf-booking.season.detail.labelEndTime')">
+            </sw-datepicker>
+        </div>
+
+        <sw-number-field
+                v-model="currentPriceRule.price"
+                :label="$t('nf-booking.season.detail.labelPrice')"
+                :digits="2">
+            <template #suffix><span>€</span></template>
+        </sw-number-field>
+
+        <sw-number-field
+                v-model="currentPriceRule.priceSubsequent"
+                :label="$t('nf-booking.season.detail.labelPriceSubsequent')"
+                :digits="2">
+            <template #suffix><span>€</span></template>
+        </sw-number-field>
+    </div>
+
+    <template #modal-footer>
+        <sw-button size="small" @click="onCancelPriceRule">
+            {{ $t('global.default.cancel') }}
+        </sw-button>
+        <sw-button variant="primary" size="small" @click="onConfirmPriceRule">
+            {{ $t('global.default.apply') }}
+        </sw-button>
+    </template>
+</sw-modal>

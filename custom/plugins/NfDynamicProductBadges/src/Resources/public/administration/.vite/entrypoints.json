@@ -1,0 +1,25 @@
+{
+  "base": "/bundles/dynamicproductbadges/administration/",
+  "entryPoints": {
+    "dynamic-product-badges": {
+      "css": [
+        "/bundles/dynamicproductbadges/administration/assets/dynamic-product-badges-Bhk_EGhm.css"
+      ],
+      "dynamic": [],
+      "js": [
+        "/bundles/dynamicproductbadges/administration/assets/dynamic-product-badges-DPh98ot5.js"
+      ],
+      "legacy": false,
+      "preload": []
+    }
+  },
+  "legacy": false,
+  "metadatas": {},
+  "version": [
+    "7.1.0",
+    7,
+    1,
+    0
+  ],
+  "viteServer": null
+}

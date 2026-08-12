@@ -1,0 +1,103 @@
+{% block cms_element_order_newsletter %}
+    {% set order = page.order %}
+    {% set config = element.config %}
+    {% set customer = context.customer %}
+
+    {% if order and not page.isNewsletterSubscribed %}
+        <div class="cms-element-order-newsletter cms-element-form mt-4 mb-4">
+            <div class="card shadow-sm">
+                <div class="card-body p-4">
+                    <div class="row align-items-center">
+                        <div class="col-md-7 col-lg-6">
+                            <h3 class="h4 mb-2">
+                                {{ config.title.value ? config.title.value|trans : "nf-custom-finish-page.newsletter.title"|trans }}
+                            </h3>
+
+                            {% if config.description.value %}
+                                <div class="text-muted">
+                                    {{ config.description.value|trans }}
+                                </div>
+                            {% endif %}
+
+                            {% if config.usps.value is not empty %}
+                                <ul class="list-unstyled mb-0">
+                                    {% for usp in config.usps.value %}
+                                        <li class="mb-1">
+                                            <span class="text-primary mr-2">✓</span>
+                                            <strong>{{ usp|trans }}</strong>
+                                        </li>
+                                    {% endfor %}
+                                </ul>
+                            {% endif %}
+                        </div>
+
+                        <div class="col-md-5 col-lg-6 mt-3 mt-md-0">
+                            {% set formPrefix = 'cms-form-newsletter' %}
+
+                            <form action="{{ path('frontend.form.newsletter.register.handle') }}"
+                                  method="post"
+                                  data-form-validation="true"
+                                  data-form-handler="true"
+                                  data-form-ajax-handler="true"
+                                  data-form-submit-ajax="true"
+                                  id="{{ formPrefix }}">
+
+                                <div class="form-content">
+                                    {% if config.inputLabel.value %}
+                                        <label class="form-label" for="{{ formPrefix }}-email">
+                                            {{ config.inputLabel.value|trans }}
+                                        </label>
+                                    {% endif %}
+
+                                    <div class="input-group my-3">
+                                        <input type="email"
+                                               name="email"
+                                               id="{{ formPrefix }}-email"
+                                               class="form-control form-control-lg"
+                                               value="{{ context.customer.email }}"
+                                               placeholder="{{ "nf-custom-finish-page.newsletter.placeholder"|trans }}"
+                                               required>
+                                        <div class="input-group-append">
+                                            <input type="submit" class="d-none">
+                                            <button type="submit" class="btn btn-primary btn-lg">
+                                                {{ config.buttonText.value ? config.buttonText.value|trans : "nf-custom-finish-page.newsletter.buttonTitle"|trans }}
+                                            </button>
+                                        </div>
+                                        <div id="{{ formPrefix }}-email-feedback" class="form-field-feedback"></div>
+                                    </div>
+
+                                    {% if config.checkboxLabel.value %}
+                                        <div class="newsletter-agb-wrapper mt-3 mb-3">
+                                            <div class="custom-control custom-checkbox">
+                                                <input type="checkbox"
+                                                       class="custom-control-input"
+                                                       id="{{ formPrefix }}-agb"
+                                                       name="newsletter_agb"
+                                                       aria-describedby="{{ formPrefix }}-agb-feedback"
+                                                       required>
+
+                                                <label class="custom-control-label small" for="{{ formPrefix }}-agb">
+                                                    {{ config.checkboxLabel.value|trans|raw }}
+                                                </label>
+                                                <div id="{{ formPrefix }}-agb-feedback"
+                                                     class="form-field-feedback"></div>
+                                            </div>
+                                        </div>
+                                    {% endif %}
+
+                                    <input type="hidden" class="submit--hidden" name="option" value="subscribe">
+
+                                    <p class="form-text text-muted small mt-2 mb-0">
+                                        {% if config.inputFooter.value %}
+                                            {{ config.inputFooter.value|trans|raw }}
+                                        {% endif %}
+                                    </p>
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    {% endif %}
+{% endblock %}

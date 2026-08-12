@@ -1,0 +1,11 @@
+{
+  "main.js": {
+    "file": "assets/dynamic-product-badges-DPh98ot5.js",
+    "name": "dynamic-product-badges",
+    "src": "main.js",
+    "isEntry": true,
+    "css": [
+      "assets/dynamic-product-badges-Bhk_EGhm.css"
+    ]
+  }
+}

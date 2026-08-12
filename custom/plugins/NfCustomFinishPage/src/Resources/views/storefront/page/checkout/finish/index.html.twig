@@ -1,0 +1,18 @@
+{% sw_extends '@Storefront/storefront/page/checkout/finish/index.html.twig' %}
+
+{% block page_checkout_main_content %}
+    {% if page.extensions.customCmsPage %}
+        <div class="cms-page-checkout-finish">
+            {% sw_include "@Storefront/storefront/page/content/detail.html.twig"
+                with { 'cmsPage': page.extensions.customCmsPage } %}
+        </div>
+    {% else %}
+        {{ parent() }}
+    {% endif %}
+{% endblock %}
+
+{% block page_checkout_aside %}
+    {% if not page.extensions.customCmsPage %}
+        {{ parent() }}
+    {% endif %}
+{% endblock %}

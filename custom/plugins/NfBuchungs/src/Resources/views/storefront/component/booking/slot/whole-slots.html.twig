@@ -1,0 +1,7 @@
+{% for slot in slots %}
+    <div class="col-6 col-md-12 mb-2">
+        {% sw_include '@Storefront/storefront/component/booking/slot/slot-btn.html.twig' with {
+            slot: slot
+        } %}
+    </div>
+{% endfor %}

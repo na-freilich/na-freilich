@@ -1,0 +1,127 @@
+{
+  "apps": {
+    "sw-cms": {
+      "detail": {
+        "label": {
+          "blockCategory": {
+            "finish-page": "Finish Page"
+          }
+        }
+      }
+    }
+  },
+  "sw-cms": {
+    "elements": {
+      "order-address": {
+        "label": "Addresses & Information",
+        "noSettings": "No settings available",
+        "deliveryLabel": "Shipping address",
+        "billingLabel": "Billing address",
+        "infoLabel": "Information"
+      },
+      "order-items": {
+        "label": "Order items",
+        "productLabel": "Product",
+        "quantityLabel": "Quantity",
+        "totalLabel": "Sum"
+      },
+      "order-summary": {
+        "label": "Summary",
+        "summaryLabel": "Summary",
+        "subtotalLabel": "Subtotal",
+        "shippingCostsLabel": "Shipping costs",
+        "totalLabel": "Total amount",
+        "totalNetLabel": "Total net amount",
+        "taxLabel": "plus 19% VAT",
+        "noSettings": "No settings available"
+      },
+      "order-newsletter": {
+        "label": "Newsletter",
+        "title": "Stay informed",
+        "description": "Don't miss any offers — subscribe to our newsletter.",
+        "btnTitle": "Subscribe",
+        "item1": "Discount campaigns",
+        "item2": "New products",
+        "item3": "Tips",
+        "buttonLabel": "Subscribe",
+        "checkboxLabelDefault": "I accept the terms and conditions.",
+        "labels": {
+          "title": "Title",
+          "usps": "USPs",
+          "description": "Description",
+          "checkboxLabel": "T&C Text",
+          "button": "Button text",
+          "inputLabel": "Text above",
+          "inputFooter": "Text below"
+        },
+        "placeholders": {
+          "title": "Enter title...",
+          "button": "Enter button text..."
+        }
+      },
+      "order-progress": {
+        "label": "Progress Indicator"
+      },
+      "order-promotion": {
+        "label": "Referral Module",
+        "title": "Recommend friends & save",
+        "description": "Your personal referral link — your friend gets 5 € discount, you get 10 €.",
+        "codeLabel1": "For a Friend",
+        "codeLabel2": "For You",
+        "copyButton": "Copy",
+        "labels": {
+          "title": "Title",
+          "description": "Description",
+          "friendInput": "Title for a Friend",
+          "ownerInput": "Title for You"
+        },
+        "placeholders": {
+          "title": "Enter title...",
+          "description": "Enter description...",
+          "friendInput": "For example: For a Friend",
+          "ownerInput": "For example: For You"
+        }
+      },
+      "order-upselling-timer": {
+        "label": "Upselling timer",
+        "addToCartLabel": "Add to cart",
+        "labels": {
+          "title": "Title",
+          "timerText": "Timer Text",
+          "duration": "duration",
+          "crossSellingGroups": "Cross-selling groups"
+        },
+        "placeholders": {
+          "timerText": "Only 28:45 left — then it's gone!",
+          "title": "Matching your booking...",
+          "duration": "e.g. 30"
+        }
+      }
+    }
+  },
+  "nf-custom-finish-page": {
+    "blocks": {
+      "order-address": {
+        "label": "Addresses & Information"
+      },
+      "order-items": {
+        "label": "Order items"
+      },
+      "order-summary": {
+        "label": "Summary"
+      },
+      "order-newsletter": {
+        "label": "Newsletter"
+      },
+      "order-progress": {
+        "label": "Progress Indicator"
+      },
+      "order-promotion": {
+        "label": "Refer-a-Friend"
+      },
+      "order-upselling-timer": {
+        "label": "Upselling timer"
+      }
+    }
+  }
+}

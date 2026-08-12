@@ -1,0 +1,17 @@
+{% block sw_cms_block_order_upselling_timer_preview %}
+    <div class="sw-cms-preview-order-upselling-timer">
+        <div class="preview-timer-pill">
+            <div class="preview-icon"></div>
+            <div class="preview-timer-text"></div>
+        </div>
+
+        <div class="preview-items-row">
+            <div class="preview-item" v-for="i in 3" :key="i">
+                <div class="preview-item-img"></div>
+                <div class="preview-item-line"></div>
+                <div class="preview-item-line short"></div>
+                <div class="preview-item-button"></div>
+            </div>
+        </div>
+    </div>
+{% endblock %}

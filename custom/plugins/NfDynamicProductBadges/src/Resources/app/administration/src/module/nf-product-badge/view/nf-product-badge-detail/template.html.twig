@@ -1,0 +1,68 @@
+{% block nf_product_badge_detail %}
+    <sw-page class="nf-product-badge-detail">
+
+        <template #smart-bar-back>
+            <sw-button :routerLink="{ name: 'nf.product.badge.list' }">
+                {{ $tc('nf-product-badge.common.actions.button-back') }}
+            </sw-button>
+        </template>
+
+        <template #smart-bar-header>
+            {% block cosmo_recipe_category_detail_title %}
+                <h2>{{ $tc('nf-product-badge.common.actions.edit') }}</h2>
+            {% endblock %}
+        </template>
+
+        <template #smart-bar-actions>
+
+
+            <sw-button-process
+                    class="nf-product-badge-detail__save-action"
+                    :is-loading="isLoading"
+                    :process-success="isSaveSuccessful"
+                    :disabled="isLoading"
+                    variant="primary"
+                    @process-finish="saveFinish"
+                    @click.prevent="onSave"
+            >
+                {{ $tc('nf-product-badge.common.actions.save') }}
+            </sw-button-process>
+
+{#            <sw-page-smart-bar-back-btn#}
+{#                    @click="onBack"#}
+{#            />#}
+        </template>
+
+        {% block nf_product_badge_detail_content %}
+            <template #content>
+                <sw-card-view v-if="!isLoading">
+                    <sw-card v-if="badge">
+                        <sw-container>
+                            <sw-text-field
+                                    v-model:value="badge.name"
+                                    :placeholder="$tc('nf-product-badge.common.placeholders.name')"
+                                    required
+                                    :label="$tc('nf-product-badge.common.labels.name')"
+                            />
+
+                            <sw-text-field
+                                    v-model:value="badge.text"
+                                    :placeholder="$tc('nf-product-badge.common.placeholders.text')"
+                                    required
+                                    :label="$tc('nf-product-badge.common.labels.text')"
+                            />
+
+                            <sw-colorpicker
+                                    v-model:value="badge.color"
+                                    :placeholder="$tc('nf-product-badge.common.placeholders.color')"
+                                    required
+                                    :label="$tc('nf-product-badge.common.labels.color')"
+                            />
+                        </sw-container>
+                    </sw-card>
+                </sw-card-view>
+                <sw-loader v-else></sw-loader>
+            </template>
+        {% endblock %}
+    </sw-page>
+{% endblock %}

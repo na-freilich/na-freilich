@@ -1,0 +1,10 @@
+{% block cms_block_order_promotion %}
+    <div class="cms-block-order-promotion">
+        {% set element = block.slots.getSlot('promotionContent') %}
+        {% if element %}
+            {% sw_include "@Storefront/storefront/element/cms-element-" ~ element.type ~ ".html.twig" with {
+                element: element
+            } %}
+        {% endif %}
+    </div>
+{% endblock %}

@@ -1,0 +1,165 @@
+{
+  "apps": {
+    "sw-cms": {
+      "detail": {
+        "label": {
+          "blockCategory": {
+            "nf-booking": "Booking"
+          }
+        }
+      }
+    }
+  },
+  "nf-booking": {
+    "slot": {
+      "until": "until",
+      "status": {
+        "pending": "Reserved",
+        "selected": "Your selection",
+        "paid": "Occupied"
+      },
+      "action": {
+        "block": "block",
+        "unblock": "unblock"
+      }
+    },
+    "loyalty": {
+      "totalBookingsLabel": "Total bookings count",
+      "alreadyPaidLabel": "already paid",
+      "title": "Loyalty Status"
+    },
+    "detail": {
+      "title": "Booking Information",
+      "reservationId": "Reservation ID",
+      "client": "Customer",
+      "order": "Order",
+      "orderDate": "Order date",
+      "itemsTitle": "Booked periods",
+      "selectSlotToViewInfo": "Select a slot to view information",
+      "totalAmount": "Total amount",
+      "discountAmount": "Series booking discount",
+      "creditAmount": "Credit",
+      "appliedCredit": "Applied credit",
+      "status": {
+        "title": "Status",
+        "pending": "Reserved",
+        "paid": "Occupied"
+      }
+    },
+    "cms": {
+      "label": {
+        "twoColumnTitle": "Two-room booking",
+        "locationLeft": "Left room",
+        "locationRight": "Right room",
+        "notSelected": "Not selected",
+        "bookingCalendar": "Booking calendar"
+      }
+    },
+    "general": {
+      "mainMenuItemGeneral": "Booking Management",
+      "description": "Management of booking times, seasons and prices",
+      "locationItem": "Rooms",
+      "seasonItem": "Seasons",
+      "calendarLabel": "Reservations",
+      "calendarTitle": "Calendar",
+      "selectDateLabel": "Select date",
+      "selectDatePlaceholder": "dd.mm.yyyy"
+    },
+    "days": {
+      "monday": "Monday",
+      "tuesday": "Tuesday",
+      "wednesday": "Wednesday",
+      "thursday": "Thursday",
+      "friday": "Friday",
+      "saturday": "Saturday",
+      "sunday": "Sunday"
+    },
+    "edit": {
+      "titleSaveSuccess": "Success",
+      "titleSaveError": "Save error",
+      "messageSaveSuccess": "Your changes have been saved"
+    },
+    "season": {
+      "list": {
+        "title": "Seasons",
+        "buttonAdd": "Create season"
+      },
+      "detail": {
+        "titleCreate": "Create new season",
+        "titleEdit": "Edit season",
+        "cardTitleGeneral": "General information",
+        "columnName": "Season name",
+        "columnActive": "Active",
+        "columnStartDate": "Start (MMDD)",
+        "columnEndDate": "End (MMDD)",
+        "columnPrice": "Price",
+        "columnPriceSubsequent": "30 min",
+        "priceRuleModalTitle": "Create price rule",
+        "labelDays": "Select days",
+        "labelStartTime": "Start time",
+        "labelEndTime": "End time",
+        "labelPrice": "Amount",
+        "labelPriceSubsequent": "Amount (further 30 min)",
+        "cardTitlePrices": "Price settings",
+        "addPriceRule": "Add price rule",
+        "columnDays": "Weekdays",
+        "columnStartTime": "From",
+        "columnEndTime": "To"
+      }
+    },
+    "location": {
+      "list": {
+        "title": "Rooms",
+        "buttonAdd": "Create room"
+      },
+      "detail": {
+        "titleCreate": "Create new room",
+        "titleEdit": "Edit room",
+        "cardTitleGeneral": "General information",
+        "columnName": "Room name",
+        "columnActive": "Active"
+      }
+    },
+    "discount": {
+      "mainMenuItemGeneral": "Series Discount",
+      "list": {
+        "title": "Series booking discount",
+        "titleCreate": "Add discount",
+        "columnMinCount": "Min. number of bookings",
+        "columnDiscountPercentage": "Series discount (%)",
+        "columnActive": "Active",
+        "deleteSuccess": "The series discount has been successfully deleted."
+      },
+      "detail": {
+        "title": "Configuration",
+        "titleCreate": "New series discount",
+        "titleEdit": "Discount: {count} bookings",
+        "titleFallback": "Discount details",
+        "titleSaveSuccess": "Success",
+        "messageSaveSuccess": "The series discount has been successfully saved.",
+        "labelMinCount": "Minimum number of bookings",
+        "labelDiscountPercentage": "Discount rate (%)",
+        "labelActive": "Active"
+      }
+    },
+    "credit": {
+      "tabTitle": "Booking Admin",
+      "cardTitle": "Booking Credit",
+      "buttonAddCredit": "Load credit",
+      "emptyStateTitle": "No credits available yet",
+      "emptyStateDescription": "No booking credits have been created for this customer yet.",
+      "modalTitleEdit": "Edit credit",
+      "modalTitleCreate": "Create credit",
+      "columnTotalSlots": "Total slots",
+      "columnUsedSlots": "Used slots",
+      "columnCreateAt": "Creation date",
+      "columnActive": "Active",
+      "columnComment": "Comment",
+      "saveError": "Credit could not be saved",
+      "saveSuccess": "Credit has been created",
+      "delError": "Delete error: ",
+      "delSuccess": "Credit has been successfully deleted",
+      "appliedCredit": "Applied credit"
+    }
+  }
+}

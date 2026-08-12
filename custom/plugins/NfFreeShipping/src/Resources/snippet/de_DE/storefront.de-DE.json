@@ -1,0 +1,6 @@
+{
+  "nfFreeShipping": {
+    "text": "Noch %amount% bis zum kostenlosen Versand",
+    "reached": "Sie haben kostenlosen Versand erreicht!"
+  }
+}

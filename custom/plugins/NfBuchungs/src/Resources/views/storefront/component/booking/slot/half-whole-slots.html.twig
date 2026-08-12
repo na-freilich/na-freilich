@@ -1,0 +1,64 @@
+<div class="booking-grid">
+    {# Группируем слоты по 2 (целый час) #}
+
+    {% for group in slots|batch(2) %}
+        {% set firstSlot = null %}
+        {% set secondSlot = null %}
+
+        {% for slot in group %}
+            {% if loop.first %}
+                {% set firstSlot = slot %}
+            {% else %}
+                {% set secondSlot = slot %}
+            {% endif %}
+        {% endfor %}
+{#        {{ dump(group) }}#}
+        <div class="d-flex align-items-stretch mb-2" style="height: 48px;">
+            <div class="d-flex align-items-center justify-content-center bg-light border text-dark fw-bold"
+                 style="width: 60px; border-radius: 8px 0 0 8px; border-right: none; font-size: 0.95rem;">
+                {{ firstSlot.start|slice(0, 2) }}
+
+            </div>
+
+            <div class="btn-group flex-grow-1" role="group">
+
+                {% sw_include '@Storefront/storefront/component/booking/slot/slot-btn.html.twig' with {
+                    slot: firstSlot,
+                    format: "small",
+                    style: "width:50%; border-radius: 0; font-size: 0.85rem; border-color: #d1d1d1;"
+                } %}
+                {# Первая половина (:00 - :30) #}
+{#                <button type="button"#}
+{#                        class="btn btn-outline-primary d-flex flex-column align-items-center justify-content-center slot-button {{ not firstSlot.isAvailable ? 'disabled' }} {{ firstSlot.status == 'selected' ? 'active' }}"#}
+{#                        {% if not firstSlot.isAvailable %}disabled{% endif %}#}
+{#                        data-slot-id="{{ firstSlot.id }}"#}
+{#                        data-booking-start="{{ firstSlot.start }}"#}
+{#                        style="border-radius: 0; font-size: 0.85rem; border-color: #d1d1d1;">#}
+{#                    <span>:00 - :30</span>#}
+{#                    {% if firstSlot.status == 'selected' %}#}
+{#                        <small class="fw-bold">{{ "nfBooking.status.selected"|trans }}</small>#}
+{#                    {% endif %}#}
+{#                </button>#}
+
+                {% if secondSlot %}
+{#                    <button type="button"#}
+{#                            class="btn btn-outline-primary d-flex flex-column align-items-center justify-content-center slot-button {{ not secondSlot.isAvailable ? 'disabled' }} {{ secondSlot.status == 'selected' ? 'active' }}"#}
+{#                            {% if not secondSlot.isAvailable %}disabled{% endif %}#}
+{#                            data-slot-id="{{ secondSlot.id }}"#}
+{#                            data-booking-start="{{ secondSlot.start }}"#}
+{#                            style="border-radius: 0 8px 8px 0; font-size: 0.85rem; border-color: #d1d1d1;">#}
+{#                        <span>:30 - :59</span>#}
+{#                        {% if secondSlot.status == 'selected' %}#}
+{#                            <small class="fw-bold">{{ "nfBooking.status.selected"|trans }}</small>#}
+{#                        {% endif %}#}
+{#                    </button>#}
+                    {% sw_include '@Storefront/storefront/component/booking/slot/slot-btn.html.twig' with {
+                        slot: secondSlot,
+                        format: "small",
+                        style: "width:50%; border-radius: 0 8px 8px 0; font-size: 0.85rem; border-color: #d1d1d1;"
+                    } %}
+                {% endif %}
+            </div>
+        </div>
+    {% endfor %}
+</div>

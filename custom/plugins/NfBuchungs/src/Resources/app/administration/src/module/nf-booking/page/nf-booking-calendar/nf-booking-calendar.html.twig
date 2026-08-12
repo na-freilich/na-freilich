@@ -1,0 +1,53 @@
+<sw-page class="nf-booking-calendar">
+    <template #smart-bar-header>
+        <h2>{{ $tc('nf-booking.general.calendarLabel') }}</h2>
+    </template>
+
+    <template #content>
+        <sw-card-view>
+            <sw-card :isLoading="isLoading" positionIdentifier="nf-booking-calendar-card">
+                <div class="booking-calendar-container">
+                    <div class="calendar-header" style="display: flex; align-items: center; justify-content: space-between; margin-bottom: 20px;">
+                        <div class="booking-date-container" style="width: 300px;">
+                            <sw-datepicker
+                                    :label="$tc('nf-booking.general.selectDateLabel')"
+                                    dateType="date"
+                                    :placeholder="$tc('nf-booking.general.selectDatePlaceholder')"
+                                    v-model="currentDateString"
+                                    @update:value="onDateChange">
+                            </sw-datepicker>
+                        </div>
+                    </div>
+
+                    <div class="booking-grid-container">
+
+                        <template v-if="locations.length > 0">
+                            <nf-booking-location-slots
+                                    v-for="loc in locations"
+                                    :key="`${loc.id}-${currentDateString}`"
+                                    :location="loc"
+                                    :activeBookingId="selectedSlot ? selectedSlot.bookingId : null"
+                                    :date="currentDateString"
+                                    @slot-click="onSlotSelect">
+                            </nf-booking-location-slots>
+                        </template>
+
+                        <div class="info-column" style="flex: 3; position: sticky; top: 0;">
+                            <nf-booking-slot-info
+                                    v-if="selectedSlot && selectedSlot.slotId"
+                                    :slotId="selectedSlot.slotId">
+                            </nf-booking-slot-info>
+
+                            <sw-description-list v-else>
+                                <p style="color: #7d8c9b; padding: 20px; text-align: center;">
+                                    {{ $t('nf-booking.detail.selectSlotToViewInfo') }}
+                                </p>
+                            </sw-description-list>
+                        </div>
+                    </div>
+
+                </div>
+            </sw-card>
+        </sw-card-view>
+    </template>
+</sw-page>

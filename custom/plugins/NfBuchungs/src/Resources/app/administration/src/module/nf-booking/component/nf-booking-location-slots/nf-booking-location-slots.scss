@@ -1,0 +1,160 @@
+.nf-booking-location-slots {
+  position: relative;
+  min-height: 100px;
+}
+
+.slot-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(160px, 1fr));
+  gap: 12px;
+}
+
+.slot-card {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+
+  height: 64px;
+
+  padding: 8px;
+  border: 1px solid #d1d9e0;
+  border-radius: 8px;
+  background: #fff;
+  cursor: pointer;
+  transition: all 0.15s ease-in-out;
+
+  &__time {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    font-weight: 700;
+    font-size: 15px;
+    color: #334250;
+
+    .time-bis {
+      font-size: 11px;
+      font-weight: normal;
+      color: #7d8c9b;
+    }
+  }
+
+  &__status {
+    height: 14px;
+    font-size: 12px;
+    margin-top: 2px;
+    color: #7d8c9b;
+    font-weight: 500;
+  }
+
+  &:hover:not(.is--booked) {
+    border-color: #189eff;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.05);
+  }
+
+
+  &.is--disable {
+    cursor: default;
+  }
+
+  &.is--blocked {
+    background-color: #f8f9fa;
+    border: 1px dashed #adb5bd;
+
+    .slot-item__range {
+      color: #6c757d;
+      opacity: 0.6;
+    }
+
+    .admin-action-overlay {
+      opacity: 1;
+    }
+
+    .btn-unblock-slot {
+      background-color: #e5f1e3;
+      color: #28a745;
+      border: 1px solid #28a745;
+
+      &:hover {
+        background-color: #28a745;
+        color: #fff;
+      }
+    }
+  }
+
+
+  &.is--active {
+    border-color: #189eff;
+    box-shadow: 0 0 0 2px rgba(24, 158, 255, 0.2);
+    background-color: #f0f7ff;
+    transform: translateY(-2px);
+    z-index: 10;
+  }
+
+  &.is--selected {
+    background: #e1f2ff;
+    border-color: #189eff;
+    .slot-card__time { color: #189eff; }
+  }
+
+  &.is--booked {
+    background-color: #fff5f5;
+    border-color: #ffcfcf;
+    cursor: not-allowed;
+  }
+
+  &.is--pending {
+    background: #fff9db;
+    border-color: #e9ecef;
+    .slot-card__status { color: #f08c00; }
+  }
+
+  .admin-action-overlay {
+    margin-top: 5px;
+
+    .btn-block-slot {
+      font-size: 10px;
+      padding: 2px 6px;
+      text-transform: uppercase;
+      font-weight: bold;
+      background-color: #4a4a4a;
+      border: none;
+      color: #d0aa27;
+
+      &:hover {
+        background-color: #000;
+      }
+    }
+
+    .btn-unblock-slot {
+      width: 100%;
+      font-size: 10px;
+      text-transform: uppercase;
+      font-weight: 700;
+      letter-spacing: 0.5px;
+      border-radius: 2px;
+
+      &:hover {
+        background-color: #000;
+      }
+    }
+  }
+}
+
+.slot-loader-overlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(255, 255, 255, 0.8);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 50;
+
+  .sw-loader {
+    margin: 0;
+  }
+}

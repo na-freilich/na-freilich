@@ -1,0 +1,48 @@
+{% block cms_element_order_upselling_timer %}
+    {% set config = element.config %}
+    {% set products = element.data.products %}
+
+    {% if products and products.count > 0 %}
+        <div class="cms-el-upselling-timer"
+             data-upselling-timer="true"
+             data-duration-minutes="{{ config.durationMinutes.value }}">
+
+            <div class="upselling-timer-banner mb-4">
+                <div class="timer-content card p-3 border-0 shadow-sm text-center"
+                     data-nf-upselling-timer="true"
+                     data-expires-at="{{ element.data.endedAt|date('c') }}"
+                     data-nf-upselling-timer-plugin-options='{
+        "expirationText": "{{ "nfUpselling.timer.expired"|trans|sw_sanitize }}",
+        "parentSelector": ".cms-el-upselling-timer"
+        "criticalTime": 60
+     }'>
+                    <span class="timer-text h5 mb-0">
+                        {% sw_icon 'clock' style { 'size': '20', 'pack': 'solid', 'class': 'mr-2 text-warning' } %}
+                        {% set timeHtml = '<span class="js-timer-display font-weight-bold">28:45</span>' %}
+                        {{ config.timerText.value|replace({'%time%': timeHtml})|raw }}
+                    </span>
+                </div>
+            </div>
+
+            {% if config.title.value %}
+                <div class="upselling-title mb-3">
+                    <h3 class="h4">{{ config.title.value }}</h3>
+                </div>
+            {% endif %}
+
+            <div class="row upselling-products-grid">
+                {% for product in products %}
+                    <div class="col-sm-6 col-md-4 col-lg-4 mb-4">
+                        <div class="card h-100 upselling-product-item">
+                            {% sw_include '@Storefront/storefront/component/product/card/box.html.twig' with {
+                                layout: 'minimal',
+                                displayMode: 'standard',
+                                product: product
+                            } %}
+                        </div>
+                    </div>
+                {% endfor %}
+            </div>
+        </div>
+    {% endif %}
+{% endblock %}

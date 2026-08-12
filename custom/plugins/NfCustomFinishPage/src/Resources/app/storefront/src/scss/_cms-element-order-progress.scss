@@ -1,0 +1,101 @@
+.cms-element-order-progress {
+  padding: 2rem 0;
+  max-width: 800px;
+  margin: 0 auto;
+
+  .order-progress-wrapper {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-bottom: 1.5rem;
+
+    @media (max-width: 575px) {
+      flex-wrap: nowrap;
+      overflow-x: auto;
+      padding-bottom: 10px;
+      justify-content: flex-start;
+    }
+  }
+
+  .step-item {
+    display: flex;
+    align-items: center;
+    flex-direction: row;
+    gap: 10px;
+    color: #b5bec7;
+    font-weight: 600;
+    font-size: 14px;
+    transition: all 0.3s ease;
+
+    .step-badge {
+      width: 32px;
+      height: 32px;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      background: #fff;
+      border: 2px solid #d1d9e0;
+      font-size: 14px;
+      flex-shrink: 0;
+    }
+
+    .step-text {
+      white-space: nowrap;
+    }
+
+    &.is-active {
+      color: #000;
+      .step-badge {
+        background: #006eb7;
+        border-color: #006eb7;
+        color: #fff;
+      }
+    }
+
+    &.is-completed {
+      color: #000;
+      .step-badge {
+        background: #189e74;
+        border-color: #189e74;
+        color: #fff;
+      }
+    }
+  }
+
+  .step-connector {
+    flex-grow: 1;
+    height: 2px;
+    background: #d1d9e0;
+    margin: 0 15px;
+    min-width: 20px;
+
+    &.is-filled {
+      background: #189e74;
+    }
+
+    @media (max-width: 767px) {
+      margin: 0 8px;
+    }
+  }
+
+  .order-progress-description {
+    text-align: center;
+    font-size: 13px;
+    line-height: 1.6;
+    color: #4a545f;
+    padding: 15px;
+    background: #f8f9fa;
+    border-radius: 8px;
+    border: 1px solid #eee;
+
+    p {
+      margin-bottom: 0;
+    }
+
+    a {
+      text-decoration: underline;
+      color: $primary;
+    }
+  }
+}

@@ -1,0 +1,23 @@
+.sw-cms-el-order-address {
+  padding: 8px;
+
+  .preview-box {
+    display: flex;
+    gap: 6px;
+  }
+
+  .preview-column {
+    flex: 1;
+  }
+
+  .preview-line {
+    height: 10px;
+    background-color: #e0e5eb;
+    margin-bottom: 5px;
+
+    &.short {
+      width: 50%;
+      background-color: #788c9b;
+    }
+  }
+}

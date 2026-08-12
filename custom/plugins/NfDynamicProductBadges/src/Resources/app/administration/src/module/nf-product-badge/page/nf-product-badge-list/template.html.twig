@@ -1,0 +1,65 @@
+{% block nf_product_badge_list %}
+    <sw-page class="nf-product-badge-list">
+        <template slot="smart-bar-header">
+            {% block nf_product_badge_list_title %}
+                <h2>{{ $tc('nf-product-badge.general.title') }}</h2>
+            {% endblock %}
+        </template>
+
+        <template #smart-bar-actions>
+            {% block nf_product_badge_actions_search %}
+                <sw-text-field
+                        class="nf-product-badge-search"
+                        @update:value="onSearch"
+                        v-model:value="searchTerm"
+                        :placeholder="$tc('nf-product-badge.common.placeholders.search')"
+                />
+            {% endblock %}
+
+            {% block nf_product_badge_actions_create %}
+                <sw-button :routerLink="{ name: 'nf.product.badge.create' }" variant="primary">
+                    {{ $tc('nf-product-badge.common.actions.add') }}
+                </sw-button>
+            {% endblock %}
+        </template>
+
+        <template #content>
+            <sw-entity-listing
+                    v-if="itemsCollection"
+                    :items="itemsCollection"
+                    :repository="badgeRepository"
+                    :showSelection="true"
+                    :columns="columns"
+                    @update-records="updateTotal"
+                    detailRoute="nf.product.badge.detail"
+            >
+                <template #column-name="{ item, isInlineEdit }">
+                    <sw-text-field
+                            v-if="isInlineEdit"
+                            v-model:value="item.name"
+                            size="small"
+                    ></sw-text-field>
+                    <div v-else>
+                        <router-link :to="{ name: 'nf.product.badge.detail', params: { id: item.id } }">
+                            {{ item.name }}
+                        </router-link>
+                    </div>
+                </template>
+
+                <template #column-text="{ item, isInlineEdit }">
+                    <sw-text-field
+                            v-if="isInlineEdit"
+                            v-model:value="item.text"
+                            size="small"
+                    ></sw-text-field>
+                    <div v-else>
+                        {{ item.text }}
+                    </div>
+                </template>
+            </sw-entity-listing>
+
+            <sw-empty-state v-if="!isLoading && !total" :title="$tc('nf-product-badge.common.labels.emptyList')"></sw-empty-state>
+        </template>
+
+    </sw-page>
+{% endblock %}

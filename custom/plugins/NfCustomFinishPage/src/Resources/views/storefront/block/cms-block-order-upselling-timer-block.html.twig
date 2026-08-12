@@ -1,0 +1,10 @@
+{% block cms_block_order_upselling_timer %}
+    <div class="cms-block-order-upselling-timer">
+        {% set element = block.slots.getSlot('upsellingTimerContent') %}
+        {% if element %}
+            {% sw_include "@Storefront/storefront/element/cms-element-" ~ element.type ~ ".html.twig" with {
+                element: element
+            } %}
+        {% endif %}
+    </div>
+{% endblock %}

@@ -1,0 +1,46 @@
+<?xml version="1.0" ?>
+
+<container xmlns="http://symfony.com/schema/dic/services"
+           xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+           xsi:schemaLocation="http://symfony.com/schema/dic/services http://symfony.com/schema/dic/services/services-1.0.xsd">
+
+    <imports>
+        <import resource="services/booking_services.xml"/>
+        <import resource="services/definitions.xml"/>
+        <import resource="services/controllers.xml"/>
+        <import resource="services/subscribers.xml"/>
+    </imports>
+
+    <services>
+
+        <!-- Resolvers -->
+        <service id="Nf\Booking\Core\Content\Booking\Cms\NfTwoColumnBookingResolver">
+            <tag name="shopware.cms.data_resolver" />
+        </service>
+
+        <!-- CartProcessor -->
+        <service id="Nf\Booking\Core\Checkout\Cart\BookingCartProcessor">
+            <argument type="service" id="Shopware\Core\Checkout\Cart\Price\QuantityPriceCalculator"/>
+            <argument type="service" id="Nf\Booking\Service\Booking\BookingServiceInterface"/>
+
+            <tag name="shopware.cart.processor" priority="4500"/>
+        </service>
+
+        <!-- ScheduledTask -->
+        <service id="Nf\Booking\Service\ScheduledTask\CleanupExpiredBookingsTask">
+            <tag name="shopware.scheduled.task" />
+        </service>
+
+        <service id="Nf\Booking\Service\ScheduledTask\CleanupExpiredBookingsTaskHandler">
+            <argument type="service" id="scheduled_task.repository" />
+            <argument type="service" id="nf_booking.repository" />
+            <argument type="service" id="sales_channel.repository" />
+            <argument type="service" id="Shopware\Core\Checkout\Cart\CartPersister" />
+            <argument type="service" id="Shopware\Core\System\SalesChannel\Context\SalesChannelContextFactory" />
+            <argument type="service" id="logger" />
+
+            <tag name="messenger.message_handler" />
+        </service>
+
+    </services>
+</container>

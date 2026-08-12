@@ -1,0 +1,35 @@
+{% block sw_cms_el_order_summary %}
+    <div class="sw-cms-el-order-summary">
+        <div class="order-summary-container">
+            <h3 class="order-summary-title">{{ $t('sw-cms.elements.order-summary.summaryLabel') }}</h3>
+
+            <div class="order-summary-table">
+                <div class="summary-row">
+                    <span class="label">{{ $t('sw-cms.elements.order-summary.subtotalLabel') }}</span>
+                    <span class="value">19,99 €</span>
+                </div>
+
+                <div class="summary-row">
+                    <span class="label">{{ $t('sw-cms.elements.order-summary.shippingCostsLabel') }}</span>
+                    <span class="value">0,00 €</span>
+                </div>
+
+                <hr class="summary-divider">
+
+                <div class="summary-row total">
+                    <span class="label">{{ $t('sw-cms.elements.order-summary.totalLabel') }}</span>
+                    <span class="value">19,99 €</span>
+                </div>
+
+                <div class="summary-row tax">
+                    <span class="label">{{ $t('sw-cms.elements.order-summary.totalNetLabel') }}</span>
+                    <span class="value">16,80 €</span>
+                </div>
+                <div class="summary-row tax">
+                    <span class="label">{{ $t('sw-cms.elements.order-summary.taxLabel') }}</span>
+                    <span class="value">3,19 €</span>
+                </div>
+            </div>
+        </div>
+    </div>
+{% endblock %}

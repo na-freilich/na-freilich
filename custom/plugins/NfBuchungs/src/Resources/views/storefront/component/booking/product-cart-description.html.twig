@@ -1,0 +1,34 @@
+{% block nf_booking_product_cart %}
+    <div class="nf-product-cart-description">
+        {% if booking and booking.items.count > 0 %}
+            {% set lastLocation = '' %}
+            {% set lastDate = '' %}
+
+            {% for item in booking.items %}
+                {% if item.location.name != lastLocation %}
+                    {% if not loop.first %}</ul></div>{% endif %}
+                    <div class="location-group mb-2">
+                    <div class="location-header font-weight-bold border-bottom small mb-1">
+                        <i class="fas fa-map-marker-alt"></i> {{ item.location.name }}
+                    </div>
+                    {% set lastLocation = item.location.name %}
+                    {% set lastDate = '' %}
+                {% endif %}
+
+                {% set currentDate = item.bookingDate|date("d.m.Y", false) %}
+                {% if currentDate != lastDate %}
+                {% if lastDate != '' %}</ul>{% endif %}
+                <div class="date-header small text-muted ml-2">{{ currentDate }}</div>
+                <ul class="list-group list-group-flush ml-2 mb-2">
+                {% set lastDate = currentDate %}
+                {% endif %}
+
+                <li class="list-group-item d-flex justify-content-between align-items-center py-1 bg-light border-0 mb-1 rounded">
+                    <span class="small">{{ item.startTime|date('H:i', false) }} - {{ item.endTime|date('H:i', false) }}</span>
+                </li>
+
+                {% if loop.last %}</ul></div>{% endif %}
+            {% endfor %}
+        {% endif %}
+    </div>
+{% endblock %}

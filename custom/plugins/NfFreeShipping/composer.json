@@ -1,0 +1,29 @@
+{
+    "name": "nf/free-shipping",
+    "description": "Displays free shipping progress bar in offcanvas and main cart, and dynamically calculates free shipping thresholds.",
+    "type": "shopware-platform-plugin",
+    "version": "1.0.0",
+    "license": "MIT",
+    "authors": [
+        {
+            "name": "na freilich GmbH",
+            "homepage": "https://www.na-freilich.de/"
+        }
+    ],
+    "require": {
+        "shopware/core": ">=6.7"
+    },
+    "extra": {
+        "shopware-plugin-class": "NfFreeShipping\\NfFreeShipping",
+        "plugin-icon": "src/Resources/config/plugin.png",
+        "label": {
+            "de-DE": "Nf Kostenloser Versand Plugin",
+            "en-GB": "Nf Free Shipping Plugin"
+        }
+    },
+    "autoload": {
+        "psr-4": {
+            "NfFreeShipping\\": "src/"
+        }
+    }
+}

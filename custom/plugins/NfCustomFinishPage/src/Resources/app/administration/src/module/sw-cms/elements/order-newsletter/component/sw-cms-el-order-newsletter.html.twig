@@ -1,0 +1,47 @@
+{% block sw_cms_el_order_newsletter %}
+    <div class="sw-cms-el-order-newsletter">
+        <div class="preview-body">
+            <div class="preview-info">
+                <h6>
+                    {{ element.config.title.value ? element.config.title.value : $t('sw-cms.elements.order-newsletter.title') }}
+                </h6>
+                <p class="preview-subtext">
+                    {{ element.config.description.value ? element.config.description.value : $t('sw-cms.elements.order-newsletter.description') }}
+                </p>
+                <div class="preview-check-list">
+                    <div v-for="(usp, index) in element.config.usps.value"
+                         :key="index"
+                         class="check-item">
+                        <span class="icon">✓</span> {{ usp }}
+                    </div>
+                </div>
+            </div>
+            <div class="preview-actions">
+                <div class="preview-input-label">
+                    {{ element.config.inputLabel.value }}
+                </div>
+
+                <div class="preview-input-group">
+                    <div class="preview-input-mock">user@beispiel.de</div>
+                    <div class="preview-btn-mock">
+                        {{ element.config.buttonText.value ? element.config.buttonText.value : $t('sw-cms.elements.order-newsletter.buttonLabel') }}
+                    </div>
+                </div>
+
+                <div class="preview-checkbox-row">
+                    <span class="checkbox-mock"></span>
+                    <p v-if="element.config.checkboxLabel.value"
+                       class="checkbox-text"
+                       v-html="element.config.checkboxLabel.value">
+                    </p>
+                </div>
+
+                <div class="preview-input-footer">
+                    {{ element.config.inputFooter.value }}
+                </div>
+            </div>
+
+
+        </div>
+    </div>
+{% endblock %}

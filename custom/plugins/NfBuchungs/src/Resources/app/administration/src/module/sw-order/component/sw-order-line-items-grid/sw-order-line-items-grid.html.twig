@@ -1,0 +1,15 @@
+{% block sw_order_line_items_grid_grid_columns_label_content %}
+
+    {% parent() %}
+
+    <template v-if="item.payload && item.payload.nfBookingId">
+        <div class="sw-order-line-items-grid__item-booking-info"
+             style="margin-top: 4px; color: #189eff; font-size: 12px;">
+            <strong>Booking ID:</strong> {{ item.payload.nfBookingId }}
+            <div class="sw-order-line-items-grid__item-booking-description"
+                 style="color: #333; margin-top: 2px;"
+                 v-html="item.payload.nfBookingDescription">
+            </div>
+        </div>
+    </template>
+{% endblock %}

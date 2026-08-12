@@ -1,0 +1,169 @@
+{
+  "apps": {
+    "sw-cms": {
+      "detail": {
+        "label": {
+          "blockCategory": {
+            "nf-booking": "Buchung"
+          }
+        }
+      }
+    }
+  },
+  "nf-booking": {
+    "slot": {
+      "until": "bis",
+
+      "status": {
+        "pending": "Reserviert",
+        "selected": "Ihre Auswahl",
+        "paid": "Belegt"
+      },
+      "action": {
+        "block": "blockieren",
+        "unblock": "blockieren aufheben"
+      }
+    },
+    "loyalty" : {
+      "totalBookingsLabel" : "Hochzählung von Reservierungen ",
+      "alreadyPaidLabel" : "bereits bezahlt ",
+      "title": "Loyalty Status"
+    },
+    "detail": {
+      "title": "Buchungsinformationen",
+      "reservationId": "Reservation ID",
+      "client": "Kunde",
+      "order": "Bestellung",
+      "orderDate": "Bestelldatum",
+      "itemsTitle": "Gebuchte Zeiträume",
+      "selectSlotToViewInfo": "Wählen Sie einen Slot aus, um Informationen anzuzeigen",
+      "totalAmount": "Gesamtsumme",
+      "discountAmount": "Serienbucheng Rabatt",
+      "creditAmount": "Guthaben",
+      "appliedCredit": "Angewandtes Guthaben",
+      "status": {
+        "title":  "Status",
+        "pending": "Reserviert",
+        "paid": "Belegt"
+      }
+
+    },
+    "cms": {
+      "label": {
+        "twoColumnTitle": "Zwei Räume Buchung",
+        "locationLeft": "Linker Raum",
+        "locationRight": "Rechter Raum",
+        "notSelected": "Nicht ausgewählt",
+        "bookingCalendar": "Buchungskalender"
+      }
+    },
+    "general": {
+      "mainMenuItemGeneral": "Buchungsverwaltung",
+      "description": "Verwaltung von Buchungszeiten, Saisons und Preisen",
+      "locationItem": "Räume",
+      "seasonItem": "Saisons",
+      "calendarLabel": "Reservierungen",
+      "calendarTitle": "Kalender",
+      "selectDateLabel": "Datum auswählen",
+      "selectDatePlaceholder": "dd.mm.yyyy"
+
+    },
+    "days": {
+      "monday": "Montag",
+      "tuesday": "Dienstag",
+      "wednesday": "Mittwoch",
+      "thursday": "Donnerstag",
+      "friday": "Freitag",
+      "saturday": "Samstag",
+      "sunday": "Sonntag"
+    },
+    "edit": {
+      "titleSaveSuccess": "Erfolgreich",
+      "titleSaveError": "Fehler beim Speichern",
+      "messageSaveSuccess": "Ihre Änderungen wurden gespeichert"
+    },
+    "season": {
+      "list": {
+        "title": "Saisons",
+        "buttonAdd": "Saison anlegen"
+      },
+      "detail": {
+        "titleCreate": "Neue Saison anlegen",
+        "titleEdit": "Saison bearbeiten",
+        "cardTitleGeneral": "Allgemeine Informationen",
+        "columnName": "Saison Name",
+        "columnActive": "Aktiv",
+        "columnStartDate": "Start (MMDD)",
+        "columnEndDate": "Ende (MMDD)",
+        "columnPrice": "Preis",
+        "columnPriceSubsequent": "30 min",
+        "priceRuleModalTitle": "Preisregel erstellen",
+        "labelDays": "Tage auswählen",
+        "labelStartTime": "Startzeit",
+        "labelEndTime": "Endzeit",
+        "labelPrice": "Betrag",
+        "labelPriceSubsequent": "Betrag (weitere 30 Minuten)",
+        "cardTitlePrices": "Preiseinstellungen",
+        "addPriceRule": "Preisregel hinzufügen",
+        "columnDays": "Wochentage",
+        "columnStartTime": "Von",
+        "columnEndTime": "Bis"
+      }
+    },
+    "location": {
+      "list": {
+        "title": "Räume",
+        "buttonAdd": "Raum anlegen"
+      },
+      "detail": {
+        "titleCreate": "Neuen Raum anlegen",
+        "titleEdit": "Raum bearbeiten",
+        "cardTitleGeneral": "Allgemeine Informationen",
+        "columnName": "Raumname",
+        "columnActive": "Aktiv"
+      }
+    },
+    "discount": {
+      "mainMenuItemGeneral": "Serienrabatt",
+      "list": {
+        "title": "Rabatt bei Serienbuchungen",
+        "titleCreate": "Rabatt hinzufügen",
+        "columnMinCount": "Min. Anzahl Buchungen",
+        "columnDiscountPercentage": "Serienrabatt (%)",
+        "columnActive": "Aktiv",
+        "deleteSuccess": "Der Serienrabatt wurde erfolgreich gelöscht."
+      },
+      "detail": {
+        "title": "Konfiguration",
+        "titleCreate": "Neuer Serienrabatt",
+        "titleEdit": "Rabatt: {count} Buchungen",
+        "titleFallback": "Rabatt Details",
+        "titleSaveSuccess": "Erfolg",
+        "messageSaveSuccess": "Der Serienrabatt wurde erfolgreich gespeichert.",
+        "labelMinCount": "Mindestanzahl an Buchungen",
+        "labelDiscountPercentage": "Rabattsatz (%)",
+        "labelActive": "Aktiv"
+
+      }
+    },
+    "credit":{
+      "tabTitle": "Buchungs Admin",
+      "cardTitle": "Buchungs-Guthaben",
+      "buttonAddCredit": "Guthaben aufladen",
+      "emptyStateTitle": "Noch keine Guthaben vorhanden",
+      "emptyStateDescription": "Für diesen Kunden wurden bisher keine Buchungs-Guthaben angelegt.",
+      "modalTitleEdit": "Guthaben bearbeiten",
+      "modalTitleCreate": "Guthaben erstellen",
+      "columnTotalSlots": "Gesamtzahl der Slots",
+      "columnUsedSlots": "belegte Slots",
+      "columnCreateAt": "Erstellungsdatum",
+      "columnActive": "Aktiv",
+      "columnComment": "Kommentar",
+      "saveError": "Guthaben konnte nicht gespeichert werden",
+      "saveSuccess": "Guthaben wurde erstellt",
+      "delError": "Fehler beim Löschen: ",
+      "delSuccess": "Guthaben wurde erfolgreich gelöscht",
+      "appliedCredit": "Angewandtes Guthaben"
+    }
+  }
+}

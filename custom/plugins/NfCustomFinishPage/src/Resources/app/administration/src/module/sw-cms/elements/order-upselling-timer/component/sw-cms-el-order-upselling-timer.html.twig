@@ -1,0 +1,31 @@
+{% block sw_cms_el_order_upselling_timer %}
+    <div class="sw-cms-el-order-upselling-timer">
+        <div class="upselling-timer-container">
+
+            <div class="upselling-timer-banner">
+                <span class="timer-icon">
+                    <sw-icon name="regular-clock" size="16px"></sw-icon>
+                </span>
+                <span class="timer-text" v-html="finalTimerText"></span>
+            </div>
+
+            <h3 class="upselling-title" v-if="title">
+                {{ title }}
+            </h3>
+
+            <div class="upselling-products-mockup">
+                <div class="product-item-placeholder" v-for="i in 3" :key="i">
+                    <div class="image-box">
+                        <sw-icon name="regular-image" size="32px"></sw-icon>
+                    </div>
+                    <div class="info-box">
+                        <div class="line title-line"></div>
+                        <div class="line price-line"></div>
+                        <div class="button-mock">{{ $t('sw-cms.elements.order-upselling-timer.addToCartLabel') }}</div>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </div>
+{% endblock %}

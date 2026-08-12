@@ -1,0 +1,10 @@
+{% block cms_block_order_newsletter %}
+    <div class="cms-block-order-newsletter">
+        {% set element = block.slots.getSlot('newsletterContent') %}
+        {% if element %}
+            {% sw_include "@Storefront/storefront/element/cms-element-" ~ element.type ~ ".html.twig" with {
+                element: element
+            } %}
+        {% endif %}
+    </div>
+{% endblock %}

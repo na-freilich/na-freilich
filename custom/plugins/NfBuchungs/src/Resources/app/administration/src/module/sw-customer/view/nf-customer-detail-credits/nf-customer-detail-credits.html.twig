@@ -1,0 +1,139 @@
+<mt-card
+        :title="$t('nf-booking.loyalty.title')"
+        style="margin-bottom: 20px;">
+    <sw-container columns="1fr" gap="30px">
+        <div style="display: flex; align-items: center; gap: 10px;">
+            <mt-text size="s" weight="bold" color="color-text-tertiary" style="margin: 0;">
+                {{ $t('nf-booking.loyalty.totalBookingsLabel') }}:
+            </mt-text>
+
+            <span style="font-size: 20px; font-weight: 700; color: #189eff;">
+                {{ customer?.customFields?.nf_booking_slots_total || 0 }}
+            </span>
+
+            <span style="font-size: 18px; color: #7d8594; margin-left: 5px;">
+             ({{ $t('nf-booking.loyalty.alreadyPaidLabel') }}:
+            <strong style="color: #37d046;">{{ customer?.customFields?.nf_booking_paid_slots || 0 }}</strong>)
+        </span>
+        </div>
+    </sw-container>
+</mt-card>
+
+<mt-card
+        class="nf-customer-detail-credits"
+        :title="$t('nf-booking.credit.cardTitle')"
+        position-identifier="nf-customer-detail-credits"
+        :is-loading="isLoading"
+>
+    <template #headerRight>
+        <mt-button
+                size="small"
+                variant="secondary"
+                @click="onAddCredit"
+        >
+            <mt-icon name="regular-plus-circle-s" size="16px" />
+            {{ $t('nf-booking.credit.buttonAddCredit') }}
+        </mt-button>
+    </template>
+
+    <template #grid>
+        <sw-entity-listing
+                v-if="credits && credits.total > 0"
+                :repository="creditRepository"
+                :items="credits"
+                :columns="columns"
+                :show-selection="false"
+                :full-page="false"
+        >
+            <template #actions="{ item }">
+                <sw-context-menu-item
+                        @click="onEditCredit(item)"
+                        :disabled="!!item.usedSlots"
+                >
+                    {{ $t('global.default.edit') }}
+                </sw-context-menu-item>
+
+                <sw-context-menu-item variant="danger" @click="onDeleteCredit(item)">
+                    {{ $t('global.default.delete') }}
+                </sw-context-menu-item>
+            </template>
+
+            <template #column-active="{ item }">
+                <mt-icon
+                        :name="item.active ? 'regular-checkmark-xs' : 'regular-times-s'"
+                        :color="item.active ? '#37d046' : '#de294c'"
+                />
+            </template>
+
+            <template #column-comment="{ item }">
+                <div class="sw-grid__cell-content"
+                     style="max-width: 300px; white-space: normal; line-height: 1.4;">
+
+                    <template v-if="item.comment">
+                        {{ item.comment }}
+                    </template>
+                    <template v-else>
+                        <span class="sw-color-text-description-italic">-</span>
+                    </template>
+
+                </div>
+            </template>
+
+            <template #column-createdAt="{ item }">
+               <sw-time-ago
+                        :date="new Date(item.createdAt)"
+                        :date-time-format="{ month: '2-digit', day: '2-digit' }"
+                />
+            </template>
+        </sw-entity-listing>
+
+        <mt-empty-state
+                v-if="(!credits || credits.total === 0) && !isLoading"
+                icon="solid-shopping-bag"
+                :headline="$t('nf-booking.credit.emptyStateTitle')"
+                :description="$t('nf-booking.credit.emptyStateDescription')"
+        >
+            <template #button>
+                <mt-button
+                        variant="secondary"
+                        ghost
+                        @click="onAddCredit"
+                >
+                    {{ $t('nf-booking.credit.buttonAddCredit') }}
+                </mt-button>
+            </template>
+        </mt-empty-state>
+    </template>
+
+    <sw-modal
+            v-if="showModal"
+            :title="newCredit.id ? $t('nf-booking.credit.modalTitleEdit') : $t('nf-booking.credit.modalTitleCreate')"
+            @modal-close="showModal = false"
+    >
+        <sw-container columns="1fr 1fr" gap="20px">
+            <sw-number-field
+                    :label="$t('nf-booking.credit.columnTotalSlots')"
+                    v-model="newCredit.totalSlots"
+                    :min="0.5"
+                    :step="0.5"
+                    required
+            >
+            </sw-number-field>
+            <sw-switch-field
+                    :label="$t('nf-booking.credit.columnActive')"
+                    v-model:value="newCredit.active"
+            ></sw-switch-field>
+        </sw-container>
+
+
+
+        <template #modal-footer>
+            <mt-button @click="showModal = false" size="small" variant="secondary">
+                {{ $tc('global.default.cancel') }}
+            </mt-button>
+            <mt-button @click="saveCredit" variant="primary" size="small">
+                {{ $tc('global.default.save') }}
+            </mt-button>
+        </template>
+    </sw-modal>
+</mt-card>

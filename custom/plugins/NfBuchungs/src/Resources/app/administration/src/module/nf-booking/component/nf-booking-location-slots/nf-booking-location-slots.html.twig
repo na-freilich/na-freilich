@@ -1,0 +1,68 @@
+<div class="nf-booking-location-slots" v-loading="isLoading">
+    <h4 class="location-title">
+        {{ location.name }}
+        <i v-if="isLoading" class="fa fa-circle-notch fa-spin ml-2"></i>
+    </h4>
+    <div class="slot-grid">
+        <div v-for="slot in slots"
+             :key="slot.id"
+             class="slot-card"
+             :class="{
+                'is--booked': slot?.status === 'paid' || slot?.status === 'ordered',
+                'is--pending': slot?.status === 'pending',
+                'is--selected': slot?.status === 'selected',
+                'is--blocked': slot?.status === 'blocked',
+                'is--disable': slot?.isAvailable,
+                'is--active': activeBookingId && activeBookingId === slot.bookingId
+             }"
+             @click="onSlotClick(slot)">
+
+            <div v-if="slot.isLocalLoading" class="slot-loader-overlay">
+                <sw-loader size="24px" color="blue"></sw-loader>
+            </div>
+
+            <div class="slot-item__range">
+                <span class="slot-item__start">{{ slot.start }}</span>
+                <span class="slot-item__divider">{{ $t('nf-booking.slot.until') }}</span>
+                <span class="slot-item__end">{{ slot.end }}</span>
+            </div>
+
+            <div class="slot-card__status">
+                <template v-if="!slot.isAvailable">
+                    <span v-if="slot.status === 'blocked'" class="badge bg-secondary">
+                        <div class="admin-action-overlay">
+                            <button type="button"
+                                    class="btn btn-sm btn-dark btn-unblock-slot"
+                                    @click.stop="toggleBlock(slot)">
+                                <i class="fa fa-lock"></i> {{ $t('nf-booking.slot.action.unblock') }}
+                            </button>
+                        </div>
+                    </span>
+
+                    <span v-if="slot.status === 'pending'" class="badge bg-warning">
+                        {{ $t('nf-booking.slot.status.pending') }}
+                    </span>
+
+                    <span v-else-if="slot.status === 'selected'" class="badge bg-info text-white">
+                        {{ $t('nf-booking.slot.status.selected') }}
+                    </span>
+
+                    <span v-else-if="slot.status === 'paid' || slot.status === 'ordered'"
+                          class="badge bg-danger">
+                        {{ $t('nf-booking.slot.status.paid') }}
+                    </span>
+                </template>
+
+                <template v-else>
+                    <div class="admin-action-overlay">
+                        <button type="button"
+                                class="btn btn-sm btn-dark btn-block-slot"
+                                @click.stop="toggleBlock(slot)">
+                            <i class="fa fa-lock"></i> {{ $t('nf-booking.slot.action.block') }}
+                        </button>
+                    </div>
+                </template>
+            </div>
+        </div>
+    </div>
+</div>

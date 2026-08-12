@@ -1,0 +1,29 @@
+{
+    "name": "nf/booking",
+    "description": "NF Buchungs Plugin",
+    "type": "shopware-platform-plugin",
+    "version": "0.0.15",
+    "license": "MIT",
+    "authors": [
+        {
+            "name": "na freilich GmbH",
+            "homepage": "https://www.na-freilich.de/"
+        }
+    ],
+    "require": {
+        "shopware/core": ">=6.7"
+    },
+    "extra": {
+        "shopware-plugin-class": "Nf\\Booking\\NfBooking",
+        "plugin-icon": "src/Resources/config/plugin.png",
+        "label": {
+            "de-DE": "NF Buchungs Plugin",
+            "en-GB": "NF Booking Plugin"
+        }
+    },
+    "autoload": {
+        "psr-4": {
+            "Nf\\Booking\\": "src/"
+        }
+    }
+}

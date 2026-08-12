@@ -1,0 +1,36 @@
+{% block cms_element_order_items %}
+    {% set order = page.order %}
+
+    <div class="cms-element-order-items">
+        {% if order %}
+            <div class="card checkout-product-table">
+                <ul class="card-body list-unstyled">
+                    {% block page_checkout_finish_table_header %}
+                        {% sw_include '@Storefront/storefront/component/checkout/cart-header.html.twig' with {
+                            showTaxPrice: showTaxPrice,
+                            showRemoveColumn: false,
+                            showSubtotal: showSubtotal
+                        } %}
+                    {% endblock %}
+
+                    {% block page_checkout_finish_items %}
+                        {% for lineItem in page.order.nestedLineItems %}
+                            {% block page_checkout_finish_item %}
+                                {% sw_include '@Storefront/storefront/component/line-item/line-item.html.twig' with {
+                                    redirectTo: 'frontend.checkout.confirm.page',
+                                    showTaxPrice: showTaxPrice,
+                                    showRemoveButton: false,
+                                    showSubtotal: showSubtotal
+                                } %}
+                            {% endblock %}
+                        {% endfor %}
+                    {% endblock %}
+                </ul>
+            </div>
+        {% else %}
+            <div class="alert alert-info">
+                {{ "nfCustomFinishPage.finishPage.noOrderFound"|trans|sw_sanitize }}
+            </div>
+        {% endif %}
+    </div>
+{% endblock %}

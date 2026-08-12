@@ -1,0 +1,25 @@
+{
+  "nf-custom-finish-page": {
+    "newsletter": {
+      "title": "Immer informiert bleiben",
+      "buttonTitle": "Anmelden",
+      "placeholder": "Geben Sie Ihre E-Mail-Adresse ein"
+    },
+    "progress": {
+      "step1": "Bestellung",
+      "step2": "Bearbeitung",
+      "step3": "Versand",
+      "step4": "Lieferung"
+    },
+    "promotion": {
+      "copy": "Kopieren",
+      "copied": "Code kopiert"
+    }
+  },
+  "nf-upsell-timer": {
+    "product": {
+      "title": "Sonderpreis für Ihre Bestellung!",
+      "remaining": "Nur noch:"
+    }
+  }
+}

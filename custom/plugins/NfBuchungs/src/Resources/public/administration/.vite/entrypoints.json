@@ -1,0 +1,25 @@
+{
+  "base": "/bundles/nfbooking/administration/",
+  "entryPoints": {
+    "nf-booking": {
+      "css": [
+        "/bundles/nfbooking/administration/assets/nf-booking-CfdAboc6.css"
+      ],
+      "dynamic": [],
+      "js": [
+        "/bundles/nfbooking/administration/assets/nf-booking-Ca1m-jEi.js"
+      ],
+      "legacy": false,
+      "preload": []
+    }
+  },
+  "legacy": false,
+  "metadatas": {},
+  "version": [
+    "7.1.0",
+    7,
+    1,
+    0
+  ],
+  "viteServer": null
+}

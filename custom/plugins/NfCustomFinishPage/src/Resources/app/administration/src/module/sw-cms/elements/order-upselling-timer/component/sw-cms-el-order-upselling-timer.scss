@@ -1,0 +1,88 @@
+.sw-cms-el-order-upselling-timer {
+  width: 100%;
+  padding: 20px;
+  background: #fff;
+
+  .upselling-timer-container {
+    border: 1px solid #e9ecef;
+    padding: 30px;
+    border-radius: 8px;
+    text-align: center;
+  }
+
+  .upselling-timer-banner {
+    display: inline-flex;
+    align-items: center;
+    background: #fff8e1;
+    border: 1px solid #ffa000;
+    padding: 8px 20px;
+    border-radius: 30px;
+    margin-bottom: 20px;
+
+    .timer-icon {
+      color: #ffa000;
+      margin-right: 8px;
+      display: flex;
+    }
+
+    .timer-text {
+      color: #333;
+      font-size: 14px;
+
+      .timer-time-highlight {
+        font-weight: 700;
+        color: #e52400;
+        margin: 0 4px;
+      }
+    }
+  }
+
+  .upselling-title {
+    font-size: 16px;
+    font-weight: 600;
+    margin-bottom: 25px;
+    color: #333;
+  }
+
+  .upselling-products-mockup {
+    display: flex;
+    gap: 15px;
+
+    .product-item-placeholder {
+      flex: 1;
+      border: 1px solid #eee;
+      border-radius: 4px;
+      overflow: hidden;
+
+      .image-box {
+        height: 120px;
+        background: #f5f5f5;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        color: #ccc;
+      }
+
+      .info-box {
+        padding: 12px;
+        .line {
+          height: 8px;
+          background: #eee;
+          margin-bottom: 8px;
+          &.title-line { width: 80%; }
+          &.price-line { width: 40%; background: #ddd; }
+        }
+      }
+
+      .button-mock {
+        margin-top: 10px;
+        background: #ffa000;
+        color: #fff;
+        font-size: 10px;
+        padding: 6px;
+        border-radius: 4px;
+        font-weight: bold;
+      }
+    }
+  }
+}

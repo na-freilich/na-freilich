@@ -1,0 +1,42 @@
+<sw-page class="nf-booking-season-list">
+
+    <template #smart-bar-actions>
+        <sw-button variant="primary" :router-link="{ name: 'nf.booking.season.create' }">
+            {{ $t('nf-booking.season.list.buttonAdd') }}
+        </sw-button>
+    </template>
+
+    <template #content>
+        <sw-entity-listing
+                v-if="items"
+                :items="items"
+                :repository="repository"
+                :columns="columns"
+                :show-selection="true"
+                :allow-inline-edit="true"
+                detail-route="nf.booking.season.detail">
+
+            <template #column-startDate="{ item }">
+                {{ formatMyDate(item.startDate) }}
+            </template>
+
+            <template #column-endDate="{ item }">
+                {{ formatMyDate(item.endDate) }}
+            </template>
+
+            <template #column-active="{ item, isInlineEdit }">
+                <template v-if="isInlineEdit">
+                    <mt-checkbox v-model="item.active" />
+                </template>
+                <template v-else>
+                    <mt-icon
+                            :name="item.active ? 'regular-checkmark-xs' : 'regular-times-s'"
+                            :color="item.active ? '#37d046' : '#de294c'"
+                    />
+                </template>
+            </template>
+        </sw-entity-listing>
+
+        <sw-loader v-else></sw-loader>
+    </template>
+</sw-page>

@@ -1,0 +1,55 @@
+{% block sw_cms_element_order_newsletter_config %}
+    <div class="sw-cms-el-config-order-newsletter">
+
+        <sw-text-field
+                v-model="element.config.title.value"
+                :label="$tc('sw-cms.elements.order-newsletter.labels.title')"
+                :placeholder="$tc('sw-cms.elements.order-newsletter.placeholders.title')"
+        >
+        </sw-text-field>
+
+        <sw-text-editor
+                v-model:value="element.config.description.value"
+                :label="$t('sw-cms.elements.order-newsletter.labels.description')"
+                :placeholder="$t('sw-cms.elements.order-newsletter.description')"
+                :allow-inline-data-mapping="true"
+                sanitize="true">
+        </sw-text-editor>
+
+
+        <sw-tagged-field
+                v-model:value="element.config.usps.value"
+                :label="$t('sw-cms.elements.order-newsletter.labels.usps')"
+               >
+        </sw-tagged-field>
+
+
+        <sw-text-field
+                v-model="element.config.inputLabel.value"
+                :label="$t('sw-cms.elements.order-newsletter.labels.inputLabel')"
+                :placeholder="$tc('sw-cms.elements.order-newsletter.placeholders.title')">
+        </sw-text-field>
+
+        <sw-text-field
+                v-model="element.config.inputFooter.value"
+                :label="$t('sw-cms.elements.order-newsletter.labels.inputFooter')"
+                :placeholder="$tc('sw-cms.elements.order-newsletter.placeholders.title')">
+        </sw-text-field>
+
+        <sw-text-editor
+                v-model:value="element.config.checkboxLabel.value"
+                :label="$t('sw-cms.elements.order-newsletter.labels.checkboxLabel')"
+                :placeholder="$t('sw-cms.elements.order-newsletter.checkboxLabelDefault')"
+                :allow-inline-data-mapping="true"
+                sanitize="true">
+        </sw-text-editor>
+
+        <sw-text-field
+                v-model="element.config.buttonText.value"
+                :label="$tc('sw-cms.elements.order-newsletter.labels.button')"
+                :placeholder="$tc('sw-cms.elements.order-newsletter.placeholders.button')"
+        >
+        </sw-text-field>
+
+    </div>
+{% endblock %}

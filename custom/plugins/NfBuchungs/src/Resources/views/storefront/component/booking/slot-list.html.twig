@@ -1,0 +1,15 @@
+{% block storefront_nf_booking_slot_list %}
+    <div class="booking-slots">
+        {% if slots|length > 0 %}
+            <div class="list-group">
+                    {% sw_include '@Storefront/storefront/component/booking/slot/whole-slots.html.twig' with {
+                        slots: slots
+                    } %}
+            </div>
+        {% else %}
+            <div class="alert alert-info">
+                {{ "nfBooking.storefront.noSlotsAvailable"|trans }}
+            </div>
+        {% endif %}
+    </div>
+{% endblock %}

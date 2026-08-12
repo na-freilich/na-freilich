@@ -1,0 +1,24 @@
+{% block sw_cms_el_nf_two_column_booking %}
+    <div class="sw-cms-el-nf-two-column-booking">
+        <h3 class="booking-header">
+            {{ $t('nf-booking.cms.label.bookingCalendar') }}
+        </h3>
+
+        <div class="preview-grid">
+            <div class="preview-col">
+                <strong>{{ $t('nf-booking.cms.label.locationLeft') }}:</strong>
+                <p v-if="locationLeft">{{ locationLeft.name }}</p>
+                <p v-else-if="configLeftId">Lade...</p>
+                <p v-else class="is--empty">{{ $t('nf-booking.cms.label.notSelected') }}</p>
+            </div>
+
+            <div class="preview-col">
+                <strong>{{ $t('nf-booking.cms.label.locationRight') }}:</strong>
+                <p v-if="locationRight">{{ locationRight.name }}</p>
+                <p v-else-if="configRightId">Lade...</p>
+                <p v-else class="is--empty">{{ $t('nf-booking.cms.label.notSelected') }}</p>
+            </div>
+
+        </div>
+    </div>
+{% endblock %}

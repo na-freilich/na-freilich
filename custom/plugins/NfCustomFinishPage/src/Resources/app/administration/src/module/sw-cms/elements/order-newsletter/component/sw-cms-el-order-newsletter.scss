@@ -1,0 +1,92 @@
+.sw-cms-el-order-newsletter {
+  background: #fff;
+  border: 1px solid #d1d9e0;
+  border-radius: 4px;
+  padding: 16px;
+  position: relative;
+
+  .preview-body {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 12px;
+  }
+
+  h6 { margin: 0 0 4px 0; color: #333; font-size: 13px; }
+
+  .preview-check-list {
+    display: flex;
+    flex-direction: column;
+    gap: 2px;
+    margin-top: 4px;
+
+    .check-item {
+      display: block;
+      font-size: 10px;
+      color: #555;
+      white-space: nowrap;
+
+      &::first-letter {
+        color: #189eff;
+        font-weight: bold;
+      }
+    }
+  }
+
+  .preview-actions {
+    display: flex;
+    flex-direction: column; // Элементы встанут друг под друга
+    gap: 8px;
+    width: 100%;
+    max-width: 300px; // Ограничим ширину правой части
+
+    .preview-input-group {
+      display: flex;
+      gap: 0; // Соединяем инпут и кнопку
+
+      .preview-input-mock {
+        border: 1px solid #d1d9e0;
+        border-right: none;
+        padding: 8px;
+        flex-grow: 1;
+        background: #fff;
+        color: #ccc;
+      }
+
+      .preview-btn-mock {
+        background: #189eff;
+        color: #fff;
+        padding: 8px 15px;
+        cursor: pointer;
+      }
+    }
+
+    .preview-input-label {
+      font-weight: bold;
+      font-size: 13px;
+    }
+
+    .preview-input-footer, .preview-checkbox-row {
+      font-size: 11px;
+      color: #7a7a7a;
+    }
+
+    //.preview-input-mock {
+    //  border: 1px solid #d1d9e0;
+    //  padding: 4px 8px;
+    //  font-size: 10px;
+    //  background: #f9fafb;
+    //  color: #a0a0a0;
+    //  border-radius: 3px;
+    //  min-width: 130px;
+    //}
+    //
+    //.preview-btn-mock {
+    //  background: #189eff;
+    //  color: #fff;
+    //  font-size: 10px;
+    //  padding: 4px 10px;
+    //  border-radius: 3px;
+    //}
+  }
+}

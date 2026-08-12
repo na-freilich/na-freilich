@@ -1,0 +1,6 @@
+{
+  "nfFreeShipping": {
+    "text": "%amount% away from free shipping",
+    "reached": "You have qualified for free shipping!"
+  }
+}

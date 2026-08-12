@@ -1,0 +1,27 @@
+{% block sw_cms_el_order_progress %}
+    <div class="sw-cms-el-order-progress">
+        <div class="sw-cms-el-order-progress-inner">
+            <div class="order-progress-bar-admin">
+                <div class="step is-done">
+                    <div class="circle"><sw-icon name="regular-checkmark-xs" size="12px"></sw-icon></div>
+                    <span class="label">{{ $t('sw-cms.elements.order-progress.step1') }}</span>
+                </div>
+                <div class="line is-active"></div>
+                <div class="step is-active">
+                    <div class="circle">2</div>
+                    <span class="label">{{ $t('sw-cms.elements.order-progress.step2') }}</span>
+                </div>
+                <div class="line"></div>
+                <div class="step">
+                    <div class="circle">3</div>
+                    <span class="label">{{ $t('sw-cms.elements.order-progress.step3') }}</span>
+                </div>
+                <div class="line"></div>
+                <div class="step">
+                    <div class="circle">4</div>
+                    <span class="label">{{ $t('sw-cms.elements.order-progress.step4') }}</span>
+                </div>
+            </div>
+        </div>
+    </div>
+{% endblock %}

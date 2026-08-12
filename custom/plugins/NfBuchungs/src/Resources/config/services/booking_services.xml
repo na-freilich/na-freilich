@@ -1,0 +1,67 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<container xmlns="http://symfony.com/schema/dic/services"
+           xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+           xsi:schemaLocation="http://symfony.com/schema/dic/services
+           https://symfony.com/schema/dic/services/services-1.0.xsd">
+
+    <services>
+        <service id="Nf\Booking\Service\Booking\BookingPriceService">
+            <argument type="service" id="nf_booking_season.repository"/>
+            <argument type="service" id="nf_booking_item.repository"/>
+            <argument type="service" id="product.repository"/>
+            <argument type="service" id="Nf\Booking\Service\Booking\UserServiceInterface"/>
+        </service>
+
+        <service id="Nf\Booking\Service\Booking\BookingService">
+            <argument type="service" id="nf_booking.repository"/>
+            <argument type="service" id="nf_booking_item.repository"/>
+            <argument type="service" id="Nf\Booking\Service\Booking\BookingPriceServiceInterface"/>
+            <argument type="service" id="Nf\Booking\Service\Booking\UserServiceInterface"/>
+            <argument type="service" id="Shopware\Core\System\SystemConfig\SystemConfigService" />
+            <argument type="service" id="Nf\Booking\Service\Discount\BookingDiscountCalculatorInterface" />
+        </service>
+
+        <service id="Nf\Booking\Service\Booking\UserService">
+            <argument type="service" id="nf_booking.repository"/>
+            <argument type="service" id="customer.repository"/>
+            <argument type="service" id="nf_booking_credit.repository"/>
+            <argument type="service" id="Shopware\Core\Checkout\Cart\CartPersister"/>
+            <argument type="service" id="Shopware\Core\System\SystemConfig\SystemConfigService" />
+        </service>
+
+        <service id="Nf\Booking\Service\Booking\AdminService">
+            <argument type="service" id="nf_booking.repository"/>
+        </service>
+
+        <service id="Nf\Booking\Service\Discount\BookingDiscountCalculator">
+            <argument type="service" id="nf_booking_series_discount.repository"/>
+        </service>
+
+        <service id="Nf\Booking\Service\Booking\CreditService">
+            <argument type="service" id="nf_booking_credit.repository"/>
+            <argument type="service" id="nf_booking.repository"/>
+            <argument type="service" id="Nf\Booking\Service\Booking\BookingServiceInterface"/>
+            <argument type="service" id="Nf\Booking\Service\Booking\UserServiceInterface"/>
+        </service>
+
+        <!-- Interfaces -->
+        <service id="Nf\Booking\Service\Booking\BookingPriceServiceInterface"
+                 alias="Nf\Booking\Service\Booking\BookingPriceService"/>
+
+        <service id="Nf\Booking\Service\Booking\BookingServiceInterface"
+                 alias="Nf\Booking\Service\Booking\BookingService"/>
+
+        <service id="Nf\Booking\Service\Booking\UserServiceInterface"
+                 alias="Nf\Booking\Service\Booking\UserService"/>
+
+        <service id="Nf\Booking\Service\Booking\AdminServiceInterface"
+                 alias="Nf\Booking\Service\Booking\AdminService"/>
+
+        <service id="Nf\Booking\Service\Discount\BookingDiscountCalculatorInterface"
+                 alias="Nf\Booking\Service\Discount\BookingDiscountCalculator"/>
+
+        <service id="Nf\Booking\Service\Booking\CreditServiceInterface"
+                 alias="Nf\Booking\Service\Booking\CreditService"/>
+    </services>
+</container>
+

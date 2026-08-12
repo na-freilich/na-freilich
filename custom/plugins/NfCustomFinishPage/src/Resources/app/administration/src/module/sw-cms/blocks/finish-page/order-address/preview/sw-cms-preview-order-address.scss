@@ -1,0 +1,29 @@
+.sw-cms-preview-order-address {
+  padding: 10px;
+  background: #f9fafb;
+  border: 1px solid #d1d9e0;
+  border-radius: 4px;
+
+  .preview-box {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 5px;
+  }
+
+  .preview-column {
+    flex: 1;
+    min-width: 0;
+  }
+
+  .preview-line {
+    height: 4px;
+    background: #e0e5eb;
+    margin-bottom: 4px;
+    border-radius: 1px;
+
+    &.short {
+      width: 70%;
+      background: #788c9b;
+    }
+  }
+}

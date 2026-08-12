@@ -1,0 +1,35 @@
+<sw-page class="nf-booking-discount-list">
+    <template #smart-bar-header>
+        <h2>{{ $t('nf-booking.discount.list.title') }}</h2>
+    </template>
+
+    <template #smart-bar-actions>
+        <sw-button variant="primary" :routerLink="{ name: 'nf.booking.discount.create' }">
+            {{ $t('nf-booking.discount.list.titleCreate') }}
+        </sw-button>
+    </template>
+
+    <template #content>
+        <sw-entity-listing
+                v-if="items"
+                :items="items"
+                :repository="repository"
+                :columns="columns"
+                :allowEdit="true"
+                :showSelection="false"
+                @delete-item="onDelete"
+                :isLoading="isLoading">
+
+            <template #actions="{ item }">
+                <sw-context-menu-item
+                        :routerLink="{ name: 'nf.booking.discount.detail', params: { id: item.id } }">
+                    {{ $t('global.default.edit') }}
+                </sw-context-menu-item>
+
+                <sw-context-menu-item variant="danger" @click="onDelete(item)">
+                    {{ $t('global.default.delete') }}
+                </sw-context-menu-item>
+            </template>
+        </sw-entity-listing>
+    </template>
+</sw-page>

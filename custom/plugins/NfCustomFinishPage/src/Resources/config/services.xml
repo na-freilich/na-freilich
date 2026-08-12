@@ -1,0 +1,68 @@
+<?xml version="1.0" ?>
+
+<container xmlns="http://symfony.com/schema/dic/services"
+           xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+           xsi:schemaLocation="http://symfony.com/schema/dic/services http://symfony.com/schema/dic/services/services-1.0.xsd">
+    <services>
+        <!-- Subscribers  -->
+        <service id="Nf\CustomFinishPage\Storefront\Subscriber\CheckoutFinishSubscriber">
+            <argument type="service" id="Shopware\Core\System\SystemConfig\SystemConfigService"/>
+            <argument type="service" id="Shopware\Core\Content\Cms\SalesChannel\SalesChannelCmsPageLoader"/>
+            <argument type="service" id="newsletter_recipient.repository"/>
+
+            <tag name="kernel.event_subscriber"/>
+        </service>
+
+        <service id="Nf\CustomFinishPage\Storefront\Subscriber\ProductPriceSubscriber">
+            <argument type="service" id="Nf\CustomFinishPage\Service\UpsellPriceService"/>
+            <tag name="kernel.event_subscriber"/>
+        </service>
+
+        <!-- Definitions  -->
+        <service id="Nf\CustomFinishPage\Core\Content\PromotionOrderCode\PromotionOrderCodeDefinition">
+            <tag name="shopware.entity.definition" entity="referral_order_codes" />
+        </service>
+
+        <service id="Nf\CustomFinishPage\Core\Content\NfUpsellingTimer\NfUpsellingTimerDefinition">
+            <tag name="shopware.entity.definition" entity="nf_upselling_order_timer"/>
+        </service>
+
+        <service id="Nf\CustomFinishPage\Core\Content\NfUpsellingTimer\NfUpsellingTimerProductDefinition">
+            <tag name="shopware.entity.definition" entity="nf_upselling_order_timer_product"/>
+        </service>
+
+        <!-- Resolvers  -->
+        <service id="Nf\CustomFinishPage\Core\Content\Cms\SalesChannel\OrderProgressResolver">
+            <argument type="service" id="order.repository"/>
+            <tag name="shopware.cms.data_resolver"/>
+        </service>
+
+        <service id="Nf\CustomFinishPage\Core\Content\Cms\SalesChannel\OrderPromotionResolver">
+            <argument type="service" id="promotion.repository"/>
+            <argument type="service" id="promotion_individual_code.repository"/>
+            <argument type="service" id="Shopware\Core\Checkout\Promotion\Util\PromotionCodeService"/>
+            <argument type="service" id="nf_promotion_order_code.repository"/>
+            <tag name="shopware.cms.data_resolver"/>
+        </service>
+
+        <service id="Nf\CustomFinishPage\Core\Content\Cms\SalesChannel\OrderUpsellingTimerResolver">
+            <argument type="service" id="order.repository"/>
+            <argument type="service" id="sales_channel.product.repository"/>
+            <argument type="service" id="nf_upselling_order_timer.repository"/>
+            <tag name="shopware.cms.data_resolver"/>
+        </service>
+
+        <!-- CartProcessors  -->
+        <service id="Nf\CustomFinishPage\Core\Checkout\Cart\NfUpsellCartProcessor">
+            <argument type="service" id="Shopware\Core\Checkout\Cart\Price\QuantityPriceCalculator"/>
+            <argument type="service" id="Nf\CustomFinishPage\Service\UpsellPriceService"/>
+            <tag name="shopware.cart.processor" priority="4500"/>
+        </service>
+
+        <!-- Services  -->
+        <service id="Nf\CustomFinishPage\Service\UpsellPriceService">
+            <argument type="service" id="nf_upselling_order_timer.repository"/>
+        </service>
+
+    </services>
+</container>

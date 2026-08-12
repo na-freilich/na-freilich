@@ -1,0 +1,41 @@
+{% block sw_cms_el_config_order_upselling_timer %}
+    <div class="sw-cms-el-config-order-upselling-timer">
+
+        <sw-text-field
+                :label="$t('sw-cms.elements.order-upselling-timer.labels.timerText')"
+                :placeholder="$t('sw-cms.elements.order-upselling-timer.placeholders.timerText')"
+                v-model="element.config.timerText.value">
+        </sw-text-field>
+
+        <sw-text-field
+                :label="$t('sw-cms.elements.order-upselling-timer.labels.title')"
+                :placeholder="$t('sw-cms.elements.order-upselling-timer.placeholders.title')"
+                v-model="element.config.title.value">
+        </sw-text-field>
+
+        <sw-number-field
+                :label="$t('sw-cms.elements.order-upselling-timer.labels.duration')"
+                :placeholder="$t('sw-cms.elements.order-upselling-timer.placeholders.duration')"
+                v-model="element.config.durationMinutes.value">
+            <template #suffix>Min</template>
+        </sw-number-field>
+
+        <sw-number-field
+                v-model="element.config.discountAmount.value"
+                :label="$t('sw-cms.elements.order-upselling-timer.labels.discountAmount')"
+                placeholder="10"
+                :min="0"
+                :max="100"
+                :step="0.5">
+            <template #suffix>%</template>
+        </sw-number-field>
+
+        <sw-multi-select
+                :label="$t('sw-cms.elements.order-upselling-timer.labels.crossSellingGroups')"
+                :options="uniqueGroupOptions"
+                :isLoading="isLoading"
+                :value="element.config.crossSellingGroupNames.value"
+                @update:value="onSelectionChange">
+        </sw-multi-select>
+    </div>
+{% endblock %}

@@ -1,0 +1,18 @@
+{% sw_extends '@Storefront/storefront/page/account/order-history/order-item.html.twig' %}
+
+{% block page_account_order_item_status %}
+    {{ parent() }}
+
+{% set cancellationExt = order.extensions.customBookingCancellation %}
+
+    {% if cancellationExt and cancellationExt.isCancellable %}
+        <button type="button"
+                class="btn btn-light btn-sm text-danger d-inline-block"
+                data-ajax-modal="true"
+                data-toggle="modal"
+                data-url="{{ path('frontend.booking.order.items', { 'orderId': order.id }) }}">
+            {{ "nfBooking.storefront.cancel.buttonLabel"|trans }}
+        </button>
+
+    {% endif %}
+{% endblock %}

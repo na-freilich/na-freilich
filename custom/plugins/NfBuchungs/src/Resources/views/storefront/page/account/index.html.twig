@@ -1,0 +1,65 @@
+{% sw_extends '@Storefront/storefront/page/account/index.html.twig' %}
+
+{% block page_account_overview_welcome %}
+    {{ parent() }}
+
+    <div class="loyalty-summary mb-4">
+        <span class="loyalty-label">
+            {{ "nfBooking.loyalty.totalBookingsLabel"|trans }}:
+            <strong>{{ context.customer.customFields.nf_booking_slots_total|default(0) }}</strong>
+        </span>
+
+            <span class="loyalty-paid text-muted">
+            ({{ "nfBooking.loyalty.alreadyPaidLabel"|trans }}:
+            <span class="text-success">{{ context.customer.customFields.nf_booking_paid_slots|default(0) }}</span>)
+        </span>
+    </div>
+{% endblock %}
+
+{% block page_account_overview_profile_content %}
+    {{ parent() }}
+
+    {% set threshold = config('NfBooking.config.loyaltyThreshold') %}
+    {% if threshold and context.customer.customFields.nf_booking_slots_total %}
+
+        {% set paidSlots = context.customer.customFields.nf_booking_paid_slots|default(0) %}
+        {% set remaining = threshold - (paidSlots % threshold) %}
+
+        <div class="loyalty-progress mt-2">
+            <p class="text-primary small">
+                <i class="fas fa-gift"></i>
+                {{ "nfBooking.loyalty.remainingMessage"|trans({
+                    '%count%': remaining
+                }) }}
+            </p>
+        </div>
+    {% endif %}
+
+
+    {% set creditExtension = context.customer.extensions.nfBookingCredit %}
+    {% set freeSlots = creditExtension.value|default(0) %}
+
+    <div class="loyalty-guthaben mt-3">
+        <div class="card">
+            <div class="card-body">
+                <h5 class="card-title">
+                    <i class="fas fa-wallet text-primary"></i>
+                    {{ "nfBooking.loyalty.guthabenTitle"|trans }}
+                </h5>
+
+                {% if freeSlots > 0 %}
+                    <div class="display-6 text-success ">
+                        {{ freeSlots }}
+                    </div>
+                    <p class="text-muted">
+                        {{ "nfBooking.loyalty.guthabenAvailable"|trans }}
+                    </p>
+                {% else %}
+                    <p class="text-muted">
+                        {{ "nfBooking.loyalty.noGuthaben"|trans }}
+                    </p>
+                {% endif %}
+            </div>
+        </div>
+    </div>
+{% endblock %}

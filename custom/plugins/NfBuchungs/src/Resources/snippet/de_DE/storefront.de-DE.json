@@ -1,0 +1,69 @@
+{
+  "nfBooking": {
+    "storefront": {
+      "selectDateLabel": "Datum auswählen:",
+      "selectDatePlaceholder": "Datum",
+      "noSlotsAvailable": "Keine freien Plätze verfügbar",
+      "cancel":{
+        "buttonLabel": "Buchung stornieren",
+        "noSlotsAvailable": "Es sind keine Stornierungsplätze mehr verfügbar",
+        "modalTitle": "Wählen Sie die zu stornierenden Slots aus",
+        "close": "Schließen",
+        "confirmButton": "Bestätigen"
+      },
+      "slot": {
+        "timeBefore" : "bis",
+        "price" : "Preis",
+        "perHour": "pro Stunde",
+        "delete": "löschen"
+      }
+    },
+    "productCart": {
+      "yourChoice": "Ihre Wahl",
+      "total": "Gesamt",
+      "subTotal": "Zwischensumme",
+      "discountLabel": "Serienbucheng Rabatt",
+      "nothingSelected": "Noch nichts ausgewählt",
+      "addToCart": "In den Warenkorb"
+    },
+    "status": {
+      "pending": "Reserviert",
+      "selected": "Ihre Auswahl",
+      "paid": "Belegt"
+    },
+    "timer": {
+      "timerText": "Ihre Reservierung läuft ab in",
+      "expired": "Reservierung abgelaufen",
+      "finishOrder": "Bitte schließen Sie Ihre Bestellung ab, um den Termin zu sichern",
+      "infoTitle": "Noch kurz Zeit"
+    },
+    "validation": {
+      "tooShort": "Mindestdauer: %min% Min.",
+      "minDurationError": "Die Mindestbuchungsdauer beträgt %min% Minuten. Bitte wählen Sie weitere Slots aus."
+    },
+    "credit": {
+      "notEnoughCredit": "nicht genug Guthaben",
+      "errorInvalidBooking": "Ungültige Buchung",
+      "successApplied": "Erfolg angewendet",
+      "appliedTitle": "Guthaben angewendet",
+      "creditTitle": "Guthaben einlösen",
+      "availableTextShort": "%count% Slots verfügbar",
+      "selectLabel": "Anzahl wählen:",
+      "unit": "Slots",
+      "dontUse": "Nicht verwenden",
+      "applyButton": "Anwenden",
+      "availableBadge": "%count% Slots verfügbar",
+      "removeButton": "Entfernen",
+      "willBeUsed": "werden von Ihrem Konto abgezogen"
+    },
+    "loyalty": {
+      "totalBookingsLabel": "Hochzählung von Reservierungen ",
+      "alreadyPaidLabel": "bereits bezahlt",
+      "remainingMessage": "Nur noch %count% Reservierungen bis zum freien Slot!",
+      "guthabenTitle": "Dein Guthaben",
+      "guthabenAvailable": "Freie Slots verfügbar!",
+      "noGuthaben": "Aktuell hast du keine freien Slots.",
+      "useGuthabenBtn": "Jetzt einlösen"
+    }
+  }
+}

@@ -1,0 +1,40 @@
+<sw-page class="nf-booking-location-detail">
+    <template #smart-bar-header>
+        <h2 v-if="location">
+            {{ isNew ? $t('nf-booking.location.detail.titleCreate') : location.name }}
+        </h2>
+    </template>
+
+    <template #smart-bar-actions>
+        <sw-language-switch @on-change="onChangeLanguage"></sw-language-switch>
+        <sw-button @click="onCancel">{{ $t('global.default.cancel') }}</sw-button>
+        <sw-button-process
+                variant="primary"
+                :isLoading="isLoading"
+                :processSuccess="isSaveSuccessful"
+                @click="onSave">
+            {{ $t('global.default.save') }}
+        </sw-button-process>
+    </template>
+
+    <template #content>
+        <sw-card-view v-if="location">
+            <mt-card :title="$t('nf-booking.location.detail.cardTitleGeneral')">
+                <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 30px;">
+                    <sw-text-field
+                            :label="$t('nf-booking.location.detail.columnName')"
+                            v-model="location.name"
+                            required>
+                    </sw-text-field>
+
+                    <mt-switch
+                            :label="$t('nf-booking.location.detail.columnActive')"
+                            v-model="location.active"
+                            :disabled="false">
+                    </mt-switch>
+                </div>
+            </mt-card>
+        </sw-card-view>
+        <sw-loader v-else></sw-loader>
+    </template>
+</sw-page>

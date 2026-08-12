@@ -1,0 +1,24 @@
+.sw-cms-el-preview-order-summary {
+  padding: 8px;
+  background: #f9fafb;
+  border-radius: 2px;
+  display: flex;
+  align-items: flex-start;
+  gap: 8px;
+
+  .preview-lines {
+    flex: 1;
+  }
+
+  .preview-line {
+    height: 3px;
+    background: #e0e5eb;
+    margin-bottom: 3px;
+    border-radius: 1px;
+
+    &.short {
+      width: 50%;
+      background: #788c9b;
+    }
+  }
+}

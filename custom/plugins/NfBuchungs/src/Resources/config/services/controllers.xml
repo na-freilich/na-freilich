@@ -1,0 +1,64 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<container xmlns="http://symfony.com/schema/dic/services"
+           xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+           xsi:schemaLocation="http://symfony.com/schema/dic/services
+           https://symfony.com/schema/dic/services/services-1.0.xsd">
+
+    <services>
+
+        <service id="Nf\Booking\Controller\Storefront\BookingSlotController" public="true">
+            <argument type="service" id="Nf\Booking\Service\Booking\BookingPriceServiceInterface"/>
+            <argument type="service" id="Nf\Booking\Service\Booking\BookingServiceInterface"/>
+            <argument type="service" id="Nf\Booking\Service\Booking\UserServiceInterface"/>
+            <argument type="service" id="Nf\Booking\Service\Booking\CreditServiceInterface"/>
+
+            <call method="setContainer">
+                <argument type="service" id="service_container"/>
+            </call>
+        </service>
+
+        <service id="Nf\Booking\Controller\Storefront\BookingCartController" public="true">
+            <argument type="service" id="Shopware\Core\Checkout\Cart\SalesChannel\CartService"/>
+            <argument type="service" id="Nf\Booking\Service\Booking\UserServiceInterface"/>
+
+            <call method="setContainer">
+                <argument type="service" id="service_container"/>
+            </call>
+        </service>
+
+        <service id="Nf\Booking\Controller\Storefront\BookingCreditController" public="true">
+            <argument type="service" id="Nf\Booking\Service\Booking\CreditServiceInterface"/>
+
+            <call method="setContainer">
+                <argument type="service" id="service_container"/>
+            </call>
+        </service>
+
+        <service id="Nf\Booking\Controller\Storefront\BookingOrderController" public="true">
+            <argument type="service" id="nf_booking_item.repository"/>
+            <argument type="service" id="nf_booking.repository"/>
+            <argument type="service" id="order.repository"/>
+            <argument type="service" id="order_line_item.repository"/>
+            <argument type="service" id="nf_booking_credit.repository"/>
+
+            <argument type="service" id="Nf\Booking\Service\Booking\UserServiceInterface"/>
+            <argument type="service" id="Nf\Booking\Service\Booking\BookingServiceInterface"/>
+            <argument type="service" id="Shopware\Core\Checkout\Cart\Order\RecalculationService"/>
+
+            <call method="setContainer">
+                <argument type="service" id="service_container"/>
+            </call>
+        </service>
+
+        <service id="Nf\Booking\Controller\Api\BookingAdminController" public="true">
+            <argument type="service" id="Nf\Booking\Service\Booking\BookingPriceServiceInterface"/>
+            <argument type="service" id="Nf\Booking\Service\Booking\AdminServiceInterface"/>
+            <argument type="service" id="Nf\Booking\Service\Booking\BookingServiceInterface"/>
+
+            <call method="setContainer">
+                <argument type="service" id="service_container"/>
+            </call>
+        </service>
+
+    </services>
+</container>

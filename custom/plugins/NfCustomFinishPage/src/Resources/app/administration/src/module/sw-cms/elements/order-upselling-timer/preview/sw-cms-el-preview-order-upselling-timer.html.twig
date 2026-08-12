@@ -1,0 +1,22 @@
+{% block sw_cms_el_preview_order_upselling_timer %}
+    <div class="sw-cms-el-preview-order-upselling-timer">
+        <div class="preview-timer-banner">
+            <sw-icon name="regular-clock" size="14px"></sw-icon>
+            <span>Nur noch 28:45</span>
+        </div>
+
+        <div class="preview-title">
+            Passend zu...
+        </div>
+
+        <div class="preview-product-grid">
+            <div class="preview-product-item" v-for="i in 3" :key="i">
+                <div class="product-image-placeholder">
+                    <sw-icon name="regular-image" size="20px"></sw-icon>
+                </div>
+                <div class="product-text-line short"></div>
+                <div class="product-button-placeholder"></div>
+            </div>
+        </div>
+    </div>
+{% endblock %}

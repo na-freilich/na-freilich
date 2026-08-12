@@ -1,0 +1,21 @@
+{% block sw_cms_el_order_promotion %}
+    <div class="sw-cms-el-order-promotion">
+
+        <div class="preview-box">
+            <span class="preview-title">{{ element.config.title.value }}</span>
+            <p class="preview-description">{{ element.config.description.value }}</p>
+
+            <div class="preview-codes-grid">
+                <div class="preview-code-item">
+                    <span class="tiny-text">{{ element.config.labelFriend.value }}:</span>
+                    <div class="code-placeholder">CODE-XXX</div>
+                </div>
+
+                <div class="preview-code-item">
+                    <span class="tiny-text">{{ element.config.labelOwner.value }}:</span>
+                    <div class="code-placeholder">CODE-YYY</div>
+                </div>
+            </div>
+        </div>
+    </div>
+{% endblock %}

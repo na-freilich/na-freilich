@@ -1,0 +1,18 @@
+{% sw_extends '@Storefront/storefront/component/line-item/type/product.html.twig' %}
+
+{% block component_line_item_type_product_details_container %}
+    {% if lineItem.payload.nfBookingId %}
+        <div class="line-item-details-container">
+                {% sw_include '@Storefront/storefront/component/line-item/element/label.html.twig' with {
+                    lineItemLink: displayMode !== 'order' or lineItem.productId ? seoUrl('frontend.detail.page', { productId: lineItem.referencedId }) : null,
+                    lineItemModalLink: showLineItemModal ? path('widgets.quickview.minimal', { productId: lineItem.referencedId }) : false,
+                } %}
+            <div class="line-item-details-characteristics">
+                {{ lineItem.payload.nfBookingDescription|raw }}
+            </div>
+        </div>
+    {% else %}
+        {{ parent() }}
+    {% endif %}
+
+{% endblock %}

@@ -1,0 +1,17 @@
+{% block cms_block_nf_two_column_booking %}
+    {% set columns = 1 %}
+    {% set element = block.slots.getSlot('content') %}
+
+    <div class="cms-block-nf-two-column-booking">
+
+        <div class="container">
+            <div class="row">
+                <div class="col-12">
+                    {% sw_include "@Storefront/storefront/element/cms-element-nf-two-column-booking.html.twig" with {
+                        element: element
+                    } %}
+                </div>
+            </div>
+        </div>
+    </div>
+{% endblock %}

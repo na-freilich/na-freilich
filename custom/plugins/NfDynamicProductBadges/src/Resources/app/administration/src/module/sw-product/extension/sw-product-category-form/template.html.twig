@@ -1,0 +1,23 @@
+{% block sw_product_category_form_search_keyword_field %}
+
+    {% parent() %}
+
+    <sw-inherit-wrapper
+            v-if="productWithBadges"
+            v-model:value="product.extensions.nfBadges"
+            :inherited-value="parentProduct.id ? parentProduct.extensions.nfBadges : product.extensions.nfBadges"
+            :has-parent="!!parentProduct.id"
+    >
+        <template #content="{ currentValue, isInherited, updateCurrentValue }">
+            <sw-entity-multi-select
+                    v-if="productWithBadges"
+                    v-model:entityCollection="currentValue"
+                    entity="nf_custom_badge"
+                    :label="$tc('nf-product-badge.common.labels.product-badge-label')"
+                    :placeholder="$tc('nf-product-badge.common.placeholders.product-badge')"
+                    @update:entity-collection="updateCurrentValue"
+            />
+        </template>
+    </sw-inherit-wrapper>
+
+{% endblock %}

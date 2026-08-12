@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:noNamespaceSchemaLocation="https://raw.githubusercontent.com/shopware/shopware/trunk/src/Core/System/SystemConfig/Schema/config.xsd">
+
+    <card>
+        <title>Booking Settings</title>
+        <title lang="de-DE">Buchungseinstellungen</title>
+
+        <input-field type="int">
+            <name>bookingTimeout</name>
+            <defaultValue>30</defaultValue>
+            <label>Expiration time (minutes)</label>
+            <label lang="de-DE">Reservierungsdauer (in Minuten)</label>
+            <helpText>How long the slot will be reserved before it becomes available again if not paid.</helpText>
+            <helpText lang="de-DE">Wie lange der Termin reserviert bleibt, bevor er wieder verfügbar wird, falls nicht bezahlt wird.</helpText>
+        </input-field>
+
+        <input-field type="int">
+            <name>cancellationTimeout</name>
+            <defaultValue>24</defaultValue>
+            <label>Cancellation period (hours)</label>
+            <label lang="de-DE">Stornierungsfrist (в Stunden)</label>
+            <helpText>The time window in hours during which the customer can cancel their booking.</helpText>
+            <helpText lang="de-DE">Zeitfenster in Stunden, in dem der Kunde seine Buchung stornieren kann.</helpText>
+        </input-field>
+    </card>
+
+    <card>
+        <title>Loyalty System Settings</title>
+        <title lang="de-DE">Loyalitätssystem Einstellungen</title>
+
+        <input-field type="int">
+            <name>loyaltyThreshold</name>
+            <defaultValue>10</defaultValue>
+            <label>Bookings required for 1 free credit</label>
+            <label lang="de-DE">Buchungen erforderlich für 1 Gratis-Guthaben</label>
+            <helpText>How many paid bookings a customer needs to get one free slot.</helpText>
+        </input-field>
+    </card>
+</config>

@@ -1,0 +1,10 @@
+{% block cms_block_order_summary %}
+    <div class="cms-block-order-progress">
+        {% set element = block.slots.getSlot('progressContent') %}
+        {% if element %}
+            {% sw_include "@Storefront/storefront/element/cms-element-" ~ element.type ~ ".html.twig" with {
+                element: element
+            } %}
+        {% endif %}
+    </div>
+{% endblock %}

@@ -1,0 +1,63 @@
+<sw-page class="nf-booking-discount-detail">
+    <template #smart-bar-header>
+        <h2 v-if="item && item.isNew()">
+            {{ $t('nf-booking.discount.detail.titleCreate') }}
+        </h2>
+
+        <h2 v-else-if="item">
+            {{ $t('nf-booking.discount.detail.titleEdit', { count: item.minCount }) }}
+        </h2>
+
+        <h2 v-else>
+            {{ $t('nf-booking.discount.detail.titleFallback') }}
+        </h2>
+    </template>
+
+    <template #smart-bar-actions>
+        <sw-button :routerLink="{ name: 'nf.booking.discount.list' }">
+            {{ $tc('global.default.cancel') }}
+        </sw-button>
+
+        <sw-button-process
+                variant="primary"
+                :isLoading="isLoading"
+                :processSuccess="isSaveSuccessful"
+                @process-finish="saveFinish"
+                @click="onClickSave">
+            {{ $tc('global.default.save') }}
+        </sw-button-process>
+    </template>
+
+    <template #content>
+        <sw-card-view>
+            <sw-card :title="$t('nf-booking.discount.detail.title')" :isLoading="isLoading">
+                <sw-container columns="1fr 1fr" gap="30px" v-if="item">
+
+                    <sw-number-field
+                            :label="$t('nf-booking.discount.detail.labelMinCount')"
+                            placeholder="z.B. 5"
+                            v-model="item.minCount"
+                            :min="1"
+                            required>
+                    </sw-number-field>
+
+                    <sw-number-field
+                            :label="$t('nf-booking.discount.detail.labelDiscountPercentage')"
+                            placeholder="10"
+                            v-model="item.discountPercentage"
+                            :min="0"
+                            :max="100"
+                            required>
+                        <template #suffix>%</template>
+                    </sw-number-field>
+
+                    <sw-switch-field
+                            label="Aktiv"
+                            v-model:value="item.active">
+                    </sw-switch-field>
+
+                </sw-container>
+            </sw-card>
+        </sw-card-view>
+    </template>
+</sw-page>

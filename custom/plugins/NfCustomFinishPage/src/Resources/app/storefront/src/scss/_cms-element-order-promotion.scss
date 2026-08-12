@@ -1,0 +1,90 @@
+.cms-order-promotion-wrapper {
+  margin: 2rem 0;
+  font-family: "Inter", "Open Sans", sans-serif;
+
+  .referral-card {
+    background: #ffffff;
+    border: 1px solid #e9ecef;
+    border-radius: 12px;
+    padding: 24px;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.04);
+  }
+
+  .referral-title {
+    font-size: 1.25rem;
+    font-weight: 800;
+    color: #1a1c1e;
+    margin-bottom: 8px;
+  }
+
+  .referral-text {
+    font-size: 0.9rem;
+    color: #6c757d;
+    margin-bottom: 20px;
+    line-height: 1.5;
+  }
+
+  .referral-codes-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 16px;
+
+    @media screen and (max-width: 767px) {
+      grid-template-columns: 1fr;
+    }
+  }
+
+  .code-box {
+    background: #f8f9fa;
+    border: 1px solid #dee2e6;
+    border-radius: 8px;
+    padding: 12px;
+    position: relative;
+
+    .code-label {
+      display: block;
+      font-size: 11px;
+      text-transform: uppercase;
+      font-weight: 700;
+      color: #adb5bd;
+      margin-bottom: 4px;
+    }
+
+    .code-value-wrapper {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+
+    .code-value {
+      font-family: 'Monaco', 'Consolas', monospace;
+      font-size: 16px;
+      font-weight: 700;
+      color: #000;
+      letter-spacing: 0.5px;
+    }
+
+    .btn-copy {
+      background: none;
+      border: none;
+      padding: 0;
+      color: #006eb7;
+      font-size: 13px;
+      font-weight: 600;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      gap: 4px;
+
+      &:hover {
+        text-decoration: underline;
+        color: #00558d;
+      }
+
+      .icon {
+        width: 14px;
+        height: 14px;
+      }
+    }
+  }
+}

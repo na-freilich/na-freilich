@@ -1,0 +1,25 @@
+{
+  "base": "/bundles/nfcustomfinishpage/administration/",
+  "entryPoints": {
+    "nf-custom-finish-page": {
+      "css": [
+        "/bundles/nfcustomfinishpage/administration/assets/nf-custom-finish-page-Bmck2Wpn.css"
+      ],
+      "dynamic": [],
+      "js": [
+        "/bundles/nfcustomfinishpage/administration/assets/nf-custom-finish-page-B-sItnmz.js"
+      ],
+      "legacy": false,
+      "preload": []
+    }
+  },
+  "legacy": false,
+  "metadatas": {},
+  "version": [
+    "7.1.0",
+    7,
+    1,
+    0
+  ],
+  "viteServer": null
+}

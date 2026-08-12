@@ -1,0 +1,57 @@
+{% block cms_element_nf_two_column_booking %}
+    {% set config = element.config %}
+    {% set locationLeft = element.data.locationLeft %}
+    {% set locationRight = element.data.locationRight %}
+
+    <div class="cms-element-nf-two-column-booking" data-nf-booking-two-column="true">
+
+        <div class="booking-date-container" >
+            <label for="booking-date-{{ element.id }}" class="h5 d-block mb-2">
+                {{ "nfBooking.storefront.selectDateLabel"|trans }}
+            </label>
+
+            <input type="text"
+                   name="booking-date"
+                   class="form-control"
+                   placeholder="{{ "nfBooking.storefront.selectDatePlaceholder"|trans }}"
+                   data-date-picker="true"
+                   data-date-picker-options='{
+                   "enableTime": false,
+                   "altInput": true,
+                   "altFormat": "d.m.Y",
+                   "dateFormat": "Y-m-d",
+                   "minDate": "today"
+           }'>
+        </div>
+
+        <div class="row">
+            <div class="col-4">
+                <div class="booking-card">
+                    <p><strong>{{ locationLeft.name }}:</strong></p>
+                    <div class="col-12"
+                         data-nf-booking-slot="true"
+                         data-nf-booking-slot-plugin-options=
+                            '{"locationId": "{{ locationLeft.id }}", "productId": "{{ page.product.id }}"}'>
+                    </div>
+                </div>
+            </div>
+            <div class="col-4">
+                <div class="booking-card">
+                    <p><strong>{{ locationRight.name }}:</strong></p>
+                    <div class="col-12"
+                         data-nf-booking-slot="true"
+                         data-nf-booking-slot-plugin-options=
+                         '{"locationId": "{{ locationRight.id }}", "productId": "{{ page.product.id }}"}'>
+                    </div>
+                </div>
+            </div>
+            <div class="col-4">
+                <div class="col-12"
+                     data-nf-booking-cart="true"
+                     data-nf-booking-cart-plugin-options=
+                     '{"productId": "{{ page.product.id }}"}'>
+                </div>
+            </div>
+        </div>
+    </div>
+{% endblock %}

@@ -1,0 +1,88 @@
+<form action="{{ path('frontend.booking.order.cancel') }}"
+      class="js-booking-cancel-form"
+      method="post">
+    <input type="hidden" name="orderId" value="{{ orderId }}">
+    <h5 class="modal-title pb-3 mb-3" id="cancelModalLabel{{ orderId }}">
+        {{ "nfBooking.storefront.cancel.modalTitle"|trans }}
+    </h5>
+
+    {% set lastLocation = '' %}
+    {% set lastDate = '' %}
+
+    {% for item in bookingItems %}
+        {% if item.location.name != lastLocation %}
+            {% if not loop.first %}
+                </ul></div>
+            {% endif %}
+
+            <div class="location-group mb-4">
+            <div class="location-header font-weight-bold border-bottom small mb-2 text-primary text-uppercase">
+                <i class="fas fa-map-marker-alt"></i> {{ item.location.name }}
+            </div>
+            {% set lastLocation = item.location.name %}
+            {% set lastDate = '' %}
+        {% endif %}
+
+        {% set currentDate = item.bookingDate|date("d.m.Y", false) %}
+        {% if currentDate != lastDate %}
+        {% if lastDate != '' %}</ul>{% endif %}
+        <div class="date-header small text-muted font-weight-bold ml-1 mb-1">{{ currentDate }}</div>
+        <ul class="list-group list-group-flush mb-2">
+        {% set lastDate = currentDate %}
+        {% endif %}
+
+        <li class="list-group-item d-flex align-items-center py-2 px-3 border-0 mb-1 rounded bg-light">
+
+            <input type="checkbox"
+                   name="bookingItemIds[]"
+                   value="{{ item.id }}"
+                   id="bookingCheck{{ item.id }}"
+                   style="width: 16px; height: 16px; cursor: pointer; flex-shrink: 0; margin-right: 15px;">
+
+            <label class="d-flex justify-content-between align-items-center w-100 m-0"
+                   for="bookingCheck{{ item.id }}"
+                   style="cursor: pointer; user-select: none; line-height: 1;">
+
+                <span class="font-weight-medium">
+                    {{ item.startTime|slice(0, 5) }} - {{ item.endTime|slice(0, 5) }}
+                </span>
+
+                {% if isPaid %}
+                    <div class="d-flex align-items-center">
+                        <span class="badge badge-pill font-weight-bold py-1 px-2"
+                              style="font-size: 0.85rem; background-color: #e1f5fe; color: #039be5;">
+                            {{ item.extensions.time.slotCnt }} Slots
+                        </span>
+                    </div>
+                {% else %}
+                    <div class="d-flex align-items-center">
+                        {% if item.unitPrice %}
+                            <span class="badge badge-pill font-weight-bold py-1 px-2"
+                                  style="font-size: 0.85rem; background-color: #e1f5fe; color: #039be5;">
+                                        {{ item.unitPrice|currency }}
+                                    </span>
+                        {% endif %}
+                    </div>
+                {% endif %}
+            </label>
+        </li>
+
+        {% if loop.last %}
+            </ul></div>
+        {% endif %}
+
+    {% else %}
+        <p class="text-muted text-center py-4">{{ "nfBooking.storefront.cancel.noSlotsAvailable"|trans }}</p>
+    {% endfor %}
+
+    {% if bookingItems|length > 0 %}
+        <div class="modal-footer px-0 pb-0 mt-4">
+            <button type="button" class="btn btn-light" data-bs-dismiss="modal">
+                {{ "nfBooking.storefront.cancel.close"|trans }}
+            </button>
+            <button type="submit" class="btn btn-danger">
+                {{ "nfBooking.storefront.cancel.confirmButton"|trans }}
+            </button>
+        </div>
+    {% endif %}
+</form>

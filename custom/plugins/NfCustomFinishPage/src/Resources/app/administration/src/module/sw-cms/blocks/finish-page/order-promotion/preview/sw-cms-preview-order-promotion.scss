@@ -1,0 +1,52 @@
+.sw-cms-preview-order-promotion {
+  padding: 8px;
+  background: #fdfdfd;
+
+  .preview-label {
+    display: block;
+    font-size: 8px;
+    color: #999;
+    margin-bottom: 4px;
+    font-weight: bold;
+  }
+
+  .preview-box {
+    border: 1px solid #d1d9e0;
+    border-radius: 4px;
+    padding: 8px;
+    background: #fff;
+  }
+
+  .preview-title {
+    font-size: 10px;
+    font-weight: 700;
+    margin: 0 0 6px 0;
+    color: #333;
+  }
+
+  .preview-codes-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr; // Две колонки
+    gap: 6px;
+  }
+
+  .preview-code-item {
+    .tiny-text {
+      font-size: 7px;
+      color: #777;
+      display: block;
+      margin-bottom: 2px;
+    }
+
+    .code-placeholder {
+      font-size: 7px;
+      background: #f1f3f5;
+      border: 1px dashed #bcc4cc;
+      padding: 3px;
+      border-radius: 2px;
+      text-align: center;
+      color: #555;
+      font-family: monospace;
+    }
+  }
+}

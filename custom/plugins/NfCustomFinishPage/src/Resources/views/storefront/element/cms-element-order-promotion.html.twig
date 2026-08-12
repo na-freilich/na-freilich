@@ -1,0 +1,44 @@
+{% block cms_element_order_summary %}
+    {% set config = element.config %}
+    {% set order = page.order %}
+    {% if order %}
+        <div class="cms-order-promotion-wrapper" data-order-promotion-plugin="true">
+            <div class="referral-card">
+                <h3 class="referral-title">{{ config.title.value }}</h3>
+                <p class="referral-text">{{ config.description.value }}</p>
+
+                <div class="referral-codes-grid">
+                    <div class="code-box">
+                        <span class="code-label">{{ config.labelFriend.value }}</span>
+                        <div class="code-value-wrapper">
+                            <span class="code-value" id="code-friend-{{ element.id }}">
+                                {{ element.data.referralCodeFriend|default('FLTSCH-FRIEND') }}
+                            </span>
+                            <button class="btn-copy"
+                                    data-target="code-friend-{{ element.id }}"
+                                    data-success-text="{{ "nf-custom-finish-page.promotion.copied"|trans }}">
+                                {% sw_icon 'products' %}
+                                <span>{{ "nf-custom-finish-page.promotion.copy"|trans }}</span>
+                            </button>
+                        </div>
+                    </div>
+
+                    <div class="code-box">
+                        <span class="code-label">{{ config.labelOwner.value }}</span>
+                        <div class="code-value-wrapper">
+                            <span class="code-value" id="code-owner-{{ element.id }}">
+                                {{ element.data.referralCodeOwner|default('FLTSCH-KUNDE') }}
+                            </span>
+                            <button class="btn-copy"
+                                    data-target="code-owner-{{ element.id }}"
+                                    data-success-text="{{ "nf-custom-finish-page.promotion.copied"|trans }}">
+                                {% sw_icon 'products' %}
+                                <span>{{ "nf-custom-finish-page.promotion.copy"|trans }}</span>
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    {% endif %}
+{% endblock %}

@@ -1,0 +1,39 @@
+{% block sw_cms_el_order_progress %}
+    {% set currentStep = element.data.currentStep|default(1) %}
+
+    <div class="cms-element-order-progress">
+        <div class="order-progress-wrapper">
+            <div class="step-item {% if currentStep > 1 %}is-completed{% elseif currentStep == 1 %}is-active{% endif %}">
+                <span class="step-badge">
+                    {% if currentStep > 1 %}{% sw_icon 'checkmark' style {'size': '12px'} %}{% else %}1{% endif %}
+                </span>
+                <span class="step-text">{{ "nf-custom-finish-page.progress.step1"|trans }}</span>
+            </div>
+
+            <div class="step-connector {% if currentStep > 1 %}is-filled{% endif %}"></div>
+
+            <div class="step-item {% if currentStep > 2 %}is-completed{% elseif currentStep == 2 %}is-active{% endif %}">
+                <span class="step-badge">
+                    {% if currentStep > 2 %}{% sw_icon 'checkmark' style {'size': '12px'} %}{% else %}2{% endif %}
+                </span>
+                <span class="step-text">{{ "nf-custom-finish-page.progress.step2"|trans }}</span>
+            </div>
+
+            <div class="step-connector {% if currentStep > 2 %}is-filled{% endif %}"></div>
+
+            <div class="step-item {% if currentStep > 3 %}is-completed{% elseif currentStep == 3 %}is-active{% endif %}">
+                <span class="step-badge">
+                    {% if currentStep > 3 %}{% sw_icon 'checkmark' style {'size': '12px'} %}{% else %}3{% endif %}
+                </span>
+                <span class="step-text">{{ "nf-custom-finish-page.progress.step3"|trans }}</span>
+            </div>
+
+            <div class="step-connector {% if currentStep > 3 %}is-filled{% endif %}"></div>
+
+            <div class="step-item {% if currentStep == 4 %}is-active{% endif %}">
+                <span class="step-badge">4</span>
+                <span class="step-text">{{ "nf-custom-finish-page.progress.step4"|trans }}</span>
+            </div>
+        </div>
+    </div>
+{% endblock %}

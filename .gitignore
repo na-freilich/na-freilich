@@ -10,6 +10,9 @@
 !/custom/plugins/NfOrderDay
 !/custom/plugins/NfFreeShipping
 !/custom/plugins/NfGoogleTagManager
+!/custom/plugins/NfCustomFinishPage
+!/custom/plugins/NfBuchungs
+!/custom/plugins/NfDynamicProductBadges
 
 ###> phpunit/phpunit ###
 /phpunit.xml

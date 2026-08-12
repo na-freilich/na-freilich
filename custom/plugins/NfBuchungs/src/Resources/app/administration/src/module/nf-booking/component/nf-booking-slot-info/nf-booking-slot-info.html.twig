@@ -1,0 +1,122 @@
+<div class="nf-booking-slot-info">
+    <sw-loader v-if="isLoading"></sw-loader>
+
+    <template v-else-if="booking">
+        <sw-container>
+            <h4>{{ $t('nf-booking.detail.title') }}</h4>
+            <div class="booking-details">
+                <p>
+                    <strong>{{ $t('nf-booking.detail.reservationId') }}:</strong>
+                    <span >{{ booking.orderNumber }}</span>
+                </p>
+
+                <p v-if="booking">
+                    <strong>{{ $t('nf-booking.detail.status.title') }}:</strong>
+
+                    <span v-if="booking.status === 'pending'">
+                        {{ $t('nf-booking.detail.status.pending') }}
+                    </span>
+
+                    <span v-else-if="booking.status === 'paid' || booking.status === 'ordered'">
+                        {{ $t('nf-booking.detail.status.paid') }}
+                    </span>
+
+                </p>
+
+                <p v-if="booking.customer">
+                    <strong>{{ $t('nf-booking.detail.client') }}:</strong>
+                    <router-link
+                            target="_blank"
+                            :to="{ name: 'sw.customer.detail', params: { id: booking.customerId } }"
+                            class="sw-link">
+                        {{ booking.customer.firstName }} {{ booking.customer.lastName }}
+                    </router-link>
+                </p>
+
+                <p v-if="booking.orderId">
+                    <strong>{{ $t('nf-booking.detail.order') }}:</strong>
+                    <router-link
+                            target="_blank"
+                            :to="{ name: 'sw.order.detail', params: { id: booking.orderId } }"
+                            class="sw-link">
+                        {{ booking.orderId }}
+                    </router-link>
+                </p>
+                <p v-if="booking && booking.date">
+                    <strong>{{ $t('nf-booking.detail.orderDate') }}:</strong>
+                    {{ booking.date | date({ hour: '2-digit', minute: '2-digit' }) }}
+                </p>
+
+
+                <div class="booking-items-list" style="margin-top: 15px; border-top: 1px solid #d1d9e0; padding-top: 10px;">
+                    <h5>{{ $t('nf-booking.detail.itemsTitle') }}</h5>
+
+                    <div v-for="item in booking.items" :key="item.id" class="nf-booking-item-row">
+                        <div class="nf-booking-item__main">
+                            <sw-label variant="info" appearance="pill" size="small" class="nf-booking-item__badge">
+                                {{ item.location.translated.name || item.location.name }}
+                            </sw-label>
+
+                            <div class="nf-booking-item__date-info">
+                                <span class="nf-booking-item__date">
+                                    {{ dateFilter(item.bookingDate, { day: '2-digit', month: '2-digit', year: 'numeric' }).substring(0, 10) }}
+                                </span>
+
+                                <span class="nf-booking-item__time">
+                                    {{ item.startTime.substring(0, 5) }} - {{ item.endTime.substring(0, 5) }}
+                                </span>
+                            </div>
+                        </div>
+
+                        <div class="nf-booking-item__price">
+                            {{ item.unitPrice }} €
+                        </div>
+                    </div>
+
+                    <hr style="border: 0; border-top: 1px solid #d1d9e0; margin: 16px 0 12px;">
+
+                    <div v-if="booking.totalCreditSlots" class="nf-booking-credit-info-row" style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 8px;">
+                        <span style="font-size: 14px; color: #52667a;">
+                            {{ $t('nf-booking.detail.appliedCredit') }}:
+                        </span>
+                        <span style="font-family: monospace; background: #eef2f5; padding: 2px 6px; border-radius: 4px; font-weight: 600; color: #202932;">
+                            {{ booking.totalCreditSlots }} Slots
+                        </span>
+{#                        <span style="font-family: monospace; background: #eef2f5; padding: 2px 6px; border-radius: 4px; font-weight: 600; color: #202932;">#}
+{#                            {{ booking.totalCreditAmount }}  €#}
+{#                        </span>#}
+                    </div>
+
+                    <div v-if="booking.discountAmount > 0" class="nf-booking-discount-row" style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 8px;">
+                        <span style="font-weight: 600; color: #de294c; font-size: 14px;">
+                            {{ $t('nf-booking.detail.discountAmount') }}
+                        </span>
+                        <span style="font-weight: 700; color: #de294c; font-size: 16px;">
+                            - {{ booking.discountAmount }} €
+                        </span>
+                    </div>
+
+                    <div class="nf-booking-total-row" style="display: flex; justify-content: space-between; align-items: center;">
+                        <span style="font-weight: 600; color: #52667a; font-size: 14px;">
+                            {{ $t('nf-booking.detail.totalAmount') }}
+                        </span>
+
+                        <span style="font-size: 18px; font-weight: 700; color: #189eff;">
+                            {{ booking.totalPrice }} €
+                        </span>
+                    </div>
+                </div>
+
+{#                <sw-button variant="primary" size="small">#}
+{#                    Delete#}
+{#                </sw-button>#}
+            </div>
+        </sw-container>
+    </template>
+
+    <div v-else class="no-selection-placeholder">
+        <sw-description-list>
+            <p>Wählen Sie einen gebuchten Termin aus, um die Details anzuzeigen</p>
+        </sw-description-list>
+    </div>
+</div>

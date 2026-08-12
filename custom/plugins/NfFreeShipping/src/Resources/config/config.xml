@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:noNamespaceSchemaLocation="https://raw.githubusercontent.com/shopware/shopware/trunk/src/Core/System/SystemConfig/Schema/config.xsd">
+
+    <card>
+        <title>General Settings</title>
+        <title lang="de-DE">Allgemeine Einstellungen</title>
+
+        <input-field type="bool">
+            <name>active</name>
+            <label>Active</label>
+            <label lang="de-DE">Aktiv</label>
+            <defaultValue>true</defaultValue>
+        </input-field>
+
+        <component name="sw-entity-multi-id-select">
+            <name>shippingMethods</name>
+            <entity>shipping_method</entity>
+            <label>Applicable Shipping Methods</label>
+            <label lang="de-DE">Gültige Versandarten</label>
+            <helpText>Select shipping methods for free shipping threshold calculation</helpText>
+            <helpText lang="de-DE">Wählen Sie die Versandarten aus, für die das Limit gilt</helpText>
+        </component>
+
+        <input-field type="float">
+            <name>thresholdAmount</name>
+            <label>Free Shipping Threshold (€)</label>
+            <label lang="de-DE">Versandkostenfreie Grenze (€)</label>
+            <placeholder>100.00</placeholder>
+            <defaultValue>100.00</defaultValue>
+        </input-field>
+    </card>
+</config>

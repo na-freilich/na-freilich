@@ -1,0 +1,11 @@
+{
+  "main.js": {
+    "file": "assets/nf-custom-finish-page-B-sItnmz.js",
+    "name": "nf-custom-finish-page",
+    "src": "main.js",
+    "isEntry": true,
+    "css": [
+      "assets/nf-custom-finish-page-Bmck2Wpn.css"
+    ]
+  }
+}

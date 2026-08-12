@@ -1,0 +1,21 @@
+{% block sw_cms_block_order_promotion_preview %}
+    <div class="sw-cms-preview-order-promotion">
+        <span class="preview-label">{{ $t('sw-cms.elements.order-promotion.title') }}</span>
+
+        <div class="preview-box">
+            <p class="preview-title">{{ $t('sw-cms.elements.order-promotion.description') }}</p>
+
+            <div class="preview-codes-grid">
+                <div class="preview-code-item">
+                    <span class="tiny-text">{{ $t('sw-cms.elements.order-promotion.codeLabel1') }}:</span>
+                    <div class="code-placeholder">CODE-XXX</div>
+                </div>
+
+                <div class="preview-code-item">
+                    <span class="tiny-text">{{ $t('sw-cms.elements.order-promotion.codeLabel2') }}:</span>
+                    <div class="code-placeholder">CODE-YYY</div>
+                </div>
+            </div>
+        </div>
+    </div>
+{% endblock %}

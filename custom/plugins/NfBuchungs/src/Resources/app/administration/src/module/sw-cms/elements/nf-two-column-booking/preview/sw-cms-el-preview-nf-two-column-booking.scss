@@ -1,0 +1,33 @@
+.sw-cms-el-preview-nf-two-column-booking {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  padding: 10px;
+  background: #f9fafb;
+  border-radius: 4px;
+
+  .preview-title {
+    font-size: 10px;
+    color: #7d8b99;
+    text-align: center;
+    text-transform: uppercase;
+    font-weight: bold;
+  }
+
+  .preview-content {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 4px;
+    height: 40px;
+
+    .preview-column {
+      background: #e1e4e8;
+      border: 1px dashed #7d8b99;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      border-radius: 2px;
+      color: #7d8b99;
+    }
+  }
+}

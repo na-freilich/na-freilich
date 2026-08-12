@@ -1,0 +1,133 @@
+{
+  "apps" :{
+    "sw-cms": {
+      "detail": {
+        "label": {
+          "blockCategory": {
+            "finish-page": "Danke Seite"
+          }
+        }
+      }
+    }
+  },
+  "sw-cms": {
+    "elements": {
+      "order-address": {
+        "label":  "Adressen & Informationen",
+        "noSettings": "Keine Einstellungen verfügbar",
+        "deliveryLabel": "Lieferadresse",
+        "billingLabel": "Rechnungsadresse",
+        "infoLabel": "Informationen"
+      },
+      "order-items": {
+        "label":  "Bestellpositionen",
+        "productLabel": "Produkt",
+        "quantityLabel": "Anzahl",
+        "totalLabel": "Summe"
+      },
+      "order-summary": {
+        "label":  "Zusammenfassung",
+        "summaryLabel": "Zusammenfassung",
+        "subtotalLabel": "Zwischensumme",
+        "shippingCostsLabel": "Versandkosten",
+        "totalLabel": "Gesamtsumme",
+        "totalNetLabel": "Gesamtnettosumme",
+        "taxLabel": "zzgl. 19 % MwSt.",
+        "noSettings": "Keine Einstellungen verfügbar"
+      },
+      "order-newsletter": {
+        "label":  "Newsletter",
+        "title":  "Immer informiert bleiben",
+        "description": "Keine Angebote verpassen — abonnieren Sie unseren Newsletter.",
+        "btnTitle":  "Anmelden",
+        "item1": "Rabattaktionen",
+        "item2": "Neue Produkte",
+        "item3": "Tipps",
+        "buttonLabel": "Anmelden",
+        "checkboxLabelDefault": "Ich akzeptiere die AGB.",
+        "labels": {
+          "title": "Title",
+          "usps": "USPs",
+          "description": "Beschreibung",
+          "checkboxLabel": "Text AGB",
+          "button": "Schaltflächentext",
+          "inputLabel": "Text über",
+          "inputFooter": "Text unter"
+
+        },
+        "placeholders": {
+          "title": "Titel eingeben...",
+          "button": "Schaltflächentext eingeben..."
+        }
+      },
+      "order-progress": {
+        "label": "Fortschritts-Anzeige",
+        "step1": "Bestellung",
+        "step2": "Bearbeitung",
+        "step3": "Versand",
+        "step4": "Lieferung"
+      },
+      "order-promotion": {
+        "label": "MODUL: FREUNDE WERBEN",
+        "title": "Freunde empfehlen",
+        "description": "Your personal referral link — your friend gets 5 € discount, you get 10 €.",
+        "codeLabel1": "Für Freund",
+        "codeLabel2": "Für Sie",
+        "copyButton": "Copy",
+        "labels": {
+          "title": "Title",
+          "description": "Beschreibung",
+          "friendInput": "Titel Für Freund",
+          "ownerInput": "Titel Für Sie"
+        },
+        "placeholders": {
+          "title": "Titel eingeben...",
+          "description": "Beschreibung eingeben...",
+          "friendInput": "Zum Beispiel: Für Freund",
+          "ownerInput": "Zum Beispiel: Für Sie"
+        }
+      },
+      "order-upselling-timer": {
+        "label": "Upselling Timer",
+        "addToCartLabel": "In den Warenkorb",
+        "labels": {
+          "title": "Title",
+          "timerText": "Timer Text",
+          "duration": "Dauer",
+          "discountAmount": "Rabatt in Prozent (%)",
+          "crossSellingGroups": "Cross-Selling-Gruppen"
+        },
+        "placeholders": {
+          "timerText": "Nur noch 28:45 — danach weg!",
+          "title": "Passend zu Ihrer Buchung...",
+          "duration": "e.g. 30"
+        }
+      }
+    }
+  },
+  "nf-custom-finish-page": {
+    "blocks": {
+      "order-address": {
+        "label": "Adressen & Informationen"
+      },
+      "order-items": {
+        "label": "Bestellpositionen"
+      },
+      "order-summary": {
+        "label": "Zusammenfassung"
+      },
+      "order-newsletter": {
+        "label": "Newsletter"
+      },
+      "order-progress": {
+        "label": "Fortschritts Anzeige"
+      },
+      "order-promotion": {
+        "label": "Freunde Werben"
+      },
+      "order-upselling-timer": {
+        "label": "Upselling Timer"
+      }
+    }
+  }
+}

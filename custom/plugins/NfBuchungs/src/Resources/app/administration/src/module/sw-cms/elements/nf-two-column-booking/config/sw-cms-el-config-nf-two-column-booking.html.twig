@@ -1,0 +1,15 @@
+<div class="sw-cms-el-config-nf-two-column-booking">
+    <sw-entity-single-select
+            entity="nf_booking_location"
+            :label="$t('nf-booking.cms.label.locationLeft')"
+            :value="element.config.locationIdLeft.value"
+            @update:value="onLocationLeftChange">
+    </sw-entity-single-select>
+
+    <sw-entity-single-select
+            entity="nf_booking_location"
+            :label="$t('nf-booking.cms.label.locationRight')"
+            :value="element.config.locationIdRight.value"
+            @update:value="onLocationRightChange">
+    </sw-entity-single-select>
+</div>

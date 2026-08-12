@@ -1,0 +1,7 @@
+{% extends '@Storefront/storefront/component/checkout/offcanvas-cart.html.twig' %}
+
+{% block component_offcanvas_cart_header %}
+    {{ parent() }}
+
+    {% sw_include '@Storefront/storefront/component/checkout/free-shipping-banner.html.twig' %}
+{% endblock %}

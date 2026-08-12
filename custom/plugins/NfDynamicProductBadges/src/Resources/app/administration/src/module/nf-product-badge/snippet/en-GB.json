@@ -1,0 +1,38 @@
+{
+  "nf-product-badge": {
+    "general": {
+      "mainMenuItemGeneral": "Product Badges",
+      "description": "Product Badges",
+      "title": "Badges"
+    },
+    "common": {
+      "labels": {
+        "exception": "An error occurred!",
+        "name": "Name",
+        "text": "Text",
+        "color": "Color",
+        "product-badge-label": "Product Badges",
+        "emptyList": "Nothing found!",
+        "savedSuccess": "Saved successfully!"
+      },
+      "placeholders": {
+        "search": "Search...",
+        "name": "Name...",
+        "text": "Text...",
+        "color": "Color...",
+        "product-badge": "Select badges..."
+      },
+      "actions": {
+        "create": "Create",
+        "add": "Add",
+        "edit": "Edit",
+        "save": "Save",
+        "delete": "Delete",
+        "apply": "Apply",
+        "cancel": "Cancel",
+        "sort": "sorting",
+        "button-back": "<"
+      }
+    }
+  }
+}

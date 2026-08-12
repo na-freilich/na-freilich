@@ -1,0 +1,51 @@
+.sw-cms-preview-order-progress {
+  padding: 15px;
+  background: #fff;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.preview-container {
+  text-align: center;
+}
+.preview-progress-bar {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 4px;
+  margin-bottom: 8px;
+}
+.preview-progress-bar .circle {
+  width: 16px;
+  height: 16px;
+  border-radius: 50%;
+  border: 1px solid #d1d9e0;
+  font-size: 9px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: #999;
+}
+.preview-progress-bar .circle.done {
+  background: #189e74;
+  border-color: #189e74;
+  color: #fff;
+}
+.preview-progress-bar .circle.active {
+  background: #006eb7;
+  border-color: #006eb7;
+  color: #fff;
+}
+.preview-progress-bar .line {
+  width: 10px;
+  height: 1px;
+  background: #d1d9e0;
+}
+.preview-progress-bar .line.done {
+  background: #189e74;
+}
+.preview-label {
+  font-size: 11px;
+  font-weight: bold;
+  color: #52667a;
+}

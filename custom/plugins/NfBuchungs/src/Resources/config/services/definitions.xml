@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<container xmlns="http://symfony.com/schema/dic/services"
+           xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+           xsi:schemaLocation="http://symfony.com/schema/dic/services
+           https://symfony.com/schema/dic/services/services-1.0.xsd">
+
+    <services>
+
+        <service id="Nf\Booking\Core\Content\BookingCredit\NfBookingCreditDefinition">
+            <tag name="shopware.entity.definition" entity="nf_booking_credit" />
+        </service>
+
+        <service id="Nf\Booking\Core\Content\BookingSeriesDiscount\NfBookingSeriesDiscountDefinition">
+            <tag name="shopware.entity.definition" entity="nf_booking_series_discount" />
+        </service>
+
+        <service id="Nf\Booking\Core\Content\BookingSeason\NfBookingSeasonDefinition">
+            <tag name="shopware.entity.definition" entity="nf_booking_season"/>
+        </service>
+
+        <service id="Nf\Booking\Core\Content\BookingSeason\Aggregate\NfBookingSeasonTranslationDefinition">
+            <tag name="shopware.entity.definition" entity="nf_booking_season_translation" />
+        </service>
+
+        <service id="Nf\Booking\Core\Content\BookingPriceRule\NfBookingPriceRuleDefinition">
+            <tag name="shopware.entity.definition" entity="nf_booking_price_rule"/>
+        </service>
+
+        <service id="Nf\Booking\Core\Content\BookingLocation\NfBookingLocationDefinition">
+            <tag name="shopware.entity.definition" entity="nf_booking_location"/>
+        </service>
+
+        <service id="Nf\Booking\Core\Content\BookingLocation\Aggregate\NfBookingLocationTranslationDefinition">
+            <tag name="shopware.entity.definition" entity="nf_booking_location_translation" />
+        </service>
+
+        <service id="Nf\Booking\Core\Content\Booking\NfBookingDefinition">
+            <tag name="shopware.entity.definition" entity="nf_booking" />
+        </service>
+
+        <service id="Nf\Booking\Core\Content\Booking\BookingItem\NfBookingItemDefinition">
+            <tag name="shopware.entity.definition" entity="nf_booking_item" />
+        </service>
+
+        <service id="Nf\Booking\Core\Checkout\Customer\CustomerExtension">
+            <tag name="shopware.entity.extension"/>
+        </service>
+
+    </services>
+</container>

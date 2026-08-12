@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<container xmlns="http://symfony.com/schema/dic/services"
+           xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+           xsi:schemaLocation="http://symfony.com/schema/dic/services
+           https://symfony.com/schema/dic/services/services-1.0.xsd">
+
+    <services>
+
+        <service id="Nf\Booking\Subscriber\BookingSubscriber">
+            <argument type="service" id="Nf\Booking\Service\Booking\BookingServiceInterface"/>
+            <argument type="service" id="Nf\Booking\Service\Booking\UserServiceInterface"/>
+            <argument type="service" id="Nf\Booking\Service\Booking\CreditServiceInterface"/>
+
+            <tag name="kernel.event_subscriber"/>
+        </service>
+
+        <service id="Nf\Booking\Subscriber\OrderPaidSubscriber">
+            <argument type="service" id="order_transaction.repository" />
+            <argument type="service" id="Nf\Booking\Service\Booking\BookingServiceInterface"/>
+            <argument type="service" id="Shopware\Core\System\SystemConfig\SystemConfigService" />
+
+            <tag name="kernel.event_subscriber"/>
+        </service>
+
+        <service id="Nf\Booking\Subscriber\CustomerSubscriber">
+            <argument type="service" id="Nf\Booking\Service\Booking\CreditServiceInterface"/>
+
+            <tag name="kernel.event_subscriber"/>
+        </service>
+
+    </services>
+</container>

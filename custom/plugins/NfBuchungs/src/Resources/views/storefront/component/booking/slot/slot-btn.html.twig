@@ -1,0 +1,65 @@
+{#{{ dump(slot) }}#}
+<button type="button"
+        class="btn btn-outline-primary {% if format != "small" %}w-100 {% else %} slot-compaсt-button {% endif %}
+        slot-button
+{#{{ slot.isAvailable ? 'btn-outline-primary' : 'btn-light disabled' }}#}
+{% if slot.status == 'selected' %}
+        is-selected btn-outline-primary
+    {% elseif slot.isAvailable %}
+        btn-outline-primary
+    {% else %}
+        btn-light is-disabled
+    {% endif %}
+"
+        {% if not slot.isAvailable %}disabled{% endif %}
+        data-bs-toggle="tooltip"
+        data-bs-placement="top"
+        {% if slot.id %}data-slot-id="{{ slot.id }}"{% endif %}
+        data-booking-start="{{ slot.start }}"
+        data-booking-end="{{ slot.end }}"
+        data-status="{{ slot.status }}"
+        data-can-remove-single="{{ slot.canBeRemovedAlone ? '1' : '0' }}"
+        data-slot-group-id="{{ slot.groupId }}"
+        data-slot-group="{{ slot.group|json_encode }}"
+        title="{{ "nfBooking.storefront.slot.price"|trans }}: {{ slot.groupPrice|currency }}"
+        style="{{ style }}"
+>
+    <div class="slot-content-wrapper">
+        {% if format == "small" %}
+            <span>:{{ slot.start|date('i', false) }} - :{{ slot.end|date('i', false) }}</span>
+        {% else %}
+            <span class="slot-time-start">{{ slot.start }}</span>
+            <span class="slot-divider mx-1 text-muted small">{{ "nfBooking.storefront.slot.timeBefore"|trans }}</span>
+            <span class="slot-time-end">{{ slot.end }}</span>
+        {% endif %}
+
+        {% if slot.status == 'pending' %}
+            <span class="badge bg-warning">{{ "nfBooking.status.pending"|trans }}</span>
+        {% elseif slot.status == 'selected' %}
+            <span class="badge bg-info text-white">{{ "nfBooking.status.selected"|trans }}</span>
+        {% elseif slot.status == 'paid' or  slot.status == 'blocked' or  slot.status == 'ordered' %}
+            <span class="badge bg-danger">{{ "nfBooking.status.paid"|trans }}</span>
+        {% endif %}
+
+    </div>
+    {% if slot.status == 'selected' and slot.canBeRemovedAlone %}
+        <span class="slot-delete-icon"
+              data-action="delete"
+              title="{{ "nfBooking.storefront.slot.delete"|trans }}">
+            &times;
+        </span>
+    {% endif %}
+
+</button>
+
+{#{% if slot.status == 'selected' %}#}
+{#    <button type="button"#}
+{#            class="btn-close btn-close-white position-absolute slot-remove-icon"#}
+{#            aria-label="Close"#}
+{#            data-slot-id="{{ slot.id }}"#}
+{#            data-booking-start="{{ slot.start }}"#}
+{#            data-booking-end="{{ slot.end }}"#}
+{#            data-date="{{ date }}"#}
+{#            style="top: 5px; right: 5px; z-index: 10; width: 0.5rem; height: 0.5rem; padding: 0.5rem; font-size: 0.6rem; border-radius: 50%; background-color: #dc3545; box-shadow: 0 2px 4px rgba(0,0,0,0.2);">#}
+{#    </button>#}
+{#{% endif %}#}

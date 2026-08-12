@@ -1,0 +1,30 @@
+{
+    "name": "nf/dynamic-product-badges",
+    "description": "Nf Dynamic Product Badges",
+    "version": "v1.0.0",
+    "type": "shopware-platform-plugin",
+    "license": "proprietary",
+    "authors": [
+        {
+            "name": "na freilich GmbH",
+            "homepage": "https://www.na-freilich.de/"
+        }
+    ],
+    "require": {
+        "shopware/core": ">=6.6",
+        "ext-json": "*"
+    },
+    "extra": {
+        "shopware-plugin-class": "Nf\\DynamicProductBadges\\DynamicProductBadges",
+        "plugin-icon": "src/Resources/config/plugin.png",
+        "label": {
+            "de-DE": "Dynamic Product Badges",
+            "en-GB": "Dynamic Product Badges"
+        }
+    },
+    "autoload": {
+        "psr-4": {
+            "Nf\\DynamicProductBadges\\": "src/"
+        }
+    }
+}

@@ -1,0 +1,76 @@
+.cms-el-upselling-timer {
+  margin: 2rem 0;
+  padding: 1.5rem;
+  background-color: #ffffff;
+  border-radius: $border-radius-lg;
+  border: 1px solid $border-color;
+
+  .upselling-timer-banner {
+    .timer-content {
+      background-color: #fff4e6;
+      border: 1px solid #ffd8a8;
+      border-radius: 4px;
+      color: #d9480f;
+    }
+
+    .js-timer-display {
+      font-size: 1.25rem;
+      color: #862e01;
+    }
+
+    .sw-icon {
+      vertical-align: middle;
+      top: -2px;
+      position: relative;
+    }
+  }
+
+  .upselling-title {
+    color: $text-muted;
+    border-bottom: 2px solid $border-color;
+    padding-bottom: 0.5rem;
+  }
+
+  .upselling-product-item {
+    .product-box {
+      min-height: auto;
+
+      .product-image-wrapper {
+        height: 120px;
+        margin-bottom: 10px;
+      }
+
+      .product-price-unit {
+        display: none;
+      }
+
+      .product-cheapest-price {
+        display: none;
+      }
+
+      .product-variant-characteristics {
+        display: none;
+      }
+
+      .product-name {
+        font-size: 14px;
+        margin-bottom: 5px;
+        line-height: 1.2;
+        height: 34px;
+        overflow: hidden;
+      }
+
+      .product-price {
+        font-size: 16px;
+        margin-bottom: 10px;
+      }
+
+      .product-action {
+        .btn {
+          padding: 5px 10px;
+          font-size: 14px;
+        }
+      }
+    }
+  }
+}

@@ -1,0 +1,127 @@
+{% block nf_booking_product_cart %}
+    <div class="nf-product-cart">
+        {% if booking and booking.items.count > 0 %}
+            <div class="card-header" data-first-date="{{ booking.items|first.bookingDate|date("Y-m-d", false) }}">
+                <h5>{{ "nfBooking.productCart.yourChoice"|trans }} ({{ booking.items.count }})</h5>
+            </div>
+
+            {% if booking.extensions.validation.hasError %}
+                <div class="alert alert-warning small py-2 mb-3 shadow-sm border-danger">
+                    <i class="fas fa-exclamation-triangle mr-1 text-danger"></i>
+                    {{ "nfBooking.validation.minDurationError"|trans({
+                        '%min%': booking.extensions.validation.minRequired
+                    }) }}
+                </div>
+            {% endif %}
+
+            <div class="nf-booking-timer alert alert-info"
+                 data-nf-booking-timer="true"
+                 data-expires-at="{{ booking.expiresAt|date('c') }}"
+                 data-nf-booking-timer-plugin-options='{
+        "expirationText": "{{ "nfBooking.timer.expired"|trans|sw_sanitize }}",
+        "criticalTime": 60
+     }'
+            >
+                {{ "nfBooking.timer.timerText"|trans }}:
+                <span class="js-timer-display">00:00</span>
+            </div>
+
+            {% set lastLocation = '' %}
+            {% set lastDate = '' %}
+
+            {% for item in booking.items %}
+                {% if item.location.name != lastLocation %}
+                    {% if not loop.first %}</ul></div>{% endif %}
+                    <div class="location-group mb-2">
+                    <div class="location-header font-weight-bold border-bottom small mb-1">
+                        <i class="fas fa-map-marker-alt"></i> {{ item.location.name }}
+                    </div>
+                    {% set lastLocation = item.location.name %}
+                    {% set lastDate = '' %}
+                {% endif %}
+
+                {% set currentDate = item.bookingDate|date("d.m.Y", false) %}
+                {% if currentDate != lastDate %}
+                {% if lastDate != '' %}</ul>{% endif %}
+                <div class="date-header small text-muted ml-2">{{ currentDate }}</div>
+                <ul class="list-group list-group-flush ml-2 mb-2">
+                {% set lastDate = currentDate %}
+                {% endif %}
+                <li class="list-group-item d-flex justify-content-between align-items-center py-1 bg-light border-0 mb-1 rounded
+                    {{ item.extensions.validation.isTooShort ? 'bg-danger-soft text-danger' : 'bg-light' }}">
+                    {% if item.extensions.validation.isTooShort %}
+                        <span class="text-danger ml-1" title="{{ "nfBooking.validation.tooShort"|trans({
+                            '%min%': item.extensions.validation.required
+                        }) }}">
+                            {% sw_icon 'warning' %}
+                        </span>
+                    {% endif %}
+                    <span class="small">{{ item.startTime|date('H:i', false) }} - {{ item.endTime|date('H:i', false) }}</span>
+                    <button class="btn btn-sm btn-link text-danger p-0 line-height-1 del-btn"
+                            style="text-decoration: none;"
+                            data-booking-item-id="{{ item.id }}"
+                            >
+                        &times;
+                    </button>
+                </li>
+
+                {% if loop.last %}</ul></div>{% endif %}
+            {% endfor %}
+
+            <div class="nf-product-cart-summary mt-3 pt-2 pb-3">
+
+                {% if booking.discount %}
+                    <div class="d-flex justify-content-between mb-1">
+                        <span class="text-muted">{{ "nfBooking.productCart.subTotal"|trans }}:</span>
+                        <span class="text-dark">{{ booking.originalPrice|currency }}</span>
+                    </div>
+
+                    <div class="d-flex justify-content-between align-items-center text-danger font-weight-bold">
+                        <span>
+                            {{ "nfBooking.productCart.discountLabel"|trans }} - {{ booking.discount.discountPercentage }}%
+                        </span>
+                        <span>
+                            - {{ booking.discountAmount|currency }}
+                        </span>
+                    </div>
+                {% endif %}
+
+                <div class="d-flex justify-content-between align-items-center mt-2 pt-2 border-top">
+                    <h4 class="mb-0">{{ "nfBooking.productCart.total"|trans }}:</h4>
+                    <div class="text-right">
+                        <h3 class="mb-0 font-weight-bold">{{ booking.totalPrice|currency }}</h3>
+                    </div>
+                </div>
+            </div>
+
+            {% sw_include '@Storefront/storefront/component/booking/product-cart-credit.html.twig' with {
+                booking: booking
+            } %}
+
+            {% block nf_booking_product_cart_add_btn %}
+                <div class="nf-product-cart-form-container d-flex justify-content-end">
+                    <form action="{{ path('frontend.nf-booking.add-to-cart') }}"
+                          method="post"
+                          class="buy-widget-form">
+
+                        <input type="hidden" name="redirectTo" value="frontend.checkout.cart.page">
+                        <input type="hidden" name="bookingId" value="{{ booking.id }}">
+                        <input type="hidden" name="productId" value="{{ productId }}">
+
+                        <button type="submit"
+                                class="btn btn-primary buy-btn"
+                                {% if booking.extensions.validation.hasError %}
+                                    disabled="disabled"
+                                {% endif %}
+                                title="{{ "detail.addProduct"|trans|sw_sanitize }}">
+                            {% sw_icon 'bag-happy' %}
+                            {{ "nfBooking.productCart.addToCart"|trans|sw_sanitize }}
+                        </button>
+                    </form>
+                </div>
+            {% endblock %}
+        {% else %}
+            <div class="alert alert-info">{{ "nfBooking.productCart.nothingSelected"|trans }}</div>
+        {% endif %}
+    </div>
+{% endblock %}

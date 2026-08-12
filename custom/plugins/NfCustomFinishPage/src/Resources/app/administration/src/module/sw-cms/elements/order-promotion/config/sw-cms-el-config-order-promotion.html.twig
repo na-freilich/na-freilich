@@ -1,0 +1,30 @@
+{% block sw_cms_el_config_order_promotion %}
+    <div class="sw-cms-el-config-order-promotion">
+        <sw-text-field
+                v-model="element.config.title.value"
+                :label="$tc('sw-cms.elements.order-promotion.labels.title')"
+                :placeholder="$tc('sw-cms.elements.order-promotion.placeholders.title')">
+        </sw-text-field>
+
+        <sw-textarea-field
+                v-model="element.config.description.value"
+                :label="$tc('sw-cms.elements.order-promotion.labels.description')"
+                :placeholder="$tc('sw-cms.elements.order-promotion.placeholders.description')">
+        </sw-textarea-field>
+
+        <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 10px;">
+            <sw-text-field
+                    v-model="element.config.labelFriend.value"
+                    :label="$tc('sw-cms.elements.order-promotion.labels.friendInput')"
+                    :placeholder="$tc('sw-cms.elements.order-promotion.placeholders.friendInput')">
+            </sw-text-field>
+
+            <sw-text-field
+                    v-model="element.config.labelOwner.value"
+                    :label="$tc('sw-cms.elements.order-promotion.labels.ownerInput')"
+                    :placeholder="$tc('sw-cms.elements.order-promotion.placeholders.ownerInput')">
+            </sw-text-field>
+        </div>
+
+    </div>
+{% endblock %}

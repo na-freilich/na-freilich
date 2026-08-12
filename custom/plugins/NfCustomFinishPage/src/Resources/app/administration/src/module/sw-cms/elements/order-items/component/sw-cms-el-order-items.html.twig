@@ -1,0 +1,21 @@
+{% block sw_cms_el_order_items %}
+    <div class="sw-cms-el-order-items">
+        <div class="sw-cms-el-order-items__header">
+            <div class="header-item">{{ $t('sw-cms.elements.order-items.productLabel') }}</div>
+            <div class="header-item">{{ $t('sw-cms.elements.order-items.quantityLabel') }}</div>
+            <div class="header-item">{{ $t('sw-cms.elements.order-items.totalLabel') }}</div>
+        </div>
+
+        <div class="sw-cms-el-order-items__row" v-for="i in 2" :key="i">
+            <div class="item-product">
+                <div class="item-placeholder-img"></div>
+                <div class="item-placeholder-text">
+                    <div class="line title"></div>
+                    <div class="line label"></div>
+                </div>
+            </div>
+            <div class="item-quantity">1</div>
+            <div class="item-price">19,99 €</div>
+        </div>
+    </div>
+{% endblock %}

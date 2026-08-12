@@ -1,0 +1,10 @@
+{% block cms_block_order_items %}
+    <div class="cms-block-order-items">
+        {% set element = block.slots.getSlot('itemsContent') %}
+        {% if element %}
+            {% sw_include "@Storefront/storefront/element/cms-element-" ~ element.type ~ ".html.twig" with {
+                element: element
+            } %}
+        {% endif %}
+    </div>
+{% endblock %}

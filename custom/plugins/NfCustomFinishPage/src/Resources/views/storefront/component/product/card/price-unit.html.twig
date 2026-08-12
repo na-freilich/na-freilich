@@ -1,0 +1,29 @@
+{% sw_extends '@Storefront/storefront/component/product/card/price-unit.html.twig' %}
+
+{% block component_product_box_price_info %}
+
+    {% if product.extensions.upsell_active %}
+        {% set price = product.calculatedPrice %}
+        {% if product.calculatedPrices.count > 1 %}
+            {% set price = product.calculatedPrices.first %}
+        {% endif %}
+
+        <div class="product-price-container">
+            {% if product.calculatedPrices.count > 1 %}
+                {{ "listing.listingTextFrom"|trans|sw_sanitize }}
+            {% endif %}
+
+            <span class="product-price {{ price.listPrice ? 'with-list-price' : '' }}">
+            {{ price.unitPrice|currency }}
+        </span>
+
+            {% if price.listPrice %}
+                <span class="list-price" style="text-decoration: line-through; font-size: 0.8em; color: #999; margin-left: 5px;">
+                {{ price.listPrice.price|currency }}
+            </span>
+            {% endif %}
+        </div>
+    {% else %}
+        {{ parent() }}
+    {% endif %}
+{% endblock %}

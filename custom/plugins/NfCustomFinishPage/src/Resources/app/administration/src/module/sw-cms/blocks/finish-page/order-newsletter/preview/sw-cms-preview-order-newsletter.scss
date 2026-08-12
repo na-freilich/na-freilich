@@ -1,0 +1,45 @@
+.sw-cms-preview-order-newsletter {
+  background: #fff;
+  border: 1px solid #d1d9e0;
+  border-radius: 4px;
+  padding: 16px;
+  position: relative;
+
+  .preview-body {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 12px;
+  }
+
+  h6 { margin: 0 0 4px 0; color: #333; font-size: 13px; }
+
+  .preview-check-list {
+    font-size: 10px;
+    color: #777;
+    .check-item { color: #189eff; margin-right: 5px; display: inline-block; }
+  }
+
+  .preview-actions {
+    display: flex;
+    gap: 4px;
+
+    .preview-input-mock {
+      border: 1px solid #d1d9e0;
+      padding: 4px 8px;
+      font-size: 10px;
+      background: #f9fafb;
+      color: #a0a0a0;
+      border-radius: 3px;
+      min-width: 130px;
+    }
+
+    .preview-btn-mock {
+      background: #189eff;
+      color: #fff;
+      font-size: 10px;
+      padding: 4px 10px;
+      border-radius: 3px;
+    }
+  }
+}
