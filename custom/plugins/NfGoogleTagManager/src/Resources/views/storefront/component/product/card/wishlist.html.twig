@@ -1,0 +1,20 @@
+{% sw_extends '@Storefront/storefront/component/product/card/wishlist.html.twig' %}
+
+{% block component_product_wishlist_button %}
+    {% set salesChannelId = context.salesChannelId %}
+
+    {% if config('NfGoogleTagManager.config.active', salesChannelId) and config('NfGoogleTagManager.config.eventAddToWishlist', salesChannelId) %}
+
+        {% set buttonHtml %}
+            {{ parent() }}
+        {% endset %}
+
+        {{ buttonHtml|replace({
+            'class="': 'class="js-nf-gtm-wishlist-btn ',
+            'data-add-to-wishlist="true"': 'data-add-to-wishlist="true" data-nf-gtm-id="' ~ productId ~ '" data-nf-gtm-sku="' ~ product.productNumber ~ '"'
+        })|raw }}
+
+    {% else %}
+        {{ parent() }}
+    {% endif %}
+{% endblock %}

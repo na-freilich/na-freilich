@@ -1,0 +1,35 @@
+/*
+!/custom/
+/custom/*
+!/custom/plugins
+/custom/plugins/*
+!/custom/plugins/NfAdminPlugin
+!/custom/plugins/NfNachlassfilter
+!/custom/plugins/NfStatistics
+!/custom/plugins/NfImmediatelyAvailableFilter
+!/custom/plugins/NfOrderDay
+!/custom/plugins/NfFreeShipping
+!/custom/plugins/NfGoogleTagManager
+
+###> phpunit/phpunit ###
+/phpunit.xml
+/.phpunit.cache/
+###< phpunit/phpunit ###
+
+###> shopware/core ###
+.env.local
+.env.local.php
+.env.*.local
+/public/bundles/*
+/public/media/*
+/public/theme/*
+/public/thumbnail/*
+/public/sitemap/*
+/files/*
+!/files/.htaccess
+/var/*
+!/var/.htaccess
+/auth.json
+/install.lock
+/public/asset-manifest.json
+###< shopware/core ###

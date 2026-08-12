@@ -1,0 +1,90 @@
+{% sw_extends '@Storefront/storefront/layout/meta.html.twig' %}
+
+{% block layout_head_meta_tags %}
+    {{ parent() }}
+
+    {% set salesChannelId = context.salesChannelId %}
+    {% set pluginActive = config('NfGoogleTagManager.config.active', salesChannelId) %}
+    {% set consentModeEnabled = config('NfGoogleTagManager.config.consentModeEnabled', salesChannelId) %}
+
+    {% if pluginActive %}
+        <script>
+            window.dataLayer = window.dataLayer || [];
+            function gtag(){ dataLayer.push([...arguments]); }
+
+            {% if consentModeEnabled %}
+            gtag('consent', 'default', {
+                'ad_storage': 'denied',
+                'analytics_storage': 'denied',
+                'ad_user_data': 'denied',
+                'ad_personalization': 'denied',
+                'region': ['DE', 'AT', 'EEA'],
+                'wait_for_update': 500
+            });
+            {% endif %}
+        </script>
+    {% endif %}
+{% endblock %}
+
+{% block layout_head_javascript_tracking %}
+    {{ parent() }}
+
+    {% set salesChannelId = context.salesChannelId %}
+    {% set pluginActive = config('NfGoogleTagManager.config.active', salesChannelId) %}
+    {% set gtmId = config('NfGoogleTagManager.config.gtmId', salesChannelId) %}
+
+    {% if pluginActive and gtmId %}
+        <script>
+            {% set pageType = 'other' %}
+            {% if activeRoute == 'frontend.detail.page' %}
+                {% set pageType = 'product' %}
+            {% elseif activeRoute == 'frontend.navigation.page' %}
+                {% set pageType = 'category' %}
+            {% elseif activeRoute == 'frontend.search.page' %}
+                {% set pageType = 'search' %}
+            {% elseif activeRoute == 'frontend.checkout.cart.page' %}
+                {% set pageType = 'cart' %}
+            {% endif %}
+
+            dataLayer.push({
+                'page': {
+                    'type': '{{ pageType }}',
+                    'language': '{{ app.request.locale }}'
+                },
+                'sales_channel_id': '{{ salesChannelId }}',
+                'currency': '{{ context.currency.isoCode }}'
+            });
+
+            {% if page.extensions.nfGtmDataLayer %}
+            dataLayer.push({ ecommerce: null });
+            dataLayer.push({{ page.extensions.nfGtmDataLayer.all|json_encode|raw }});
+            {% endif %}
+
+            {% if page.extensions.nfGtmShippingDataLayer %}
+            dataLayer.push({ ecommerce: null });
+            dataLayer.push({{ page.extensions.nfGtmShippingDataLayer.all|json_encode|raw }});
+            {% endif %}
+
+            {% if page.extensions.nfGtmPaymentDataLayer %}
+            dataLayer.push({ ecommerce: null });
+            dataLayer.push({{ page.extensions.nfGtmPaymentDataLayer.all|json_encode|raw }});
+            {% endif %}
+        </script>
+
+        <script>
+            (function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
+                    new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
+                j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
+                'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
+            })(window,document,'script','dataLayer','{{ gtmId }}');
+        </script>
+        {% set salesChannelId = context.salesChannelId %}
+        {% set debugMode = config('NfGoogleTagManager.config.debugMode', salesChannelId) ? '1' : '0' %}
+
+        <div id="nf-gtm-config"
+             style="display:none;"
+             data-debug="{{ debugMode }}"
+             data-remove-active="{{ config('NfGoogleTagManager.config.eventRemoveFromCart', salesChannelId) ? '1' : '0' }}">
+        </div>
+    {% endif %}
+{% endblock %}

@@ -1,0 +1,33 @@
+{% sw_extends '@Storefront/storefront/component/checkout/offcanvas-cart.html.twig' %}
+
+{% block component_offcanvas_cart_hidden_line_items_information %}
+    {{ parent() }}
+
+    {% set salesChannelId = context.salesChannelId %}
+
+    {% if config('NfGoogleTagManager.config.active', salesChannelId) and config('NfGoogleTagManager.config.eventViewCart', salesChannelId) %}
+
+        {% if page.cart is defined and page.cart.lineItems|length > 0 %}
+
+            {% set offcanvasItems = [] %}
+
+            {% for lineItem in page.cart.lineItems %}
+                {% if lineItem.type == 'product' %}
+                    {% set offcanvasItems = offcanvasItems|merge([{
+                        'item_id': lineItem.payload.productNumber|default(lineItem.referencedId),
+                        'item_name': lineItem.label,
+                        'price': lineItem.unitPrice,
+                        'quantity': lineItem.quantity,
+                        'item_brand': lineItem.payload.manufacturerName|default(''),
+                        'item_category': ''
+                    }]) %}
+                {% endif %}
+            {% endfor %}
+
+            <input type="hidden"
+                   id="js-nf-gtm-offcanvas-data"
+                   data-nf-cart-value="{{ page.cart.price.totalPrice }}"
+                   data-nf-cart-items="{{ offcanvasItems|json_encode|escape('html_attr') }}">
+        {% endif %}
+    {% endif %}
+{% endblock %}

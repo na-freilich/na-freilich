@@ -1,0 +1,25 @@
+{
+  "base": "/bundles/nfgoogletagmanager/administration/",
+  "entryPoints": {
+    "nf-google-tag-manager": {
+      "css": [
+        "/bundles/nfgoogletagmanager/administration/assets/nf-google-tag-manager-h9nRJwfg.css"
+      ],
+      "dynamic": [],
+      "js": [
+        "/bundles/nfgoogletagmanager/administration/assets/nf-google-tag-manager-CMYKO3nn.js"
+      ],
+      "legacy": false,
+      "preload": []
+    }
+  },
+  "legacy": false,
+  "metadatas": {},
+  "version": [
+    "7.1.0",
+    7,
+    1,
+    0
+  ],
+  "viteServer": null
+}

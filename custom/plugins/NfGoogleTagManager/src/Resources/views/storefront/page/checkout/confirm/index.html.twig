@@ -1,0 +1,18 @@
+{% sw_extends '@Storefront/storefront/page/checkout/confirm/index.html.twig' %}
+
+{% block page_checkout_main_content %}
+    {% set salesChannelId = context.salesChannelId %}
+
+    {% if config('NfGoogleTagManager.config.active', salesChannelId) and config('NfGoogleTagManager.config.eventCheckoutSteps', salesChannelId) %}
+        {% set checkoutData = page.extensions.nfGtmDataLayer.all|default(null) %}
+
+        <div class="js-nf-gtm-checkout-form"
+             data-nf-checkout-items="{{ checkoutData.ecommerce.items|json_encode|escape('html_attr') }}"
+             data-nf-checkout-value="{{ checkoutData.ecommerce.value|default(0) }}">
+
+            {{ parent() }}
+        </div>
+    {% else %}
+        {{ parent() }}
+    {% endif %}
+{% endblock %}

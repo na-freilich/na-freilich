@@ -1,0 +1,118 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:noNamespaceSchemaLocation="https://raw.githubusercontent.com/shopware/shopware/trunk/src/Core/System/SystemConfig/Schema/config.xsd">
+
+    <card>
+        <title>Google Tag Manager Settings</title>
+        <title lang="de-DE">Google Tag Manager Einstellungen</title>
+
+        <input-field type="text">
+            <name>gtmId</name>
+            <label>GTM Container ID</label>
+            <label lang="de-DE">GTM Container-ID</label>
+            <placeholder>GTM-XXXXXX</placeholder>
+        </input-field>
+
+        <input-field type="bool">
+            <name>active</name>
+            <label>Activate Tracking</label>
+            <label lang="de-DE">Tracking aktivieren</label>
+            <defaultValue>false</defaultValue>
+        </input-field>
+
+        <input-field type="bool">
+            <name>debugMode</name>
+            <label>Enable Debug Mode (Console logs)</label>
+            <label lang="de-DE">Debugging-Protokollierung (console.log aktivieren))</label>
+            <defaultValue>false</defaultValue>
+        </input-field>
+    </card>
+
+    <card>
+        <title>Consent Mode v2 Settings</title>
+        <title lang="de-DE">Consent Mode v2 Einstellungen</title>
+
+        <input-field type="bool">
+            <name>consentModeEnabled</name>
+            <label>Enable Consent Mode v2 Default (denied)</label>
+            <label lang="de-DE">Consent Mode v2 Default aktivieren (denied)</label>
+            <defaultValue>true</defaultValue>
+        </input-field>
+    </card>
+
+    <card>
+        <title>Supported E-Commerce Events</title>
+        <title lang="de-DE">Unterstützte E-Commerce Events</title>
+
+        <input-field type="bool">
+            <name>eventViewItemList</name>
+            <label>Track view_item_list (Category / Listing)</label>
+            <label lang="de-DE">view_item_list tracken (Kategorie / Listing)</label>
+            <defaultValue>true</defaultValue>
+        </input-field>
+
+        <input-field type="bool">
+            <name>eventViewItem</name>
+            <label>Track view_item (Product Detail Page)</label>
+            <label lang="de-DE">view_item tracken (Produktdetailseite)</label>
+            <defaultValue>true</defaultValue>
+        </input-field>
+
+        <input-field type="bool">
+            <name>eventAddToCart</name>
+            <label>Track add_to_cart (AJAX Button Click)</label>
+            <label lang="de-DE">add_to_cart tracken (AJAX Klick)</label>
+            <defaultValue>true</defaultValue>
+        </input-field>
+
+        <input-field type="bool">
+            <name>eventPurchase</name>
+            <label>Track purchase (Order Confirmation Page)</label>
+            <label lang="de-DE">purchase tracken (Bestellbestätigung)</label>
+            <defaultValue>true</defaultValue>
+        </input-field>
+
+        <input-field type="bool">
+            <name>eventSelectItem</name>
+            <label>Track select_item (Product clicks in listing)</label>
+            <label lang="de-DE">select_item tracken (Klicks im Listing)</label>
+            <defaultValue>true</defaultValue>
+        </input-field>
+
+        <input-field type="bool">
+            <name>eventViewCart</name>
+            <label>Track view_cart (Cart page / Off-canvas)</label>
+            <label lang="de-DE">view_cart tracken (Warenkorb / Off-Canvas)</label>
+            <defaultValue>true</defaultValue>
+        </input-field>
+
+        <input-field type="bool">
+            <name>eventRemoveFromCart</name>
+            <label>Track remove_from_cart (Delete item)</label>
+            <label lang="de-DE">remove_from_cart tracken (Artikel löschen)</label>
+            <defaultValue>true</defaultValue>
+        </input-field>
+
+        <input-field type="bool">
+            <name>eventCheckoutSteps</name>
+            <label>Track add_shipping_info / add_payment_info</label>
+            <label lang="de-DE">add_shipping_info / add_payment_info tracken</label>
+            <defaultValue>true</defaultValue>
+        </input-field>
+
+        <input-field type="bool">
+            <name>eventAddToWishlist</name>
+            <label>Track add_to_wishlist (Wishlist click)</label>
+            <label lang="de-DE">add_to_wishlist tracken (Merkzettel Klick)</label>
+            <defaultValue>true</defaultValue>
+        </input-field>
+
+        <input-field type="bool">
+            <name>eventSearch</name>
+            <label>Track search (Internal site search)</label>
+            <label lang="de-DE">search tracken (Interne Suche)</label>
+            <defaultValue>true</defaultValue>
+        </input-field>
+    </card>
+</config>

@@ -1,0 +1,29 @@
+{
+    "nf-order-day": {
+        "general": {
+            "mainMenuItemGeneral": "Bestelltag",
+            "descriptionTextModule": "Bestelltag verwalten"
+        },
+        "list": {
+            "title": "Bestelltag"
+        },
+        "common": {
+            "labels":{
+                "emptyList": "Nichts gefunden!",
+                "date": "Tag",
+                "active": "Aktiv",
+                "savedSuccess": "Erfolgreich gespeichert!",
+                "exception": "Fehler ist aufgetreten!"
+            },
+            "actions": {
+                "addDay": "Tag hinzufügen",
+                "editDay": "Tag bearbeiten",
+                "save": "speichern"
+            },
+            "placeholders": {
+                "date": "Tag"
+            }
+        }
+
+    }
+}

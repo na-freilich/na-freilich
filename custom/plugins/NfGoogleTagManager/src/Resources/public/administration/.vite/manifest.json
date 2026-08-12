@@ -1,0 +1,11 @@
+{
+  "main.js": {
+    "file": "assets/nf-google-tag-manager-CMYKO3nn.js",
+    "name": "nf-google-tag-manager",
+    "src": "main.js",
+    "isEntry": true,
+    "css": [
+      "assets/nf-google-tag-manager-h9nRJwfg.css"
+    ]
+  }
+}
