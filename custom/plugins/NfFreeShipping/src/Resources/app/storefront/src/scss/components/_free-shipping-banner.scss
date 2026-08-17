@@ -1,0 +1,36 @@
+.nf-free-shipping-banner{
+  .shipping-truck-logo{
+    .icon{
+      &>svg{
+        top: -2px;
+      }
+    }
+  }
+  .progress{
+    height: 6px;
+    background: #f1f1f1;
+    .progress-bar{
+      border-radius: 15px;
+      background: #35c76b;
+    }
+    .check-box-area{
+      width: 28px;
+      height: 28px;
+      right: -10px !important;
+      z-index: 2;
+      border: none;
+      background: #f1f1f1;
+      .icon{
+        color:#35c76b;
+        &>svg{
+          top:0;
+          use{
+            stroke: currentColor;
+            stroke-width: 0.7px;
+            paint-order: stroke fill;
+          }
+        }
+      }
+    }
+  }
+}

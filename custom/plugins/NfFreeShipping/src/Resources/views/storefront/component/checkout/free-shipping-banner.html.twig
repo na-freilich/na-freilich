@@ -3,20 +3,20 @@
 {% if freeShipping %}
     <div class="nf-free-shipping-banner mt-2 mb-3">
         <div class="d-flex align-items-start mb-2">
-            <span class="me-2 pt-1 text-dark flex-shrink-0">
-                {% sw_icon 'truck' style { size: 'sm' } %}
+            <span class="shipping-truck-logo me-2 text-dark flex-shrink-0">
+                {% sw_icon 'truck' style { size: 'md' } %}
             </span>
 
-            <span class="fw-bold text-dark lh-sm">
+            <span class=" text-dark lh-sm">
                 {% if freeShipping.isFree %}
                     {{ "nfFreeShipping.reached"|trans }}
                 {% else %}
-                    {{ "nfFreeShipping.text"|trans({'%amount%': freeShipping.remaining|currency})|raw }}
+                    {{ "nfFreeShipping.text"|trans({'%amount%': '<strong>' ~ freeShipping.remaining|currency ~ '</strong>'})|raw }}
                 {% endif %}
             </span>
         </div>
 
-        <div class="progress position-relative overflow-visible bg-light" style="height: 6px;">
+        <div class="progress position-relative overflow-visible bg-light">
             <div class="progress-bar bg-success"
                  role="progressbar"
                  style="width: {{ freeShipping.percent }}%;"
@@ -24,8 +24,7 @@
                  aria-valuemin="0"
                  aria-valuemax="100">
             </div>
-            <div class="position-absolute end-0 top-50 translate-middle-y rounded-circle d-flex align-items-center justify-content-center border border-2 border-white {% if freeShipping.isFree %}bg-success text-white{% else %}bg-secondary-subtle text-secondary{% endif %}"
-                 style="width: 20px; height: 20px; right: -10px !important; z-index: 2;">
+            <div class="check-box-area position-absolute end-0 top-50 translate-middle-y rounded-circle d-flex align-items-center justify-content-center border border-2 border-white {% if freeShipping.isFree %}bg-success text-white{% else %}bg-secondary-subtle text-secondary{% endif %}">
                 {% sw_icon 'checkmark' style { size: 'xs' } %}
             </div>
         </div>

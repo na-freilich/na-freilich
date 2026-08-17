@@ -2,7 +2,7 @@
     "name": "nf/free-shipping",
     "description": "Displays free shipping progress bar in offcanvas and main cart, and dynamically calculates free shipping thresholds.",
     "type": "shopware-platform-plugin",
-    "version": "1.0.0",
+    "version": "1.0.1",
     "license": "MIT",
     "authors": [
         {
