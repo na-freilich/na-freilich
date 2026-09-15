@@ -60,6 +60,18 @@
     </card>
 
     <card>
+        <title>GPSR Settings</title>
+        <title lang="de-DE">GPSR Einstellungen</title>
+
+        <input-field type="bool">
+            <name>showGpsrTab</name>
+            <label>Show GPSR tab on product page</label>
+            <label lang="de-DE">GPSR-Tab auf der Produktseite anzeigen</label>
+            <defaultValue>false</defaultValue>
+        </input-field>
+    </card>
+
+    <card>
         <title>Settings</title>
         <title lang="de-DE">Einstellungen</title>
 

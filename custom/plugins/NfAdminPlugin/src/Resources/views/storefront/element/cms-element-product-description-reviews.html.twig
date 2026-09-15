@@ -1,0 +1,44 @@
+{% extends '@Storefront/storefront/element/cms-element-product-description-reviews.html.twig' %}
+
+{% block element_product_description_reviews_tabs_navigation_description %}
+    {{ parent() }}
+
+    {% if config('AdminPlugin.config.showGpsrTab') and product.manufacturer and product.manufacturer.translated.customFields.nf_manufacturer_gpsr %}
+        {% set gpsrTabId = "gpsr-tab-" ~ product.id %}
+        {% set gpsrTabHref = "#gpsr-tab-" ~ product.id ~ "-pane" %}
+
+        <li class="nav-item">
+            <a class="nav-link product-detail-tab-navigation-link gpsr-tab"
+               id="{{ gpsrTabId }}"
+               data-bs-toggle="tab"
+               data-off-canvas-tabs="true"
+               href="{{ gpsrTabHref }}"
+               role="tab"
+               aria-controls="{{ gpsrTabId }}-pane"
+               aria-selected="false">
+                <span>{{ "nfAdmin.detail.tabsGpsr"|trans|sw_sanitize }}</span>
+                <span class="product-detail-tab-navigation-icon">
+                    {% sw_icon 'arrow-medium-right' style {'pack':'solid'} %}
+                </span>
+            </a>
+        </li>
+    {% endif %}
+{% endblock %}
+
+{% block element_product_description_reviews_tabs_content_description %}
+    {{ parent() }}
+
+    {% if config('AdminPlugin.config.showGpsrTab') and  product.manufacturer and product.manufacturer.translated.customFields.nf_manufacturer_gpsr %}
+        {% set gpsrTabId = "gpsr-tab-" ~ product.id %}
+        {% set gpsrTabContent = "gpsr-tab-" ~ product.id ~ "-pane" %}
+
+        <div class="tab-pane fade"
+             id="{{ gpsrTabContent }}"
+             role="tabpanel"
+             aria-labelledby="{{ gpsrTabId }}">
+            <div class="product-detail-tab-content-inner">
+                {{ product.manufacturer.translated.customFields.nf_manufacturer_gpsr|raw }}
+            </div>
+        </div>
+    {% endif %}
+{% endblock %}
