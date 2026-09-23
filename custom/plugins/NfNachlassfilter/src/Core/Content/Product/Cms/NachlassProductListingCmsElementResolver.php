@@ -4,14 +4,13 @@ namespace Nf\NachlassFilter\Core\Content\Product\Cms;
 
 use Shopware\Core\Content\Cms\Aggregate\CmsSlot\CmsSlotEntity;
 use Shopware\Core\Content\Cms\DataResolver\CriteriaCollection;
-use Shopware\Core\Content\Cms\DataResolver\Element\AbstractCmsElementResolver;
 use Shopware\Core\Content\Cms\DataResolver\Element\CmsElementResolverInterface;
 use Shopware\Core\Content\Cms\DataResolver\Element\ElementDataCollection;
 use Shopware\Core\Content\Cms\DataResolver\ResolverContext\ResolverContext;
 use Shopware\Core\Framework\Log\Package;
 
 #[Package('inventory')]
-class NachlassProductListingCmsElementResolver extends AbstractCmsElementResolver
+class NachlassProductListingCmsElementResolver implements CmsElementResolverInterface
 {
     const filterName = 'nachlass-filter';
     /**

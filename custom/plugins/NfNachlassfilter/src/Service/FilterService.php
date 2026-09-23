@@ -10,7 +10,7 @@ use Shopware\Core\System\SystemConfig\SystemConfigService;
 
 class FilterService
 {
-    const  maxPrc = 99999999999;
+    const  maxPrc = 100;
     const  productDiscountField = 'product.price.percentage.gross';
 
     public function __construct(
@@ -29,6 +29,7 @@ class FilterService
             $curFilter = new RangeFilter('product.price.percentage.gross', [RangeFilter::GTE => 0]);
 
         $range = $this->getRange();
+
         return new Filter(
             'nachlass',
             $filtered,
@@ -58,40 +59,40 @@ class FilterService
         }
     }
 
-    private function decodeDiscount($value):array
+    private function decodeDiscount($value): array
     {
-        if (!$value)
-            return [0, self::maxPrc];
-
-        if(substr($value, 0, 3) == 'gte')
-        {
-            $from = 0;
-            $to = (int) substr($value, 3);
+        if (!$value) {
+            return [0.0, self::maxPrc];
         }
 
-        elseif(str_contains($value, '-'))
-        {
+        if (substr($value, 0, 3) === 'lte') {
+            $from = 0.0;
+            $to = (float) substr($value, 3);
+        } elseif (str_contains($value, '-')) {
             $arr = explode('-', $value);
-            $from = $arr[0];
-            $to = $arr[1];
-        }
-
-        elseif(substr($value, 0, 3) == 'lte')
-        {
-            $from = substr($value, 3);
+            $from = (float) $arr[0];
+            $to = (float) $arr[1];
+        } elseif (substr($value, 0, 3) === 'gte') {
+            $from = (float) substr($value, 3);
             $to = self::maxPrc;
+        } else {
+            return [0.0, self::maxPrc];
         }
-        else
-            return [0, self::maxPrc];
 
-        return [$from, $to];
+        // Invert the boundaries to account for the (100 - X) formula in the Shopware DAL:
+        // For example: the user requests a gte60 discount (60%–100%).
+        // Calculation: dalFrom = 100 - 100 = 0.0, dalTo = 100 - 60 = 40.0.
+        $dalFrom = self::maxPrc - $to;
+        $dalTo   = self::maxPrc - $from;
+
+        return [$dalFrom, $dalTo];
     }
 
     private function normalizeRange (string $range): string
     {
         $range = trim($range);
-        $range = str_replace('<', 'gte', $range);
-        $range = str_replace('>', 'lte', $range);
+        $range = str_replace('>', 'gte', $range);
+        $range = str_replace('<', 'lte', $range);
 
         return $range;
     }
@@ -111,8 +112,8 @@ class FilterService
             [$from, $to] = $this->decodeDiscount($range);
 
             $ranges[] = [
-                'from' => $from,
-                'to' => $to,
+                'from' => (int) $from,
+                'to' => (int) $to,
                 'key' => $range
             ];
         }

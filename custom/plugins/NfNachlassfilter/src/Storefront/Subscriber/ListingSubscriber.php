@@ -2,7 +2,6 @@
 
 namespace Nf\NachlassFilter\Storefront\Subscriber;
 
-use Shopware\Core\Content\Cms\Events\CmsPageLoadedEvent;
 use Symfony\Component\EventDispatcher\EventSubscriberInterface;
 use Shopware\Core\Content\Product\Events\ProductListingCollectFilterEvent;
 use Nf\NachlassFilter\Service\FilterService;
