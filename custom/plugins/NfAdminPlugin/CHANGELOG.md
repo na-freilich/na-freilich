@@ -16,3 +16,6 @@
 
 # 1.1.5
 - Added snippet
+
+# 1.1.8
+- Added sidebarHoverColor

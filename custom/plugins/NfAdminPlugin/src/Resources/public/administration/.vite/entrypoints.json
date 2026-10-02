@@ -3,7 +3,7 @@
   "entryPoints": {
     "admin-plugin": {
       "css": [
-        "/bundles/adminplugin/administration/assets/admin-plugin-BPG4C73u.css"
+        "/bundles/adminplugin/administration/assets/admin-plugin-5CYzdJL7.css"
       ],
       "dynamic": [
         "/bundles/adminplugin/administration/assets/index-CW44u4P-.js",
@@ -17,7 +17,7 @@
         "/bundles/adminplugin/administration/assets/index-8Pw6qJgo.js"
       ],
       "js": [
-        "/bundles/adminplugin/administration/assets/admin-plugin-Bp1ca8nC.js"
+        "/bundles/adminplugin/administration/assets/admin-plugin-DvNhky0O.js"
       ],
       "legacy": false,
       "preload": []

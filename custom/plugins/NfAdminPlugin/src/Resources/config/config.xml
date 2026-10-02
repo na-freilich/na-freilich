@@ -9,14 +9,28 @@
             <name>sidebarColor</name>
             <label>Sidebar color</label>
             <label lang="de-DE">Sidebarfarbe</label>
-            <default>#222222</default>
+            <defaultValue>#fafbfe</defaultValue>
         </input-field>
 
         <input-field type="colorpicker">
             <name>sidebarTextColor</name>
             <label>Sidebar Font Color</label>
             <label lang="de-DE">Sidebar Schrift Farbe</label>
-            <default>#bcc9dc</default>
+            <defaultValue>#1e1e24</defaultValue>
+        </input-field>
+
+        <input-field type="colorpicker">
+            <name>sidebarHoverColor</name>
+            <label>Sidebar hover color</label>
+            <label lang="de-DE">Sidebarfarbe Hover</label>
+            <defaultValue>#f2f3f8</defaultValue>
+        </input-field>
+
+        <input-field type="colorpicker">
+            <name>sidebarHoverTextColor</name>
+            <label>Sidebar hover font color</label>
+            <label lang="de-DE">Sidebar Schriftfarbe Hover</label>
+            <defaultValue>#1e1e24</defaultValue>
         </input-field>
     </card>
 
