@@ -1,0 +1,24 @@
+{% sw_extends '@Storefront/storefront/page/content/product-detail.html.twig' %}
+
+{% block cms_content %}
+    {% set nfTranslatedFields = page.product.translated.customFields|default({}) %}
+    {% set nfRawFields = page.product.customFields|default({}) %}
+    {% set nfAgeRestricted = nfTranslatedFields.age_restriction_active|default(nfRawFields.age_restriction_active|default(false)) %}
+    {% set requiredAge = config('NfAgeVerification.config.requiredAge') ?: 18 %}
+
+    {% if nfAgeRestricted %}
+        <div class="nf-age-restricted-notice alert alert-warning" role="status" data-nosnippet>
+            {{ "nfAgeVerification.restrictedProductNotice"|trans({'%age%': requiredAge}) }}
+        </div>
+    {% endif %}
+
+    {{ parent() }}
+{% endblock %}
+
+{% block page_content_blocks %}
+    {% sw_include '@NfAgeVerification/storefront/component/age-restricted-marker.html.twig' with {
+        product: page.product,
+        scope: 'detail'
+    } only %}
+    {{ parent() }}
+{% endblock %}

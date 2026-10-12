@@ -1,0 +1,29 @@
+{
+    "name": "nf/age-verification",
+    "description": "NF Age Verification plugin for Shopware 6.7",
+    "type": "shopware-platform-plugin",
+    "version": "1.0.2",
+    "license": "MIT",
+    "authors": [
+        {
+            "name": "na freilich GmbH",
+            "homepage": "https://www.na-freilich.de/"
+        }
+    ],
+    "require": {
+        "shopware/core": ">=6.7"
+    },
+    "extra": {
+        "shopware-plugin-class": "NfAgeVerification\\NfAgeVerification",
+        "plugin-icon": "src/Resources/config/plugin.png",
+        "label": {
+            "de-DE": "Nf Altersprüfung Plugin",
+            "en-GB": "Nf Age Verification Plugin"
+        }
+    },
+    "autoload": {
+        "psr-4": {
+            "NfAgeVerification\\": "src/"
+        }
+    }
+}

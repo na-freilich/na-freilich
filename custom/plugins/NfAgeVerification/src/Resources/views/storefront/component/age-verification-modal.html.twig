@@ -1,0 +1,25 @@
+{% block nf_age_verification_modal %}
+    {% set requiredAge = config('NfAgeVerification.config.requiredAge') ?: 18 %}
+
+    <div id="nf-age-verification-modal"
+         class="nf-age-modal-overlay"
+         style="display: none;"
+         role="dialog"
+         aria-modal="true"
+         aria-labelledby="nf-age-verification-title"
+         data-nosnippet>
+        <div class="nf-age-modal-content">
+            <h2 id="nf-age-verification-title">{{ "nfAgeVerification.modalTitle"|trans }}</h2>
+            <p>{{ "nfAgeVerification.modalQuestion"|trans({'%age%': requiredAge}) }}</p>
+
+            <div class="nf-age-modal-actions">
+                <button type="button" id="nf-age-confirm-btn" class="btn btn-primary">
+                    {{ "nfAgeVerification.confirmButton"|trans({'%age%': requiredAge}) }}
+                </button>
+                <button type="button" id="nf-age-reject-btn" class="btn btn-secondary">
+                    {{ "nfAgeVerification.rejectButton"|trans }}
+                </button>
+            </div>
+        </div>
+    </div>
+{% endblock %}

@@ -1,0 +1,6 @@
+{% sw_extends '@Storefront/storefront/layout/header/search-suggest.html.twig' %}
+
+{% block layout_search_suggest_result_link %}
+    {% sw_include '@NfAgeVerification/storefront/component/age-restricted-marker.html.twig' with { product: product } only %}
+    {{ parent() }}
+{% endblock %}

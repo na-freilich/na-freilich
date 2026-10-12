@@ -1,0 +1,12 @@
+{
+  "nfAgeVerification": {
+    "modalTitle": "Age Verification",
+    "modalQuestion": "Are you at least %age% years old?",
+    "confirmButton": "Yes, I am %age%+",
+    "rejectButton": "No, I am younger",
+    "restrictedProductNotice": "This product is only available from age %age%."
+  },
+  "checkout": {
+    "nfAgeRestricted": "%name% is age-restricted and was removed from the cart. It can only be purchased after age confirmation."
+  }
+}

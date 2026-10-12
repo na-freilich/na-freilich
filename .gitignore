@@ -13,6 +13,8 @@
 !/custom/plugins/NfCustomFinishPage
 !/custom/plugins/NfBuchungs
 !/custom/plugins/NfDynamicProductBadges
+!/custom/plugins/NfGoogleReviewFollowUp
+!/custom/plugins/NfAgeVerification
 
 ###> phpunit/phpunit ###
 /phpunit.xml

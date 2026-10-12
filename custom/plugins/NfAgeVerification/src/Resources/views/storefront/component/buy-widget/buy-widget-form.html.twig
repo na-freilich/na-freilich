@@ -1,0 +1,8 @@
+{% sw_extends '@Storefront/storefront/component/buy-widget/buy-widget-form.html.twig' %}
+
+{% block buy_widget_buy_button_container %}
+    {% if product is defined %}
+        {% sw_include '@NfAgeVerification/storefront/component/age-restricted-marker.html.twig' with { product: product } only %}
+    {% endif %}
+    {{ parent() }}
+{% endblock %}

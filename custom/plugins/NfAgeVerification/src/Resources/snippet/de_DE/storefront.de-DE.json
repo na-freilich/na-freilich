@@ -1,0 +1,12 @@
+{
+  "nfAgeVerification": {
+    "modalTitle": "Altersprüfung",
+    "modalQuestion": "Sind Sie mindestens %age% Jahre alt?",
+    "confirmButton": "Ja, ich bin %age%+",
+    "rejectButton": "Nein, ich bin jünger",
+    "restrictedProductNotice": "Dieses Produkt ist erst ab %age% Jahren zugänglich."
+  },
+  "checkout": {
+    "nfAgeRestricted": "%name% ist altersbeschränkt und wurde aus dem Warenkorb entfernt. Der Kauf ist erst nach bestätigter Altersprüfung möglich."
+  }
+}

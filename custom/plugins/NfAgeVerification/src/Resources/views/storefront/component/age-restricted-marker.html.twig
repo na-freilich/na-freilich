@@ -1,0 +1,10 @@
+{% set nfTranslatedFields = product.translated.customFields|default({}) %}
+{% set nfRawFields = product.customFields|default({}) %}
+{% set nfAgeRestricted = nfTranslatedFields.age_restriction_active|default(nfRawFields.age_restriction_active|default(false)) %}
+
+{% if nfAgeRestricted %}
+    <span class="nf-age-restricted-marker"
+          data-nf-age-restricted="true"
+          {% if scope|default('') %}data-nf-age-scope="{{ scope }}"{% endif %}
+          hidden></span>
+{% endif %}

@@ -1,0 +1,39 @@
+.nf-age-modal-overlay {
+  position: fixed;
+  top: 0; left: 0; width: 100%; height: 100%;
+  background: rgba(0, 0, 0, 0.85);
+  z-index: 99999;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.nf-age-modal-content {
+  background: #fff;
+  padding: 30px;
+  border-radius: 8px;
+  text-align: center;
+  max-width: 420px;
+  width: 90%;
+}
+.nf-age-modal-actions {
+  margin-top: 20px;
+  display: flex;
+  gap: 10px;
+  justify-content: center;
+}
+
+html.nf-age-gate-open {
+  overflow: hidden;
+}
+
+html.nf-age-gate-open #nf-age-verification-modal {
+  display: flex !important;
+}
+
+.nf-age-restricted-notice {
+  display: none;
+}
+
+html.nf-age-rejected .nf-age-restricted-notice {
+  display: block;
+}

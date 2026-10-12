@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:noNamespaceSchemaLocation="https://raw.githubusercontent.com/shopware/shopware/trunk/src/Core/System/SystemConfig/Schema/config.xsd">
+
+    <card>
+        <title>Age Verification Settings</title>
+        <title lang="de-DE">Altersprüfung Einstellungen</title>
+
+        <input-field type="bool">
+            <name>active</name>
+            <label>Enable Age Verification Modal</label>
+            <label lang="de-DE">Altersprüfung-Modal aktivieren</label>
+            <defaultValue>true</defaultValue>
+        </input-field>
+
+        <input-field type="int">
+            <name>requiredAge</name>
+            <label>Required Age for Verification (e.g. 16, 18, 21)</label>
+            <label lang="de-DE">Erforderliches Alter (z. B. 16, 18, 21)</label>
+            <defaultValue>18</defaultValue>
+        </input-field>
+    </card>
+</config>

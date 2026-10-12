@@ -1,0 +1,53 @@
+{% sw_extends '@Storefront/storefront/layout/header/header.html.twig' %}
+
+{% block layout_header %}
+    {{ parent() }}
+
+    {% if config('NfAgeVerification.config.active') %}
+        <style>
+            html.nf-age-gate-open {
+                overflow: hidden;
+            }
+
+            html.nf-age-gate-open #nf-age-verification-modal {
+                display: flex !important;
+            }
+
+            .nf-age-restricted-notice {
+                display: none;
+            }
+
+            html.nf-age-rejected .nf-age-restricted-notice {
+                display: block;
+            }
+
+            html.nf-age-rejected .cms-listing-col:has([data-nf-age-restricted]),
+            html.nf-age-rejected .product-slider-item:has([data-nf-age-restricted]),
+            html.nf-age-rejected .search-suggest-product:has([data-nf-age-restricted]),
+            html.nf-age-rejected .product-box:has([data-nf-age-restricted]),
+            html.nf-age-rejected .cms-page:has([data-nf-age-scope="detail"]) {
+                display: none !important;
+            }
+        </style>
+
+        <div data-age-verification>
+            {% sw_include '@NfAgeVerification/storefront/component/age-verification-modal.html.twig' %}
+        </div>
+
+        <script>
+            (function () {
+                var match = document.cookie.match(/(?:^|;\s*)nf_is_adult=([^;]*)/);
+                var value = match ? decodeURIComponent(match[1]) : '';
+
+                if (value === '0') {
+                    document.documentElement.classList.add('nf-age-rejected');
+                    return;
+                }
+
+                if (value !== '1') {
+                    document.documentElement.classList.add('nf-age-gate-open');
+                }
+            })();
+        </script>
+    {% endif %}
+{% endblock %}
