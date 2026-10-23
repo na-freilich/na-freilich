@@ -6,18 +6,17 @@
 
     {% set markerIoEnabled = config('AdminPlugin.config.markerIoEnabled') %}
     {% set markerIoProject = config('AdminPlugin.config.markerIoProject')|trim %}
-    {% set consentRequired = config('core.basicInformation.useDefaultCookieConsent') %}
-    {% set markerAccepted = app.request.cookies.get('nf-marker-io-enabled') == '1' %}
+    {% set externalConsent = config('AdminPlugin.config.externalConsent') %}
 
     {% if markerIoEnabled and markerIoProject %}
         <script>
             (function () {
                 var cookieName = 'nf-marker-io-enabled';
                 var project = '{{ markerIoProject|e('js') }}';
-                var consentRequired = {{ consentRequired ? 'true' : 'false' }};
+                var externalConsent = {{ externalConsent ? 'true' : 'false' }};
 
                 function hasConsent() {
-                    if (!consentRequired) {
+                    if (externalConsent) {
                         return true;
                     }
 
@@ -60,14 +59,12 @@
                 }
 
                 function watchConsent() {
-                    if (!consentRequired || !document.$emitter) {
+                    if (externalConsent || !document.$emitter) {
                         return;
                     }
 
-                    document.$emitter.subscribe('CookieConfiguration_Update', function (event) {
-                        if (event.detail && event.detail[cookieName]) {
-                            loadMarker();
-                        }
+                    document.$emitter.subscribe('CookieConfiguration_Update', function () {
+                        loadMarker();
                     });
                 }
 

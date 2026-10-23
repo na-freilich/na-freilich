@@ -1,9 +1,9 @@
 {% block layout_body_gtm %}
     {% set gtmId = config('AdminPlugin.config.gtmId')|trim %}
-    {% set consentRequired = config('core.basicInformation.useDefaultCookieConsent') %}
+    {% set externalConsent = config('AdminPlugin.config.externalConsent') %}
     {% set gtmAccepted = app.request.cookies.get('nf-google-tag-manager-enabled') == '1' %}
 
-    {% if gtmId and (not consentRequired or gtmAccepted) %}
+    {% if gtmId and (externalConsent or gtmAccepted) %}
         <noscript>
             <iframe src="https://www.googletagmanager.com/ns.html?id={{ gtmId|e('url') }}"
                     height="0" width="0"

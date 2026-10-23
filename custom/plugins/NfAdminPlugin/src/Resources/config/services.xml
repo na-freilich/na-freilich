@@ -27,6 +27,7 @@
         <service id="Nf\AdminPlugin\Checkout\Cart\GrossPriceCartProcessor">
             <argument type="service" id="Nf\AdminPlugin\Service\ProductService"/>
             <argument type="service" id="Shopware\Core\Checkout\Cart\Price\QuantityPriceCalculator"/>
+            <!-- After ProductCartProcessor (5000) and before PromotionProcessor (4900). 4500 would run after promotions and replace discounted prices. -->
             <tag name="shopware.cart.processor" priority="4950"/>
         </service>
 

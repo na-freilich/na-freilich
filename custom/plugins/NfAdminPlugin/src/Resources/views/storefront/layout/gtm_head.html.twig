@@ -1,17 +1,16 @@
 {% block layout_head_gtm %}
     {% set gtmId = config('AdminPlugin.config.gtmId')|trim %}
-    {% set consentRequired = config('core.basicInformation.useDefaultCookieConsent') %}
-    {% set gtmAccepted = app.request.cookies.get('nf-google-tag-manager-enabled') == '1' %}
+    {% set externalConsent = config('AdminPlugin.config.externalConsent') %}
 
     {% if gtmId %}
         <script>
             (function () {
                 var cookieName = 'nf-google-tag-manager-enabled';
                 var gtmId = '{{ gtmId|e('js') }}';
-                var consentRequired = {{ consentRequired ? 'true' : 'false' }};
+                var externalConsent = {{ externalConsent ? 'true' : 'false' }};
 
                 function hasConsent() {
-                    if (!consentRequired) {
+                    if (externalConsent) {
                         return true;
                     }
 
@@ -39,14 +38,12 @@
                 }
 
                 function watchConsent() {
-                    if (!consentRequired || !document.$emitter) {
+                    if (externalConsent || !document.$emitter) {
                         return;
                     }
 
-                    document.$emitter.subscribe('CookieConfiguration_Update', function (event) {
-                        if (event.detail && event.detail[cookieName]) {
-                            loadGtm();
-                        }
+                    document.$emitter.subscribe('CookieConfiguration_Update', function () {
+                        loadGtm();
                     });
                 }
 

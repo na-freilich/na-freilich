@@ -29,13 +29,20 @@ class CookieSubscriber implements EventSubscriberInterface
     public function onCookieGroupCollect(CookieGroupCollectEvent $event): void
     {
         $salesChannelId = $event->getSalesChannelContext()->getSalesChannelId();
-        $group = $event->cookieGroupCollection->get(CookieProvider::SNIPPET_NAME_COOKIE_GROUP_MARKETING);
-        if ($group === null) {
+        if ($this->configService->getBool('AdminPlugin.config.externalConsent', $salesChannelId)) {
             return;
         }
 
-        $entries = $group->getEntries() ?? new CookieEntryCollection();
-        $group->setEntries($entries);
+        $group = $event->cookieGroupCollection->get(CookieProvider::SNIPPET_NAME_COOKIE_GROUP_MARKETING);
+        if ($group === null || $group->getCookie() !== null) {
+            return;
+        }
+
+        $entries = $group->getEntries();
+        if ($entries === null) {
+            $entries = new CookieEntryCollection();
+            $group->setEntries($entries);
+        }
 
         $gtmId = trim($this->configService->getString('AdminPlugin.config.gtmId', $salesChannelId));
         if ($gtmId !== '') {

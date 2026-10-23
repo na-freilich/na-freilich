@@ -102,12 +102,21 @@
             <label lang="de-DE">Rollen für Flowbuilder-Empfänger</label>
         </component>
 
+        <input-field type="bool">
+            <name>externalConsent</name>
+            <label>Consent is managed externally</label>
+            <label lang="de-DE">Einwilligung wird extern verwaltet</label>
+            <helpText>Loads Google Tag Manager and Marker.io without waiting for the Shopware cookie. Enable only when an external consent tool already blocks these scripts.</helpText>
+            <helpText lang="de-DE">Lädt Google Tag Manager und Marker.io, ohne auf das Shopware-Cookie zu warten. Nur aktivieren, wenn ein externes Consent-Tool diese Skripte bereits blockiert.</helpText>
+            <defaultValue>false</defaultValue>
+        </input-field>
+
         <input-field type="text">
             <name>gtmId</name>
             <label>Google Tag Manager ID</label>
             <placeholder>z. B. GTM-ABCDEFGH</placeholder>
-            <helpText>Enter your Google Tag Manager container ID. The script loads only after cookie consent.</helpText>
-            <helpText lang="de-DE">Geben Sie Ihre Google Tag Manager Container-ID ein. Das Skript wird erst nach der Cookie-Einwilligung geladen.</helpText>
+            <helpText>Enter your Google Tag Manager container ID. The script loads only after cookie consent, unless consent is managed externally.</helpText>
+            <helpText lang="de-DE">Geben Sie Ihre Google Tag Manager Container-ID ein. Das Skript wird erst nach der Cookie-Einwilligung geladen, außer die Einwilligung wird extern verwaltet.</helpText>
         </input-field>
     </card>
 
@@ -123,8 +132,8 @@
         <input-field type="text">
             <name>markerIoProject</name>
             <label>Marker.io Projektcode</label>
-            <helpText>The widget loads only after cookie consent.</helpText>
-            <helpText lang="de-DE">Das Widget wird erst nach der Cookie-Einwilligung geladen.</helpText>
+            <helpText>The widget loads only after cookie consent, unless consent is managed externally.</helpText>
+            <helpText lang="de-DE">Das Widget wird erst nach der Cookie-Einwilligung geladen, außer die Einwilligung wird extern verwaltet.</helpText>
         </input-field>
 
     </card>
