@@ -2,38 +2,34 @@
 
 namespace Nf\AdminPlugin\Storefront\Subscriber;
 
-use Symfony\Component\EventDispatcher\EventSubscriberInterface;
-use Shopware\Core\Content\Product\ProductEvents;
-use Shopware\Core\Framework\DataAbstractionLayer\Event\EntityLoadedEvent;
 use Nf\AdminPlugin\Service\ProductService;
+use Shopware\Core\Content\Product\ProductEntity;
+use Shopware\Core\Content\Product\ProductEvents;
+use Shopware\Core\System\SalesChannel\Entity\SalesChannelEntityLoadedEvent;
+use Symfony\Component\EventDispatcher\EventSubscriberInterface;
 
-/**
- * Class ProductPageSubscriber
- * @package Nf\LastViewedProducts\Storefront\Subscriber
- */
 class ProductSubscriber implements EventSubscriberInterface
 {
     public function __construct(
         private readonly ProductService $productService
-    ) {}
+    ) {
+    }
 
-    /**
-     * @return string[]
-     */
     public static function getSubscribedEvents(): array
     {
         return [
-            ProductEvents::PRODUCT_LOADED_EVENT => 'onProductLoaded'
+            'sales_channel.' . ProductEvents::PRODUCT_LOADED_EVENT => ['onSalesChannelProductLoaded', 100],
         ];
     }
 
-
-    public function onProductLoaded(EntityLoadedEvent $event): void
+    public function onSalesChannelProductLoaded(SalesChannelEntityLoadedEvent $event): void
     {
-        $loadedProducts = $event->getEntities();
-        foreach ($loadedProducts as $product) {
-            $this->productService->updatePrice($product);
+        foreach ($event->getEntities() as $product) {
+            if (!$product instanceof ProductEntity) {
+                continue;
+            }
+
+            $this->productService->applyCustomerGross($product, $event->getSalesChannelContext());
         }
     }
-
 }

@@ -5,50 +5,42 @@
            xsi:schemaLocation="http://symfony.com/schema/dic/services http://symfony.com/schema/dic/services/services-1.0.xsd">
 
     <services>
-        <!-- Subscribers -->
         <service id="Nf\AdminPlugin\Storefront\Subscriber\ProductSubscriber">
             <argument type="service" id="Nf\AdminPlugin\Service\ProductService"/>
+            <tag name="kernel.event_subscriber"/>
+        </service>
 
+        <service id="Nf\AdminPlugin\Storefront\Subscriber\CookieSubscriber">
+            <argument type="service" id="Shopware\Core\System\SystemConfig\SystemConfigService"/>
             <tag name="kernel.event_subscriber"/>
         </service>
 
         <service id="Nf\AdminPlugin\Storefront\Subscriber\FlowSubscriber">
             <argument type="service" id="user.repository"/>
-
             <tag name="kernel.event_subscriber"/>
         </service>
 
-        <!-- Services -->
         <service id="Nf\AdminPlugin\Service\ProductService">
-            <argument type="service" id="request_stack"/>
-            <argument type="service" id="Shopware\Core\System\SystemConfig\SystemConfigService" />
+            <argument type="service" id="Shopware\Core\System\SystemConfig\SystemConfigService"/>
         </service>
 
-        <!--Decorators -->
-        <service id="Nf\AdminPlugin\Decorator\ProductGatewayDecorator" decorates="Shopware\Core\Content\Product\Cart\ProductGateway">
-              <argument type="service" id="Nf\AdminPlugin\Decorator\ProductGatewayDecorator.inner" />
+        <service id="Nf\AdminPlugin\Checkout\Cart\GrossPriceCartProcessor">
             <argument type="service" id="Nf\AdminPlugin\Service\ProductService"/>
+            <argument type="service" id="Shopware\Core\Checkout\Cart\Price\QuantityPriceCalculator"/>
+            <tag name="shopware.cart.processor" priority="4950"/>
         </service>
 
-        <!--Twig -->
         <service id="Nf\AdminPlugin\Twig\Extension\MediaUrlExtension">
             <argument type="service" id="media.repository"/>
-
             <tag name="twig.extension"/>
         </service>
 
-        <!--Controllers -->
         <service id="Nf\AdminPlugin\Controller\Api\CustomerStatsController" public="true">
-            <argument type="service" id="Doctrine\DBAL\Connection"/>
+            <argument type="service" id="customer.repository"/>
+            <argument type="service" id="order.repository"/>
             <call method="setContainer">
                 <argument type="service" id="service_container"/>
             </call>
         </service>
-
-        <!--Rule -->
-<!--        <service id="Nf\AdminPlugin\Core\Content\Flow\Rule\OrderCreatedByAdminRoleRule">-->
-<!--            <tag name="shopware.rule.definition"/>-->
-<!--        </service>-->
-
     </services>
 </container>

@@ -1,15 +1,65 @@
 {% block layout_head_gtm %}
-    {% set gtmId = config('AdminPlugin.config.gtmId') %}
+    {% set gtmId = config('AdminPlugin.config.gtmId')|trim %}
+    {% set consentRequired = config('core.basicInformation.useDefaultCookieConsent') %}
+    {% set gtmAccepted = app.request.cookies.get('nf-google-tag-manager-enabled') == '1' %}
 
-    {% if gtmId is not empty %}
-        <!-- Google Tag Manager -->
+    {% if gtmId %}
         <script>
-            (function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
-                    new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
-                j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
-                'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
-            })(window,document,'script','dataLayer','{{ gtmId|e }}');
+            (function () {
+                var cookieName = 'nf-google-tag-manager-enabled';
+                var gtmId = '{{ gtmId|e('js') }}';
+                var consentRequired = {{ consentRequired ? 'true' : 'false' }};
+
+                function hasConsent() {
+                    if (!consentRequired) {
+                        return true;
+                    }
+
+                    return document.cookie.split(';').some(function (item) {
+                        return item.trim() === cookieName + '=1';
+                    });
+                }
+
+                function loadGtm() {
+                    if (window.__nfGtmLoaded || !hasConsent()) {
+                        return;
+                    }
+
+                    window.__nfGtmLoaded = true;
+                    (function (w, d, s, l, i) {
+                        w[l] = w[l] || [];
+                        w[l].push({'gtm.start': new Date().getTime(), event: 'gtm.js'});
+                        var f = d.getElementsByTagName(s)[0],
+                            j = d.createElement(s),
+                            dl = l !== 'dataLayer' ? '&l=' + l : '';
+                        j.async = true;
+                        j.src = 'https://www.googletagmanager.com/gtm.js?id=' + i + dl;
+                        f.parentNode.insertBefore(j, f);
+                    })(window, document, 'script', 'dataLayer', gtmId);
+                }
+
+                function watchConsent() {
+                    if (!consentRequired || !document.$emitter) {
+                        return;
+                    }
+
+                    document.$emitter.subscribe('CookieConfiguration_Update', function (event) {
+                        if (event.detail && event.detail[cookieName]) {
+                            loadGtm();
+                        }
+                    });
+                }
+
+                if (hasConsent()) {
+                    loadGtm();
+                }
+
+                if (document.readyState === 'loading') {
+                    document.addEventListener('DOMContentLoaded', watchConsent);
+                } else {
+                    watchConsent();
+                }
+            })();
         </script>
-        <!-- End Google Tag Manager -->
     {% endif %}
 {% endblock %}

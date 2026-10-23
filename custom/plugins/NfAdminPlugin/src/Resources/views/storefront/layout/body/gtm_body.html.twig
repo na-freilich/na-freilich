@@ -1,14 +1,13 @@
 {% block layout_body_gtm %}
+    {% set gtmId = config('AdminPlugin.config.gtmId')|trim %}
+    {% set consentRequired = config('core.basicInformation.useDefaultCookieConsent') %}
+    {% set gtmAccepted = app.request.cookies.get('nf-google-tag-manager-enabled') == '1' %}
 
-    {% set gtmId = config('AdminPlugin.config.gtmId') %}
-
-    {% if gtmId is not empty %}
-        <!-- Google Tag Manager (noscript) -->
+    {% if gtmId and (not consentRequired or gtmAccepted) %}
         <noscript>
-            <iframe src="https://www.googletagmanager.com/ns.html?id={{ gtmId|e }}"
+            <iframe src="https://www.googletagmanager.com/ns.html?id={{ gtmId|e('url') }}"
                     height="0" width="0"
                     style="display:none;visibility:hidden"></iframe>
         </noscript>
-        <!-- End Google Tag Manager (noscript) -->
     {% endif %}
 {% endblock %}

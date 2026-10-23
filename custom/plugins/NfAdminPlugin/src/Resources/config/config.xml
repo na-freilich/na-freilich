@@ -106,7 +106,8 @@
             <name>gtmId</name>
             <label>Google Tag Manager ID</label>
             <placeholder>z. B. GTM-ABCDEFGH</placeholder>
-            <helpText>Geben Sie Ihre Google Tag Manager Container-ID ein.</helpText>
+            <helpText>Enter your Google Tag Manager container ID. The script loads only after cookie consent.</helpText>
+            <helpText lang="de-DE">Geben Sie Ihre Google Tag Manager Container-ID ein. Das Skript wird erst nach der Cookie-Einwilligung geladen.</helpText>
         </input-field>
     </card>
 
@@ -122,6 +123,8 @@
         <input-field type="text">
             <name>markerIoProject</name>
             <label>Marker.io Projektcode</label>
+            <helpText>The widget loads only after cookie consent.</helpText>
+            <helpText lang="de-DE">Das Widget wird erst nach der Cookie-Einwilligung geladen.</helpText>
         </input-field>
 
     </card>

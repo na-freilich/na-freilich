@@ -5,6 +5,12 @@
     },
     "detail": {
       "tabsGpsr": "GPSR"
+    },
+    "cookie": {
+      "googleTagManager": "Google Tag Manager",
+      "googleTagManagerDescription": "Loads Google Tag Manager after you give consent.",
+      "markerIo": "Marker.io",
+      "markerIoDescription": "Loads the Marker.io feedback widget after you give consent."
     }
   }
 }
