@@ -1,4 +1,11 @@
 {
+  "nfGoogleTagManager": {
+    "cookie": {
+      "statistics": "Google Tag Manager",
+      "statisticsDescription": "Misst Besuche und die Nutzung des Shops mit Google Analytics.",
+      "openSettings": "Cookie-Einstellungen"
+    }
+  },
   "nf-order-day": {
     "checkout": {
       "title": "Bestelltag",

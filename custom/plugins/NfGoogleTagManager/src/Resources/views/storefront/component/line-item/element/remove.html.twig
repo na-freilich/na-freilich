@@ -1,0 +1,40 @@
+{% sw_extends '@Storefront/storefront/component/line-item/element/remove.html.twig' %}
+
+{% block component_line_item_remove_button %}
+    {% set salesChannelId = context.salesChannelId %}
+    {% set trackRemove = config('NfGoogleTagManager.config.active', salesChannelId) and config('NfGoogleTagManager.config.eventRemoveFromCart', salesChannelId) %}
+    {% set trackedItem = null %}
+
+    {% if trackRemove %}
+        {% set trackedItems = [] %}
+        {% if page.extensions.nfGtmCartItems is defined and page.extensions.nfGtmCartItems %}
+            {% set trackedItems = page.extensions.nfGtmCartItems.all.ecommerce.items|default([]) %}
+        {% elseif page.extensions.nfGtmDataLayer is defined and page.extensions.nfGtmDataLayer.all.ecommerce.items is defined %}
+            {% set trackedItems = page.extensions.nfGtmDataLayer.all.ecommerce.items %}
+        {% endif %}
+
+        {% for item in trackedItems %}
+            {% if item.item_id == lineItem.payload.productNumber|default(lineItem.referencedId) %}
+                {% set trackedItem = item %}
+            {% endif %}
+        {% endfor %}
+
+        {% if trackedItem is null %}
+            {% set trackedItem = {
+                item_id: lineItem.payload.productNumber|default(lineItem.referencedId),
+                item_name: lineItem.label,
+                price: lineItem.price.unitPrice|default(0),
+                quantity: lineItem.quantity
+            } %}
+        {% endif %}
+    {% endif %}
+
+    <button type="submit"
+            aria-label="{{ 'checkout.removeLineItem'|trans({ '%lineItemLabel%': label })|striptags }}"
+            title="{{ 'global.default.remove'|trans }}"
+            data-product-id="{{ lineItem.id }}"
+            {% if trackedItem %}data-nf-gtm-item="{{ trackedItem|json_encode|escape('html_attr') }}"{% endif %}
+            class="btn btn-outline-secondary btn-sm line-item-remove-button">
+        {% sw_icon 'x' style { size: 'sm' } %}
+    </button>
+{% endblock %}

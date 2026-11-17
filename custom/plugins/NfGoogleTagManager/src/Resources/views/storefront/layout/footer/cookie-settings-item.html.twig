@@ -1,0 +1,10 @@
+{% set salesChannelId = context.salesChannelId %}
+{% if config('NfGoogleTagManager.config.active', salesChannelId) and not config('NfGoogleTagManager.config.externalConsent', salesChannelId) %}
+    <li class="footer-service-menu-item">
+        <a class="footer-service-menu-link"
+           href="{{ path('frontend.cookie.offcanvas') }}"
+           title="{{ 'nfGoogleTagManager.cookie.openSettings'|trans }}">
+            {{ 'nfGoogleTagManager.cookie.openSettings'|trans }}
+        </a>
+    </li>
+{% endif %}

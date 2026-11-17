@@ -1,0 +1,20 @@
+{% set listId = '' %}
+{% set listName = '' %}
+{% set categoryFallback = '' %}
+
+{% if page.category is defined and page.category %}
+    {% set listId = page.category.id %}
+    {% set listName = page.category.translated.name|default('') %}
+    {% set categoryFallback = listName %}
+{% elseif page.searchTerm is defined and page.searchTerm %}
+    {% set listId = 'search_results' %}
+    {% set listName = page.searchTerm %}
+{% endif %}
+
+<input type="hidden"
+       class="js-nf-gtm-track-item"
+       data-nf-gtm-item="{{ nf_gtm_item(product, context, {
+           item_list_id: listId,
+           item_list_name: listName,
+           item_category: categoryFallback
+       })|json_encode|escape('html_attr') }}">

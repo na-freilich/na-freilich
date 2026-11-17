@@ -1,0 +1,19 @@
+{% sw_extends '@Storefront/storefront/layout/footer/footer.html.twig' %}
+
+{% block layout_footer_service_menu_item %}
+    {{ parent() }}
+
+    {% if loop.last %}
+        {% sw_include '@NfGoogleTagManager/storefront/layout/footer/cookie-settings-item.html.twig' %}
+    {% endif %}
+{% endblock %}
+
+{% block layout_footer_service_menu_content %}
+    {{ parent() }}
+
+    {% if footer.serviceMenu is empty %}
+        <ul class="footer-service-menu-list list-unstyled d-flex flex-wrap justify-content-center">
+            {% sw_include '@NfGoogleTagManager/storefront/layout/footer/cookie-settings-item.html.twig' %}
+        </ul>
+    {% endif %}
+{% endblock %}

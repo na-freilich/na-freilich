@@ -6,13 +6,8 @@
     {% set salesChannelId = context.salesChannelId %}
 
     {% if config('NfGoogleTagManager.config.active', salesChannelId) and config('NfGoogleTagManager.config.eventAddToCart', salesChannelId) %}
-
-        {% set productItem = page.extensions.nfGtmDataLayer.all.ecommerce.items[0]|default(null) %}
-
-        {% if productItem %}
-            <input type="hidden"
-                   class="js-nf-gtm-track-item"
-                   data-nf-gtm-item="{{ productItem|json_encode|escape('html_attr') }}">
-        {% endif %}
+        <input type="hidden"
+               class="js-nf-gtm-track-item"
+               data-nf-gtm-item="{{ nf_gtm_item(product, context)|json_encode|escape('html_attr') }}">
     {% endif %}
 {% endblock %}

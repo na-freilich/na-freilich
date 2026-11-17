@@ -1,0 +1,11 @@
+# Nf Google Tag Manager
+
+The plugin fills the `dataLayer` and loads the shop's GTM container. GA4 event tags are not created in the shop. Import them once into each customer's container.
+
+| | |
+|---|---|
+| Deutsch | [docs/gtm.de.md](docs/gtm.de.md) |
+| English | [docs/gtm.en.md](docs/gtm.en.md) |
+| Container import | [src/Resources/gtm/ga4-container.json](src/Resources/gtm/ga4-container.json) |
+
+The import file has no customer container id and no real GA4 property id. Before publishing, replace the placeholder `G-XXXXXXXXXX` in the variable **NF - GA4 Measurement ID**.

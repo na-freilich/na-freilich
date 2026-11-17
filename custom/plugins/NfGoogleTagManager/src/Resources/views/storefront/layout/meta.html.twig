@@ -10,7 +10,7 @@
     {% if pluginActive %}
         <script>
             window.dataLayer = window.dataLayer || [];
-            function gtag(){ dataLayer.push([...arguments]); }
+            function gtag(){ dataLayer.push(arguments); }
 
             {% if consentModeEnabled %}
             gtag('consent', 'default', {
@@ -18,7 +18,7 @@
                 'analytics_storage': 'denied',
                 'ad_user_data': 'denied',
                 'ad_personalization': 'denied',
-                'region': ['DE', 'AT', 'EEA'],
+                'region': ['DE', 'AT'],
                 'wait_for_update': 500
             });
             {% endif %}
@@ -32,6 +32,7 @@
     {% set salesChannelId = context.salesChannelId %}
     {% set pluginActive = config('NfGoogleTagManager.config.active', salesChannelId) %}
     {% set gtmId = config('NfGoogleTagManager.config.gtmId', salesChannelId) %}
+    {% set consentModeEnabled = config('NfGoogleTagManager.config.consentModeEnabled', salesChannelId) %}
 
     {% if pluginActive and gtmId %}
         <script>
@@ -44,7 +45,13 @@
                 {% set pageType = 'search' %}
             {% elseif activeRoute == 'frontend.checkout.cart.page' %}
                 {% set pageType = 'cart' %}
+            {% elseif activeRoute == 'frontend.checkout.register.page' or activeRoute == 'frontend.checkout.confirm.page' %}
+                {% set pageType = 'checkout' %}
+            {% elseif activeRoute == 'frontend.checkout.finish.page' %}
+                {% set pageType = 'purchase' %}
             {% endif %}
+
+            document.documentElement.dataset.nfCurrency = '{{ context.currency.isoCode }}';
 
             dataLayer.push({
                 'page': {
@@ -54,6 +61,10 @@
                 'sales_channel_id': '{{ salesChannelId }}',
                 'currency': '{{ context.currency.isoCode }}'
             });
+
+            {% if page.extensions.nfGtmSearchDataLayer %}
+            dataLayer.push({{ page.extensions.nfGtmSearchDataLayer.all|json_encode|raw }});
+            {% endif %}
 
             {% if page.extensions.nfGtmDataLayer %}
             dataLayer.push({ ecommerce: null });
@@ -71,12 +82,79 @@
             {% endif %}
         </script>
 
+        {% set externalConsent = config('NfGoogleTagManager.config.externalConsent', salesChannelId) %}
         <script>
-            (function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
-                    new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
-                j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
-                'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
-            })(window,document,'script','dataLayer','{{ gtmId }}');
+            (function () {
+                var cookieName = 'nf-gtm-analytics';
+                var gtmId = '{{ gtmId|e('js') }}';
+                var externalConsent = {{ externalConsent ? 'true' : 'false' }};
+                var consentModeEnabled = {{ consentModeEnabled ? 'true' : 'false' }};
+
+                function hasShopwareConsent() {
+                    return document.cookie.split(';').some(function (item) {
+                        return item.trim() === cookieName + '=1';
+                    });
+                }
+
+                function updateConsent() {
+                    if (externalConsent || !consentModeEnabled || typeof gtag !== 'function') {
+                        return;
+                    }
+
+                    var granted = hasShopwareConsent();
+                    gtag('consent', 'update', {
+                        'analytics_storage': granted ? 'granted' : 'denied',
+                        'ad_storage': 'denied',
+                        'ad_user_data': 'denied',
+                        'ad_personalization': 'denied'
+                    });
+                }
+
+                function loadGtm() {
+                    if (window.__nfGtmLoaded) {
+                        return;
+                    }
+
+                    if (!externalConsent && !hasShopwareConsent()) {
+                        return;
+                    }
+
+                    window.__nfGtmLoaded = true;
+                    (function (w, d, s, l, i) {
+                        w[l] = w[l] || [];
+                        w[l].push({'gtm.start': new Date().getTime(), event: 'gtm.js'});
+                        var f = d.getElementsByTagName(s)[0],
+                            j = d.createElement(s),
+                            dl = l !== 'dataLayer' ? '&l=' + l : '';
+                        j.async = true;
+                        j.src = 'https://www.googletagmanager.com/gtm.js?id=' + i + dl;
+                        f.parentNode.insertBefore(j, f);
+                    })(window, document, 'script', 'dataLayer', gtmId);
+                }
+
+                function applyConsent() {
+                    updateConsent();
+                    loadGtm();
+                }
+
+                function watchConsent() {
+                    if (externalConsent || !document.$emitter) {
+                        return;
+                    }
+
+                    document.$emitter.subscribe('CookieConfiguration_Update', function () {
+                        applyConsent();
+                    });
+                }
+
+                applyConsent();
+
+                if (document.readyState === 'loading') {
+                    document.addEventListener('DOMContentLoaded', watchConsent);
+                } else {
+                    watchConsent();
+                }
+            })();
         </script>
         {% set salesChannelId = context.salesChannelId %}
         {% set debugMode = config('NfGoogleTagManager.config.debugMode', salesChannelId) ? '1' : '0' %}
@@ -84,6 +162,8 @@
         <div id="nf-gtm-config"
              style="display:none;"
              data-debug="{{ debugMode }}"
+             data-add-active="{{ config('NfGoogleTagManager.config.eventAddToCart', salesChannelId) ? '1' : '0' }}"
+             data-select-active="{{ config('NfGoogleTagManager.config.eventSelectItem', salesChannelId) ? '1' : '0' }}"
              data-remove-active="{{ config('NfGoogleTagManager.config.eventRemoveFromCart', salesChannelId) ? '1' : '0' }}">
         </div>
     {% endif %}

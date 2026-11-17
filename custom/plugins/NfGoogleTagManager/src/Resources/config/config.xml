@@ -11,7 +11,9 @@
             <name>gtmId</name>
             <label>GTM Container ID</label>
             <label lang="de-DE">GTM Container-ID</label>
-            <placeholder>GTM-XXXXXX</placeholder>
+            <placeholder>GTM-XXXXXXX</placeholder>
+            <helpText>Container for this shop. Events are pushed to the dataLayer. Import src/Resources/gtm/ga4-container.json into that container and set the GA4 measurement id there. See README.md.</helpText>
+            <helpText lang="de-DE">Container dieses Shops. Ereignisse werden in den dataLayer geschrieben. src/Resources/gtm/ga4-container.json in diesen Container importieren und dort die GA4-Measurement-ID setzen. Siehe README.md.</helpText>
         </input-field>
 
         <input-field type="bool">
@@ -38,6 +40,15 @@
             <label>Enable Consent Mode v2 Default (denied)</label>
             <label lang="de-DE">Consent Mode v2 Default aktivieren (denied)</label>
             <defaultValue>true</defaultValue>
+        </input-field>
+
+        <input-field type="bool">
+            <name>externalConsent</name>
+            <label>Consent is managed externally</label>
+            <label lang="de-DE">Einwilligung wird extern verwaltet</label>
+            <helpText>Loads Google Tag Manager without waiting for the Shopware statistics cookie. Enable only when an external consent tool already blocks this script.</helpText>
+            <helpText lang="de-DE">Lädt Google Tag Manager, ohne auf das Shopware-Statistik-Cookie zu warten. Nur aktivieren, wenn ein externes Consent-Tool dieses Skript bereits blockiert.</helpText>
+            <defaultValue>false</defaultValue>
         </input-field>
     </card>
 
@@ -114,5 +125,66 @@
             <label lang="de-DE">search tracken (Interne Suche)</label>
             <defaultValue>true</defaultValue>
         </input-field>
+    </card>
+
+    <card>
+        <title>Item properties</title>
+        <title lang="de-DE">Artikeleigenschaften</title>
+
+        <input-field type="text">
+            <name>itemPropertyParameter1</name>
+            <label>Data layer field 1</label>
+            <label lang="de-DE">Data-Layer-Feld 1</label>
+            <placeholder>item_category2</placeholder>
+            <helpText>Item field name for this shop. Letters, numbers and underscores. Example: item_category2 or size. Leave empty to skip this slot.</helpText>
+            <helpText lang="de-DE">Feldname im Item für diesen Shop. Buchstaben, Zahlen und Unterstriche. Beispiel: item_category2 oder size. Leer lassen, um diesen Platz zu überspringen.</helpText>
+        </input-field>
+        <component name="sw-entity-single-select">
+            <name>itemPropertyGroup1</name>
+            <entity>property_group</entity>
+            <label>Property group 1</label>
+            <label lang="de-DE">Eigenschaftsgruppe 1</label>
+            <helpText>Shopware property group copied into data layer field 1.</helpText>
+            <helpText lang="de-DE">Shopware-Eigenschaftsgruppe, die in Data-Layer-Feld 1 übernommen wird.</helpText>
+        </component>
+
+        <input-field type="text">
+            <name>itemPropertyParameter2</name>
+            <label>Data layer field 2</label>
+            <label lang="de-DE">Data-Layer-Feld 2</label>
+            <placeholder>item_category3</placeholder>
+        </input-field>
+        <component name="sw-entity-single-select">
+            <name>itemPropertyGroup2</name>
+            <entity>property_group</entity>
+            <label>Property group 2</label>
+            <label lang="de-DE">Eigenschaftsgruppe 2</label>
+        </component>
+
+        <input-field type="text">
+            <name>itemPropertyParameter3</name>
+            <label>Data layer field 3</label>
+            <label lang="de-DE">Data-Layer-Feld 3</label>
+            <placeholder>item_category4</placeholder>
+        </input-field>
+        <component name="sw-entity-single-select">
+            <name>itemPropertyGroup3</name>
+            <entity>property_group</entity>
+            <label>Property group 3</label>
+            <label lang="de-DE">Eigenschaftsgruppe 3</label>
+        </component>
+
+        <input-field type="text">
+            <name>itemPropertyParameter4</name>
+            <label>Data layer field 4</label>
+            <label lang="de-DE">Data-Layer-Feld 4</label>
+            <placeholder>item_category5</placeholder>
+        </input-field>
+        <component name="sw-entity-single-select">
+            <name>itemPropertyGroup4</name>
+            <entity>property_group</entity>
+            <label>Property group 4</label>
+            <label lang="de-DE">Eigenschaftsgruppe 4</label>
+        </component>
     </card>
 </config>

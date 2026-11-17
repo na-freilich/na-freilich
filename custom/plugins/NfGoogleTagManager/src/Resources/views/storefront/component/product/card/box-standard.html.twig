@@ -1,0 +1,11 @@
+{% sw_extends '@Storefront/storefront/component/product/card/box-standard.html.twig' %}
+
+{% block component_product_box_content %}
+    {% set salesChannelId = context.salesChannelId %}
+    {% if config('NfGoogleTagManager.config.active', salesChannelId)
+        and (config('NfGoogleTagManager.config.eventAddToCart', salesChannelId) or config('NfGoogleTagManager.config.eventSelectItem', salesChannelId)) %}
+        {% sw_include '@NfGoogleTagManager/storefront/component/nf-gtm/product-marker.html.twig' %}
+    {% endif %}
+
+    {{ parent() }}
+{% endblock %}

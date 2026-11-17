@@ -4,7 +4,7 @@
     {% set salesChannelId = context.salesChannelId %}
 
     {% if config('NfGoogleTagManager.config.active', salesChannelId) and config('NfGoogleTagManager.config.eventCheckoutSteps', salesChannelId) %}
-        {% set checkoutData = page.extensions.nfGtmDataLayer.all|default(null) %}
+        {% set checkoutData = page.extensions.nfGtmCartItems.all|default(page.extensions.nfGtmDataLayer.all|default(null)) %}
 
         <div class="js-nf-gtm-checkout-form"
              data-nf-checkout-items="{{ checkoutData.ecommerce.items|json_encode|escape('html_attr') }}"

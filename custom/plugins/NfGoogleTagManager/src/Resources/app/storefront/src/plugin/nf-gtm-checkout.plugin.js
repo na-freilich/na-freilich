@@ -41,7 +41,7 @@ export default class NfGtmCheckoutPlugin extends Plugin {
         const paymentName = labelEl ? labelEl.innerText.trim() : 'Unknown';
 
         this._pushToDataLayer('add_payment_info', {
-            payment_method: paymentName
+            payment_type: paymentName
         });
     }
 
