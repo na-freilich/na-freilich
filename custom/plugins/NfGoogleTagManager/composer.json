@@ -2,7 +2,7 @@
     "name": "nf/google-tag-manager",
     "description": "Google Tag Manager (GTM, GA4, Consent Mode v2) by na freilich GmbH",
     "type": "shopware-platform-plugin",
-    "version": "1.0.1",
+    "version": "1.0.2",
     "license": "MIT",
     "authors": [
         {
@@ -19,6 +19,10 @@
         "label": {
             "de-DE": "Nf Google Tag Manager Plugin",
             "en-GB": "Nf Google Tag Manager Plugin"
+        },
+        "description": {
+            "de-DE": "Schreibt E-Commerce-Ereignisse in den dataLayer. Die GA4-Tags liegen in Google Tag Manager: Anleitung und Importdatei stehen in den Plugin-Einstellungen, nicht im Quellcode.",
+            "en-GB": "Writes ecommerce events to the dataLayer. GA4 tags live in Google Tag Manager: the setup guide and import file are in the plugin settings, not in the source code."
         }
     },
     "autoload": {

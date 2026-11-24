@@ -13,6 +13,10 @@
 
         <service id="NfGoogleTagManager\Components\BeginCheckoutTracker"/>
 
+        <service id="NfGoogleTagManager\Components\ListingVariantResolver">
+            <argument key="$productRepository" type="service" id="sales_channel.product.repository"/>
+        </service>
+
         <service id="NfGoogleTagManager\Storefront\Twig\GtmTwigExtension">
             <tag name="twig.extension"/>
         </service>

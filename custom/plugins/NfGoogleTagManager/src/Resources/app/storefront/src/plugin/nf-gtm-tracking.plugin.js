@@ -89,12 +89,16 @@ export default class NfGtmTrackingPlugin extends Plugin {
             return;
         }
 
-        const link = event.target.closest('.product-box a');
+        const link = event.target.closest('a');
         if (!link || link.closest('form[data-add-to-cart]')) {
             return;
         }
 
-        const box = link.closest('.product-box');
+        if (link.classList.contains('product-detail-configurator-option') || link.closest('.product-detail-configurator')) {
+            return;
+        }
+
+        const box = link.closest('.product-box, [data-product-information]');
         const input = box ? box.querySelector('.js-nf-gtm-track-item') : null;
         if (!input || !input.dataset.nfGtmItem) {
             return;
@@ -138,16 +142,11 @@ export default class NfGtmTrackingPlugin extends Plugin {
         }
 
         const form = event.target;
-        if (!(form instanceof HTMLFormElement)) {
+        if (!(form instanceof HTMLFormElement) || !this._isRemoveForm(form)) {
             return;
         }
 
-        const button = form.querySelector('.line-item-remove-button');
-        if (!button || !button.dataset.nfGtmItem) {
-            return;
-        }
-
-        const item = this._parseItem(button.dataset.nfGtmItem);
+        const item = this._removeItem(form);
         if (!item) {
             return;
         }
@@ -188,8 +187,28 @@ export default class NfGtmTrackingPlugin extends Plugin {
         this._log('remove_from_cart push successful', item);
     }
 
+    _isRemoveForm(form) {
+        const action = form.getAttribute('action') || '';
+
+        return action.indexOf('/checkout/line-item/delete') !== -1
+            || form.classList.contains('js-offcanvas-cart-remove-product');
+    }
+
+    _removeItem(form) {
+        const scope = form.closest('.line-item') || form.closest('li') || form;
+        const input = scope.querySelector('.js-nf-gtm-track-item')
+            || scope.querySelector('[data-nf-gtm-item]');
+        if (!input) {
+            return null;
+        }
+
+        const raw = input.dataset.nfGtmItem || input.getAttribute('data-nf-gtm-item');
+
+        return raw ? this._parseItem(raw) : null;
+    }
+
     _itemFromForm(form) {
-        const box = form.closest('.product-box');
+        const box = form.closest('.product-box, [data-product-information]');
         const input = form.querySelector('.js-nf-gtm-track-item')
             || (box ? box.querySelector('.js-nf-gtm-track-item') : null);
         if (!input || !input.dataset.nfGtmItem) {
@@ -204,9 +223,11 @@ export default class NfGtmTrackingPlugin extends Plugin {
             return;
         }
 
-        const box = element.classList && element.classList.contains('product-box')
-            ? element
-            : element.closest('.product-box');
+        const box = element.closest
+            ? (element.matches('.product-box, [data-product-information]')
+                ? element
+                : element.closest('.product-box, [data-product-information]'))
+            : null;
         if (!box) {
             return;
         }
@@ -216,7 +237,7 @@ export default class NfGtmTrackingPlugin extends Plugin {
             return;
         }
 
-        const boxes = Array.from(listing.querySelectorAll('.product-box'));
+        const boxes = Array.from(listing.querySelectorAll('.product-box, [data-product-information]'));
         const index = boxes.indexOf(box);
         if (index >= 0) {
             item.index = index + 1;
@@ -279,6 +300,17 @@ export default class NfGtmTrackingPlugin extends Plugin {
     _trackWishlistAction(productId) {
         try {
             const wishlistBtn = document.querySelector(`.js-nf-gtm-wishlist-btn[data-nf-gtm-id="${productId}"]`);
+            const productBox = wishlistBtn ? wishlistBtn.closest('.product-box, [data-product-information]') : null;
+            const marker = productBox ? productBox.querySelector('.js-nf-gtm-track-item') : null;
+            const parsed = marker && marker.dataset.nfGtmItem ? this._parseItem(marker.dataset.nfGtmItem) : null;
+
+            if (parsed) {
+                parsed.quantity = 1;
+                const price = parseFloat(parsed.price) || 0;
+                this._pushEcommerce('add_to_wishlist', price, [parsed]);
+                this._log('Add to wishlist push notification sent successfully', parsed);
+                return;
+            }
             let itemName = productId;
             let productNumber = wishlistBtn ? wishlistBtn.dataset.nfGtmSku || productId : productId;
             let price = 0;

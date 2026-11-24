@@ -3,6 +3,7 @@
 namespace NfGoogleTagManager\Tests\Components;
 
 use NfGoogleTagManager\Components\DataLayerMapper;
+use NfGoogleTagManager\Components\ListingVariantResolver;
 use PHPUnit\Framework\TestCase;
 use Shopware\Core\Checkout\Cart\Cart;
 use Shopware\Core\Checkout\Cart\LineItem\LineItem;
@@ -21,6 +22,7 @@ use Shopware\Core\Content\Product\SalesChannel\SalesChannelProductEntity;
 use Shopware\Core\Content\Property\Aggregate\PropertyGroupOption\PropertyGroupOptionCollection;
 use Shopware\Core\Content\Property\Aggregate\PropertyGroupOption\PropertyGroupOptionEntity;
 use Shopware\Core\Content\Property\PropertyGroupEntity;
+use Shopware\Core\Framework\Struct\ArrayEntity;
 use Shopware\Core\System\Currency\CurrencyEntity;
 use Shopware\Core\System\SalesChannel\SalesChannelContext;
 use Shopware\Core\System\SalesChannel\SalesChannelEntity;
@@ -91,6 +93,7 @@ class DataLayerMapperTest extends TestCase
         ]);
 
         $this->assertSame('W-1', $item['item_id']);
+        $this->assertArrayNotHasKey('item_group_id', $item);
         $this->assertSame('Winzer', $item['item_brand']);
         $this->assertSame('Rotwein', $item['item_category']);
         $this->assertSame('category-1', $item['item_list_id']);
@@ -117,6 +120,43 @@ class DataLayerMapperTest extends TestCase
         $this->assertSame('Weisswein', $mapped['ecommerce']['items'][0]['item_category']);
         $this->assertSame(1, $mapped['ecommerce']['items'][0]['index']);
         $this->assertSame('category-9', $mapped['ecommerce']['item_list_id']);
+    }
+
+    public function testVariantProductUsesOwnNumberAndParentAsGroup(): void
+    {
+        $parent = new SalesChannelProductEntity();
+        $parent->setId('parent-1');
+        $parent->setProductNumber('E60604112103M');
+
+        $product = $this->wineProduct();
+        $product->setId('variant-1');
+        $product->setProductNumber('E60604618102');
+        $product->setParentId('parent-1');
+        $product->setParent($parent);
+
+        $item = (new DataLayerMapper())->mapProductItem($product, $this->context());
+
+        $this->assertSame('E60604618102', $item['item_id']);
+        $this->assertSame('E60604112103M', $item['item_group_id']);
+    }
+
+    public function testListingParentUsesResolvedVariantIdentity(): void
+    {
+        $product = $this->wineProduct();
+        $product->setId('parent-1');
+        $product->setProductNumber('E60604112103M');
+        $product->setChildCount(3);
+        $product->addExtension(ListingVariantResolver::EXTENSION, new ArrayEntity([
+            'item_id' => 'E60604618102',
+            'item_group_id' => 'E60604112103M',
+            'item_variant' => 'Anstoßbreite: 18 mm / Farbe: 10 schwarz',
+        ]));
+
+        $item = (new DataLayerMapper())->mapProductItem($product, $this->context());
+
+        $this->assertSame('E60604618102', $item['item_id']);
+        $this->assertSame('E60604112103M', $item['item_group_id']);
+        $this->assertSame('Anstoßbreite: 18 mm / Farbe: 10 schwarz', $item['item_variant']);
     }
 
     public function testPurchaseKeepsAZeroTaxRateAndFillsTheItemFromTheProduct(): void

@@ -7,13 +7,17 @@
         <title>Google Tag Manager Settings</title>
         <title lang="de-DE">Google Tag Manager Einstellungen</title>
 
+        <component name="nf-gtm-setup-guide">
+            <name>setupGuide</name>
+        </component>
+
         <input-field type="text">
             <name>gtmId</name>
             <label>GTM Container ID</label>
             <label lang="de-DE">GTM Container-ID</label>
             <placeholder>GTM-XXXXXXX</placeholder>
-            <helpText>Container for this shop. Events are pushed to the dataLayer. Import src/Resources/gtm/ga4-container.json into that container and set the GA4 measurement id there. See README.md.</helpText>
-            <helpText lang="de-DE">Container dieses Shops. Ereignisse werden in den dataLayer geschrieben. src/Resources/gtm/ga4-container.json in diesen Container importieren und dort die GA4-Measurement-ID setzen. Siehe README.md.</helpText>
+            <helpText>Container for this shop. The import file and the Google setup steps are in the card above. After import, replace G-XXXXXXXXXX in NF - GA4 Measurement ID.</helpText>
+            <helpText lang="de-DE">Container dieses Shops. Importdatei und Google-Schritte stehen in der Karte darüber. Nach dem Import G-XXXXXXXXXX in NF - GA4 Measurement ID ersetzen.</helpText>
         </input-field>
 
         <input-field type="bool">

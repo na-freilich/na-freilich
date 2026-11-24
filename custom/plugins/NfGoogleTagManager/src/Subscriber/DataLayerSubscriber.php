@@ -5,12 +5,15 @@ namespace NfGoogleTagManager\Subscriber;
 use NfGoogleTagManager\Components\BeginCheckoutTracker;
 use NfGoogleTagManager\Components\DataLayerMapper;
 use NfGoogleTagManager\Components\ItemPropertyMap;
+use NfGoogleTagManager\Components\ListingVariantResolver;
 use Shopware\Core\Checkout\Cart\Cart;
 use Shopware\Core\Checkout\Cart\LineItem\LineItem;
 use Shopware\Core\Checkout\Order\OrderEntity;
 use Shopware\Core\Content\Cms\SalesChannel\Struct\ProductListingStruct;
 use Shopware\Core\Content\Product\Events\ProductListingCriteriaEvent;
+use Shopware\Core\Content\Product\Events\ProductListingResultEvent;
 use Shopware\Core\Content\Product\Events\ProductSearchCriteriaEvent;
+use Shopware\Core\Content\Product\Events\ProductSearchResultEvent;
 use Shopware\Core\Content\Product\SalesChannel\SalesChannelProductEntity;
 use Shopware\Core\Framework\DataAbstractionLayer\Search\Criteria;
 use Shopware\Core\Framework\Struct\ArrayEntity;
@@ -40,7 +43,8 @@ class DataLayerSubscriber implements EventSubscriberInterface
         private readonly DataLayerMapper $mapper,
         private readonly SalesChannelRepository $productRepository,
         private readonly ItemPropertyMap $itemPropertyMap,
-        private readonly BeginCheckoutTracker $beginCheckoutTracker
+        private readonly BeginCheckoutTracker $beginCheckoutTracker,
+        private readonly ListingVariantResolver $listingVariantResolver
     ) {
     }
 
@@ -57,6 +61,8 @@ class DataLayerSubscriber implements EventSubscriberInterface
             OffcanvasCartPageLoadedEvent::class => 'onOffcanvasCartLoaded',
             ProductListingCriteriaEvent::class => 'onListingCriteria',
             ProductSearchCriteriaEvent::class => 'onListingCriteria',
+            ProductListingResultEvent::class => 'onListingResult',
+            ProductSearchResultEvent::class => 'onListingResult',
         ];
     }
 
@@ -80,6 +86,27 @@ class DataLayerSubscriber implements EventSubscriberInterface
         $criteria->addAssociation('categories');
         $criteria->addAssociation('properties.group');
         $criteria->addAssociation('options.group');
+        $criteria->addAssociation('parent');
+    }
+
+    public function onListingResult(ProductListingResultEvent $event): void
+    {
+        $salesChannelId = $event->getSalesChannelContext()->getSalesChannelId();
+        if (!$this->isActive($salesChannelId)) {
+            return;
+        }
+
+        if (!$this->isEnabled('eventViewItemList', $salesChannelId)
+            && !$this->isEnabled('eventAddToCart', $salesChannelId)
+            && !$this->isEnabled('eventSelectItem', $salesChannelId)
+        ) {
+            return;
+        }
+
+        $this->listingVariantResolver->enrich(
+            $event->getResult()->getEntities(),
+            $event->getSalesChannelContext()
+        );
     }
 
     public function onProductPageLoaded(ProductPageLoadedEvent $event): void
@@ -371,6 +398,7 @@ class DataLayerSubscriber implements EventSubscriberInterface
         $criteria->addAssociation('categories');
         $criteria->addAssociation('properties.group');
         $criteria->addAssociation('options.group');
+        $criteria->addAssociation('parent');
 
         $products = [];
         foreach ($this->productRepository->search($criteria, $context)->getEntities() as $product) {

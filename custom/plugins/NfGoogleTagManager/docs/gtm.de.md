@@ -2,7 +2,7 @@
 
 Das Plugin schreibt E-Commerce-Ereignisse in den `dataLayer` und lädt den Container, der in den Plugin-Einstellungen steht. Die Tags, die diese Ereignisse an GA4 senden, liegen in Google Tag Manager. Dieselbe Importdatei gilt für jeden Shop. Container-ID und GA4-Property trägt man pro Kunde ein, nicht in diesem Repository.
 
-Datei: `src/Resources/gtm/ga4-container.json`
+Datei: in den Plugin-Einstellungen herunterladen, oder `src/Resources/gtm/ga4-container.json`
 
 Der Platzhalter `G-XXXXXXXXXX` und `GTM-XXXXXXX` sind keine echten Konten. GTM ersetzt die Container-IDs beim Import. Die Measurement-ID muss danach von Hand gesetzt werden.
 

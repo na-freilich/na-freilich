@@ -8,6 +8,7 @@ use Shopware\Core\Checkout\Cart\Price\Struct\CalculatedPrice;
 use Shopware\Core\Checkout\Order\Aggregate\OrderLineItem\OrderLineItemEntity;
 use Shopware\Core\Checkout\Order\OrderEntity;
 use Shopware\Core\Content\Product\SalesChannel\SalesChannelProductEntity;
+use Shopware\Core\Framework\Struct\ArrayEntity;
 use Shopware\Core\System\SalesChannel\SalesChannelContext;
 
 class DataLayerMapper
@@ -24,7 +25,7 @@ class DataLayerMapper
         $unitPrice = $calculatedPrice ? $this->money($calculatedPrice->getUnitPrice()) : 0.0;
 
         $item = [
-            'item_id' => $product->getProductNumber(),
+            'item_id' => $this->itemId($product),
             'item_name' => $product->getTranslation('name') ?? '',
             'affiliation' => $this->affiliation($context),
             'item_brand' => $this->manufacturerName($product),
@@ -33,7 +34,12 @@ class DataLayerMapper
             'quantity' => $quantity,
         ];
 
-        $variant = $this->variantLabel($product->getVariation());
+        $groupId = $this->itemGroupId($product);
+        if ($groupId !== null) {
+            $item['item_group_id'] = $groupId;
+        }
+
+        $variant = $this->itemVariant($product);
         if ($variant !== '') {
             $item['item_variant'] = $variant;
         }
@@ -306,6 +312,53 @@ class DataLayerMapper
         if ($discount > 0) {
             $item['discount'] = $discount;
         }
+    }
+
+    private function listingOverride(SalesChannelProductEntity $product): ?ArrayEntity
+    {
+        $extension = $product->getExtension(ListingVariantResolver::EXTENSION);
+
+        return $extension instanceof ArrayEntity ? $extension : null;
+    }
+
+    private function itemId(SalesChannelProductEntity $product): string
+    {
+        $override = $this->listingOverride($product);
+        $fromListing = trim((string) ($override?->get('item_id') ?? ''));
+        if ($fromListing !== '') {
+            return $fromListing;
+        }
+
+        return (string) $product->getProductNumber();
+    }
+
+    private function itemGroupId(SalesChannelProductEntity $product): ?string
+    {
+        $override = $this->listingOverride($product);
+        $fromListing = trim((string) ($override?->get('item_group_id') ?? ''));
+        if ($fromListing !== '') {
+            return $fromListing;
+        }
+
+        $parent = $product->getParent();
+        $parentNumber = $parent !== null ? trim((string) $parent->getProductNumber()) : '';
+        $itemId = $this->itemId($product);
+        if ($parentNumber !== '' && $parentNumber !== $itemId) {
+            return $parentNumber;
+        }
+
+        return null;
+    }
+
+    private function itemVariant(SalesChannelProductEntity $product): string
+    {
+        $override = $this->listingOverride($product);
+        $fromListing = trim((string) ($override?->get('item_variant') ?? ''));
+        if ($fromListing !== '') {
+            return $fromListing;
+        }
+
+        return $this->variantLabel($product->getVariation());
     }
 
     /**
