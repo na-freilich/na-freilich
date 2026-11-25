@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:noNamespaceSchemaLocation="https://raw.githubusercontent.com/shopware/shopware/trunk/src/Core/System/SystemConfig/Schema/config.xsd">
+
+    <card>
+        <title>Product review request</title>
+        <title lang="de-DE">Produktbewertung einfordern</title>
+
+        <input-field type="bool">
+            <name>active</name>
+            <label>Send review mails</label>
+            <label lang="de-DE">Bewertungsmails versenden</label>
+            <helpText>When disabled, due requests stay in the queue. The installed flow "Produktbewertung einfordern" sends the mail.</helpText>
+            <helpText lang="de-DE">Wenn deaktiviert, bleiben fällige Anfragen in der Warteschlange. Der mitgelieferte Flow „Produktbewertung einfordern“ versendet die Mail.</helpText>
+            <defaultValue>true</defaultValue>
+        </input-field>
+
+        <input-field type="int">
+            <name>delayDays</name>
+            <label>Days after shipped</label>
+            <label lang="de-DE">Tage nach Versendet</label>
+            <helpText>The mail is triggered this many days after the delivery first reaches the status Shipped.</helpText>
+            <helpText lang="de-DE">Die Mail wird so viele Tage nach dem ersten Erreichen des Versandstatus Versendet ausgelöst.</helpText>
+            <defaultValue>7</defaultValue>
+            <min>0</min>
+        </input-field>
+    </card>
+</config>

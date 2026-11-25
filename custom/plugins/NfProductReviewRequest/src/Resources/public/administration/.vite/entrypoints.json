@@ -1,0 +1,23 @@
+{
+  "base": "/bundles/nfproductreviewrequest/administration/",
+  "entryPoints": {
+    "nf-product-review-request": {
+      "css": [],
+      "dynamic": [],
+      "js": [
+        "/bundles/nfproductreviewrequest/administration/assets/nf-product-review-request-cex4nhzF.js"
+      ],
+      "legacy": false,
+      "preload": []
+    }
+  },
+  "legacy": false,
+  "metadatas": {},
+  "version": [
+    "7.1.0",
+    7,
+    1,
+    0
+  ],
+  "viteServer": null
+}

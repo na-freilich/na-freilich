@@ -1,0 +1,66 @@
+<?xml version="1.0" ?>
+
+<container xmlns="http://symfony.com/schema/dic/services"
+           xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+           xsi:schemaLocation="http://symfony.com/schema/dic/services http://symfony.com/schema/dic/services/services-1.0.xsd">
+
+    <services>
+        <service id="Nf\ProductReviewRequest\Core\Content\ProductReviewRequest\ProductReviewRequestDefinition">
+            <tag name="shopware.entity.definition"/>
+        </service>
+
+        <service id="Nf\ProductReviewRequest\Service\CheckoutConsentReader">
+            <argument type="service" id="request_stack"/>
+        </service>
+
+        <service id="Nf\ProductReviewRequest\Service\FollowUpScheduleService">
+            <argument type="service" id="nf_product_review_request.repository"/>
+            <argument type="service" id="order_delivery.repository"/>
+            <argument type="service" id="Shopware\Core\System\SystemConfig\SystemConfigService"/>
+            <argument type="service" id="Doctrine\DBAL\Connection"/>
+            <argument type="service" id="Psr\Clock\ClockInterface"/>
+            <argument type="service" id="logger"/>
+        </service>
+
+        <service id="Nf\ProductReviewRequest\Service\OrderConsentService">
+            <argument type="service" id="Nf\ProductReviewRequest\Service\CheckoutConsentReader"/>
+            <argument type="service" id="Nf\ProductReviewRequest\Service\FollowUpScheduleService"/>
+            <argument type="service" id="order.repository"/>
+            <argument type="service" id="logger"/>
+        </service>
+
+        <service id="Nf\ProductReviewRequest\Service\ProductReviewLinkBuilder">
+            <argument type="service" id="Doctrine\DBAL\Connection"/>
+            <argument type="service" id="order_line_item.repository"/>
+        </service>
+
+        <service id="Nf\ProductReviewRequest\Subscriber\OrderSubscriber">
+            <argument type="service" id="Nf\ProductReviewRequest\Service\OrderConsentService"/>
+            <tag name="kernel.event_subscriber"/>
+        </service>
+
+        <service id="Nf\ProductReviewRequest\Subscriber\DeliveryStateSubscriber">
+            <argument type="service" id="Nf\ProductReviewRequest\Service\FollowUpScheduleService"/>
+            <tag name="kernel.event_subscriber"/>
+        </service>
+
+        <service id="Nf\ProductReviewRequest\Core\Flow\Dispatching\Storer\ProductReviewLinkStorer">
+            <tag name="flow.storer"/>
+        </service>
+
+        <service id="Nf\ProductReviewRequest\ScheduledTask\ProductReviewRequestTask">
+            <tag name="shopware.scheduled.task"/>
+        </service>
+
+        <service id="Nf\ProductReviewRequest\ScheduledTask\ProductReviewRequestTaskHandler">
+            <argument type="service" id="scheduled_task.repository"/>
+            <argument type="service" id="logger"/>
+            <argument type="service" id="nf_product_review_request.repository"/>
+            <argument type="service" id="Doctrine\DBAL\Connection"/>
+            <argument type="service" id="Shopware\Core\System\SystemConfig\SystemConfigService"/>
+            <argument type="service" id="Nf\ProductReviewRequest\Service\ProductReviewLinkBuilder"/>
+            <argument type="service" id="event_dispatcher"/>
+            <tag name="messenger.message_handler" handles="Nf\ProductReviewRequest\ScheduledTask\ProductReviewRequestTask"/>
+        </service>
+    </services>
+</container>

@@ -1,0 +1,17 @@
+{% sw_extends '@Storefront/storefront/page/checkout/confirm/index.html.twig' %}
+
+{% block page_checkout_confirm_revocation_control %}
+    {{ parent() }}
+
+    {% if not feature('v6.8.0.0') %}
+        {% sw_include '@NfProductReviewRequest/storefront/page/checkout/confirm/newsletter.html.twig' %}
+    {% endif %}
+{% endblock %}
+
+{% block page_checkout_confirm_tos_auto_confirmed %}
+    {{ parent() }}
+
+    {% if feature('v6.8.0.0') %}
+        {% sw_include '@NfProductReviewRequest/storefront/page/checkout/confirm/newsletter.html.twig' %}
+    {% endif %}
+{% endblock %}

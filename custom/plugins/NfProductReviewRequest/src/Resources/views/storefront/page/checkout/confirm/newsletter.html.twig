@@ -1,0 +1,57 @@
+{% block nf_product_review_request_newsletter %}
+    <div class="form-check nf-product-review-newsletter">
+        {% block nf_product_review_request_newsletter_input %}
+            <input type="checkbox"
+                   class="form-check-input"
+                   id="nfProductReviewNewsletter"
+                   name="newsletter"
+                   value="1"
+                   form="confirmOrderForm">
+        {% endblock %}
+
+        {% block nf_product_review_request_newsletter_label %}
+            <label class="form-check-label custom-control-label"
+                   for="nfProductReviewNewsletter">
+                {{ 'nfProductReviewRequest.checkout.newsletter'|trans({
+                    '%shopname%': config('core.basicInformation.shopName')
+                })|sw_sanitize }}
+            </label>
+        {% endblock %}
+    </div>
+
+    {% block nf_product_review_request_newsletter_preserver %}
+        <script>
+            (function () {
+                var apply = function () {
+                    var form = document.getElementById('confirmOrderForm');
+                    if (!form) {
+                        return;
+                    }
+
+                    var options = {};
+                    try {
+                        options = JSON.parse(form.getAttribute('data-form-preserver-options') || '{}');
+                    } catch (error) {
+                        options = {};
+                    }
+
+                    if (!Array.isArray(options.ignoredElementNames)) {
+                        options.ignoredElementNames = [];
+                    }
+
+                    if (options.ignoredElementNames.indexOf('newsletter') === -1) {
+                        options.ignoredElementNames.push('newsletter');
+                    }
+
+                    form.setAttribute('data-form-preserver-options', JSON.stringify(options));
+                };
+
+                if (document.readyState === 'loading') {
+                    document.addEventListener('DOMContentLoaded', apply);
+                } else {
+                    apply();
+                }
+            })();
+        </script>
+    {% endblock %}
+{% endblock %}

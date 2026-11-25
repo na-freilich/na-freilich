@@ -1,0 +1,29 @@
+{
+    "name": "nf/product-review-request",
+    "description": "Produktbewertung einfordern",
+    "type": "shopware-platform-plugin",
+    "version": "1.0.1",
+    "license": "MIT",
+    "authors": [
+        {
+            "name": "na freilich GmbH",
+            "homepage": "https://www.na-freilich.de/"
+        }
+    ],
+    "require": {
+        "shopware/core": ">=6.7.3 <6.8.0"
+    },
+    "extra": {
+        "shopware-plugin-class": "Nf\\ProductReviewRequest\\NfProductReviewRequest",
+        "plugin-icon": "src/Resources/config/plugin.png",
+        "label": {
+            "de-DE": "Nf Flow \"Produktbewertung\"",
+            "en-GB": "Nf \"Product Review\" Flow"
+        }
+    },
+    "autoload": {
+        "psr-4": {
+            "Nf\\ProductReviewRequest\\": "src/"
+        }
+    }
+}

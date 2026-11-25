@@ -1,0 +1,7 @@
+{
+    "nfProductReviewRequest": {
+        "checkout": {
+            "newsletter": "Ja, ich möchte den kostenlosen Newsletter von %shopname% abonnieren. (Abmeldung jederzeit möglich.)"
+        }
+    }
+}

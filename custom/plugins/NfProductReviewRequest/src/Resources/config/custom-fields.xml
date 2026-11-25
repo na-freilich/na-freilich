@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<custom-fields xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+               xsi:noNamespaceSchemaLocation="../../../../../../vendor/shopware/core/System/CustomField/Schema/custom-fields-1.0.xsd">
+    <custom-field-set>
+        <name>nf_product_review_request</name>
+        <label lang="en-GB">Product review request</label>
+        <label lang="de-DE">Produktbewertung einfordern</label>
+        <related-entities>
+            <order/>
+        </related-entities>
+        <fields>
+            <bool name="custom_nf_product_review_newsletter">
+                <position>1</position>
+                <label lang="en-GB">Newsletter selected</label>
+                <label lang="de-DE">Newsletter ausgewählt</label>
+                <help-text lang="en-GB">Customer selected the newsletter checkbox on the order confirmation page.</help-text>
+                <help-text lang="de-DE">Kunde hat die Newsletter-Checkbox auf der Bestellabschluss-Seite ausgewählt.</help-text>
+            </bool>
+            <bool name="custom_nf_product_review_eligible">
+                <position>2</position>
+                <label lang="en-GB">Product review mail allowed</label>
+                <label lang="de-DE">Produktbewertungsmail erlaubt</label>
+                <help-text lang="en-GB">True when the newsletter checkbox was selected. Only then is a review mail scheduled.</help-text>
+                <help-text lang="de-DE">Wahr, wenn die Newsletter-Checkbox ausgewählt wurde. Nur dann wird eine Bewertungsmail eingeplant.</help-text>
+            </bool>
+        </fields>
+    </custom-field-set>
+</custom-fields>

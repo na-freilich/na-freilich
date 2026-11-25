@@ -1,0 +1,8 @@
+{
+    "sw-flow": {
+        "triggers": {
+            "nfProductReview": "Product review",
+            "productReviewDue": "Review due"
+        }
+    }
+}

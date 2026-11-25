@@ -1,0 +1,7 @@
+{
+    "nfProductReviewRequest": {
+        "checkout": {
+            "newsletter": "Yes, I would like to subscribe to the free newsletter of %shopname%. (Unsubscribe at any time.)"
+        }
+    }
+}
